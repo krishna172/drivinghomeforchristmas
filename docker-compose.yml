@@ -1,0 +1,15 @@
+version: "3"
+services:
+  frontend:
+    image: webpack
+    build:
+      context: ./app
+    ports:
+      - 8080:8080
+    volumes:
+      - ./app:/bindmount:rw
+      # The volume is effectively hiding node_modules from the host and must be in this order
+      - node_modules:/src/node_modules
+    command: ["npm", "run", "dev"]
+volumes:
+  node_modules:
