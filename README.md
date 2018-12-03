@@ -3,6 +3,8 @@
 * Install `docker-compose` for your local machine.
 * Call `docker-compose up`, this should build the image
 
+## Run an additional install 
+`docker-compose exec frontend npm install` and maybe restart the container
 ## Source code based on
 Typescript setup was taken from:
 [https://github.com/digitsensitive/phaser3-typescript](https://github.com/digitsensitive/phaser3-typescript)
