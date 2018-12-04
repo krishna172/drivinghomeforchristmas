@@ -11,5 +11,16 @@ services:
       # The volume is effectively hiding node_modules from the host and must be in this order
       - node_modules:/src/node_modules
     command: ["npm", "run", "dev"]
+  backend:
+    image: webpack
+    build:
+      context: ./app
+    ports:
+      - 8081:3000
+    volumes:
+      - ./app:/bindmount:rw
+      # The volume is effectively hiding node_modules from the host and must be in this order
+      - node_modules:/src/node_modules
+    command: ["npm", "run", "server"]
 volumes:
   node_modules:

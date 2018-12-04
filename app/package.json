@@ -17,14 +17,17 @@
     "typescript": "3.1.6",
     "webpack": "4.25.1",
     "webpack-cli": "3.1.2",
-    "webpack-dev-server": "3.1.10"
+    "webpack-dev-server": "3.1.10",
+    "express": "^4.15.2",
+    "socket.io": "^2.2.0"
   },
   "dependencies": {
     "phaser": "3.10.1"
   },
   "scripts": {
     "dev": "webpack --mode development && webpack-dev-server --mode development",
-    "build": "webpack --mode production && webpack-dev-server --mode production"
+    "build": "webpack --mode production && webpack-dev-server --mode production",
+    "server": "webpack --config webpack-server.config.js --mode development && webpack-dev-server --config webpack-server.config.js --mode development"
   },
   "repository": {
     "type": "git",
