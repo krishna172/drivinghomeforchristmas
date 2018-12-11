@@ -4,45 +4,56 @@ var phaser = path.join(pathToPhaser, 'dist/phaser.js');
 
 var root = path.join(__dirname);
 
+var webpack = require('webpack');
+var fs = require('fs');
+
+var nodeModules = {};
+fs.readdirSync('node_modules')
+    .filter(function (x) {
+        return ['.bin'].indexOf(x) === -1;
+    })
+    .forEach(function (mod) {
+        nodeModules[mod] = 'commonjs ' + mod;
+    });
+
 module.exports = {
-    entry: root + "/src/server/server.ts",
+    entry: './src/server/server.ts',
     target: 'node',
-    externals: [
-        /^[a-z\-0-9]+$/ // Ignore node_modules folder
-    ],
     output: {
-        filename: 'compiled', // output file
-        path: root + "/build",
-        libraryTarget: "commonjs"
+        filename: 'index.js',
+        path: path.resolve(__dirname, 'build')
     },
+    devtool: 'source-map',
     resolve: {
-        // Add in `.ts` and `.tsx` as a resolvable extension.
-        extensions: ['.webpack.js', '.web.js', '.ts', '.tsx', '.js'],
-        modules: [
-            root + "/node_modules",
-            'node_modules'
-        ]
-    },
-    resolveLoader: {
-        //root: [`${root}/node_modules`],
-
-
+        // Add `.ts` and `.tsx` as a resolvable extension.
+        extensions: ['.ts', '.tsx', '.js']
     },
     module: {
-        rules: [{
+        rules: [
             // all files with a `.ts` or `.tsx` extension will be handled by `ts-loader`
-            test: /\.tsx?$/,
-            use: [
-                {
-                    loader: 'ts-loader',
-                }
-            ]
-        }]
+            { test: /\.tsx?$/, loader: 'ts-loader' }
+        ]
     },
-    node: {
-        net: 'empty',
-        tls: 'empty',
-        dns: 'empty',
-        fs: 'empty'
-    }
+    externals: nodeModules,
+    devServer: {
+        historyApiFallback: true,
+        hot: true,
+        inline: true,
+
+        host: 'localhost', // Defaults to `localhost`
+        proxy: {
+            '^/test/*': {
+                target: 'http://localhost:3000/api/',
+                secure: false
+            }
+        }
+    },
+    // and separately, in your plugins section
+    plugins: [
+        new webpack.HotModuleReplacementPlugin({
+            multiStep: true
+        })
+    ]
+
 };
+
