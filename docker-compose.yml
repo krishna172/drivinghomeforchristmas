@@ -23,6 +23,6 @@ services:
       # The volume is effectively hiding node_modules from the host and must be in this order
       - node_modules:/src/node_modules
       - ./npmlogs:/root/.npm/_logs/
-    command: ["npm", "run", "server"]
+    command: ["npm", "run", "serverdev"]
 volumes:
   node_modules:

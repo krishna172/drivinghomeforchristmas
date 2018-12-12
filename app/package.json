@@ -21,6 +21,8 @@
     "webpack-node-externals": "^1.7.2",
     "@types/express": "^4.16.0",
     "@types/node": "^10.12.12",
+    "ts-node": "^7.0.1",
+    "nodemon": "^1.18.8",
     "socket.io": "^2.2.0"
   },
   "dependencies": {
@@ -30,7 +32,8 @@
   "scripts": {
     "dev": "webpack --mode development && webpack-dev-server --mode development",
     "build": "webpack --mode production && webpack-dev-server --mode production",
-    "server": "webpack --config webpack-server.config.js --mode development && webpack-dev-server --config webpack-server.config.js --mode development"
+    "serverbuild": "ts-node --config tsconfig-server.json src/server/server.ts",
+    "serverdev": "./node_modules/nodemon/bin/nodemon.js"
   },
   "repository": {
     "type": "git",

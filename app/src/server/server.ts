@@ -6,7 +6,7 @@ import * as http from 'http';
 
 var app:express.Application = express();
 
-app.get('/test', (req: Request, res: Response) => {
+app.get('/', (req: Request, res: Response) => {
     res.status(200).json({status: "ok"});
 });
 
