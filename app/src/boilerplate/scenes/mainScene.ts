@@ -14,10 +14,10 @@ export class MainScene extends Phaser.Scene {
   }
 
   preload(): void {
-    this.load.image("logo", "./assets/boilerplate/phaser1.png");
+    this.load.image("logo", "./assets/boilerplate/phaser.png");
   }
 
   create(): void {
-    this.phaserSprite = this.add.sprite(400, 300, "logo");
+    this.phaserSprite = this.add.sprite(0, 300, "logo");
   }
 }
