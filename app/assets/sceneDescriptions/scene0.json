@@ -1,0 +1,72 @@
+{
+  "title":"First Scene",
+  "bg_music_name":"music0.mp3",
+  "bg_image_name":"bg_scene_sample.png",
+  "conversationTree":{
+    "id":3,
+    "name":"Faith",
+    "text":"Hello, decide your faith!.",
+    "audio_file_name":"sound01.mp3",
+    "transition":null,
+    "options":[
+      {
+        "emotion":2,
+        "nodes":[
+          {
+            "id":0,
+            "name":"Die",
+            "text":"I'd like to die.",
+            "audio_file_name":"sound04.mp3",
+            "transition":"GameOver",
+            "options":null
+          },
+          {
+            "id":1,
+            "name":"Live",
+            "text":"I'd like to live",
+            "audio_file_name":"sound03.mp3",
+            "transition":null,
+            "options":null
+          },
+          {
+            "id":2,
+            "name":"Ignore",
+            "text":"Once again, blub!!",
+            "audio_file_name":"sound02.mp3",
+            "transition":null,
+            "options":null
+          }
+        ]
+      },
+      {
+        "emotion":1,
+        "nodes":[
+          {
+            "id":0,
+            "name":"Die",
+            "text":"I'd like to die.",
+            "audio_file_name":"sound04.mp3",
+            "transition":"GameOver",
+            "options":null
+          },
+          {
+            "id":1,
+            "name":"Live",
+            "text":"I'd like to live",
+            "audio_file_name":"sound03.mp3",
+            "transition":null,
+            "options":null
+          },
+          {
+            "id":2,
+            "name":"Ignore",
+            "text":"Once again, blub!!",
+            "audio_file_name":"sound02.mp3",
+            "transition":null,
+            "options":null
+          }
+        ]
+      }
+    ]
+  }
+}
