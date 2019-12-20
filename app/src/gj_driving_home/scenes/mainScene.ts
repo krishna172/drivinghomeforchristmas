@@ -19,16 +19,15 @@ export class MainScene extends Phaser.Scene {
 
     let emotionOptions = new Array<EmotionOptions>();
     let nodes: Array<ConversationNode> = new Array<ConversationNode>();
-    nodes.push(new ConversationNode(0,"Hello kind sir!",null));
-    nodes.push(new ConversationNode(1,"Once again, blub!!",null));
-    nodes.push(new ConversationNode(2,"Once again, blub!!",null));
+    nodes.push(new ConversationNode(0,"Die", "I'd like to die.","sound04.mp3","GameOver",null));
+    nodes.push(new ConversationNode(1,"Live","I'd like to live","sound03.mp3",null,null));
+    nodes.push(new ConversationNode(2,"Ignore","Once again, blub!!","sound02.mp3",null,null));
     emotionOptions.push(new EmotionOptions(Emotion.Angry, nodes));
     emotionOptions.push(new EmotionOptions(Emotion.Happy, nodes));
-    let conversationNode = new ConversationNode(3,"Hello, decide your asdfasdf!.", emotionOptions);
+    let conversationNode = new ConversationNode(3,"Faith","Hello, decide your faith!.", "sound01.mp3",null, emotionOptions);
 
-    let sceneDescription = new SceneDescription();
-    sceneDescription.title= "First Scene";
-    sceneDescription.conversationTree = conversationNode;
+    let sceneDescription = new SceneDescription("First Scene","music0.mp3","bg_scene_sample.png",conversationNode);
+
     console.log(JSON.stringify(sceneDescription));
 
 
