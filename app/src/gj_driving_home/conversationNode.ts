@@ -1,12 +1,15 @@
 import {Emotion} from "./emotion";
+import {EmotionOptions} from "./scenes/emotionOptions";
 
 export class ConversationNode {
-    id : string;
+    id : number;
+    name : string;
     text : string;
-    options: Map<Emotion, ConversationNode>;
+    audio_file_name : string;
+    transition : string;
+    options: Array<EmotionOptions>;
 
-
-    constructor(id: string, text: string, options: Map<Emotion, ConversationNode>) {
+    constructor(id: number, text: string, options:Array<EmotionOptions>) {
         this.id = id;
         this.text = text;
         this.options = options;
