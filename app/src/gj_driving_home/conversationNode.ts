@@ -1,5 +1,5 @@
 import {Emotion} from "./emotion";
-import {EmotionOptions} from "./scenes/emotionOptions";
+import {EmotionOptions} from "./emotionOptions";
 
 export class ConversationNode {
     id : number;

@@ -1,5 +1,5 @@
-import {Emotion} from "../emotion";
-import {ConversationNode} from "../conversationNode";
+import {Emotion} from "./emotion";
+import {ConversationNode} from "./conversationNode";
 
 export class EmotionOptions {
     constructor(angry: Emotion, nodes: Array<ConversationNode>) {

@@ -7,7 +7,8 @@
 /// <reference path="../phaser.d.ts"/>
 
 import "phaser";
-import { MainScene } from "./scenes/mainScene";
+import {MainScene} from "./scenes/mainScene";
+import {LoadingScene} from "./scenes/loadingScene";
 
 // main game configuration
 // main game configuration
@@ -20,7 +21,7 @@ const config: GameConfig = {
   pixelArt: false,
   parent: "game",
 
-  scene: [MainScene],
+  scene: [LoadingScene, MainScene],
   physics: {
     default: "arcade",
     arcade: {

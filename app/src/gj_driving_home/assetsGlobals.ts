@@ -1,4 +1,5 @@
 export class AssetGlobals {
 //TODO add assets here
-    public static readonly BG_IMAGE= 'scene1_bg';
+    public static readonly BG_IMAGE= 'bg_scene_00';
+    public static readonly BG_IMAGE_LOADING= 'bg_scene_01';
 }
