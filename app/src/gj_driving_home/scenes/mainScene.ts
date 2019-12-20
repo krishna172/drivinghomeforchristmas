@@ -1,7 +1,6 @@
 import {AssetGlobals} from "../assetsGlobals";
 
 export class MainScene extends Phaser.Scene {
-  private phaserSprite: Phaser.GameObjects.Sprite;
 
   constructor() {
     super({
@@ -10,10 +9,10 @@ export class MainScene extends Phaser.Scene {
   }
 
   preload(): void {
-    this.load.image("logo", "./assets/boilerplate/phaser.png");
+    this.load.image( AssetGlobals.BG_IMAGE, "./assets/backgrounds/scene_1.png");
   }
 
   create(): void {
-    this.phaserSprite = this.add.sprite(0, 300, "logo");
+    this.add.image(this.game.renderer.width/2,this.game.renderer.height/2,AssetGlobals.BG_IMAGE);
   }
 }

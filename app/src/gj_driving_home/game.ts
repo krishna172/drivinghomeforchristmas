@@ -13,8 +13,8 @@ import { MainScene } from "./scenes/mainScene";
 // main game configuration
 const config: GameConfig = {
 
-  width: 1280,
-  height: 720,
+  width: 1920,
+  height: 1080,
 
   type: Phaser.AUTO,
   pixelArt: false,
