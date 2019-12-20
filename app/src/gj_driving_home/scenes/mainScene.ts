@@ -9,7 +9,7 @@ export class MainScene extends Phaser.Scene {
   }
 
   preload(): void {
-    this.load.image( AssetGlobals.BG_IMAGE, "./assets/backgrounds/scene_1.png");
+    this.load.image( AssetGlobals.BG_IMAGE, "./assets/backgrounds/bg_scene_sample.jpg");
   }
 
   create(): void {
