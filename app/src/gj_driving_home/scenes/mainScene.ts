@@ -1,7 +1,6 @@
 import {AssetGlobals} from "../assetsGlobals";
 
 export class MainScene extends Phaser.Scene {
-  private phaserSprite: Phaser.GameObjects.Sprite;
 
   constructor() {
     super({
@@ -14,6 +13,6 @@ export class MainScene extends Phaser.Scene {
   }
 
   create(): void {
-    this.phaserSprite = this.add.sprite(0, 300, "logo");
+    this.add.image(this.game.renderer.width/2,this.game.renderer.height/2,'logo');
   }
 }
