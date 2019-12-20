@@ -10,16 +10,21 @@ import "phaser";
 import { MainScene } from "./scenes/mainScene";
 
 // main game configuration
+// main game configuration
 const config: GameConfig = {
-  width: 800,
-  height: 600,
+
+  width: 1280,
+  height: 720,
+
   type: Phaser.AUTO,
+  pixelArt: false,
   parent: "game",
-  scene: MainScene,
+
+  scene: [MainScene],
   physics: {
     default: "arcade",
     arcade: {
-      gravity: { y: 200 }
+      gravity: {y: 0,},
     }
   }
 };
