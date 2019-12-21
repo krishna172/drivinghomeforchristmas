@@ -9,4 +9,5 @@ export class AssetGlobals {
 
     public static readonly SPRITE_STEERING = 'sprite_steering';
     public static readonly SPRITE_CACTUS = 'sprite_cactus';
+    public static readonly STREET_LAMP = 'street_lamp';
 }

@@ -19,7 +19,7 @@ export class SteeringWheelScene extends Phaser.Scene {
 
     readonly MIN_ANGLE = -90; // Max angle for wheel left
     readonly MAX_ANGLE = 90; // max angle for wheel turn right
-    readonly INIT_OFFSET = this.MAX_ANGLE; // Init camera offset
+    readonly INIT_OFFSET = 0//this.MAX_ANGLE; // Init camera offset
     readonly STEP = 1; // How many degree rotate per step
 
     // Interpolation table
@@ -43,6 +43,7 @@ export class SteeringWheelScene extends Phaser.Scene {
         console.log('init steering', data);
         this._sceneData = data;
         if (!this._sceneData.key) {
+
             this._sceneData.key = "sceneSteering"
         }
     }
@@ -52,13 +53,15 @@ export class SteeringWheelScene extends Phaser.Scene {
         this.load.json('scene', './assets/sceneDescriptions/' + this._sceneData.key + '.json');
         this.load.image(AssetGlobals.BG_ROAD, "./assets/backgrounds/" + AssetGlobals.BG_ROAD + ".jpg");
         this.load.image(AssetGlobals.SPRITE_STEERING, "./assets/sprites/" + AssetGlobals.SPRITE_STEERING + ".png");
-        this.load.image(AssetGlobals.SPRITE_CACTUS, "./assets/sprites/" + AssetGlobals.SPRITE_CACTUS + ".png");
+        this.load.image(AssetGlobals.SPRITE_CACTUS, "./assets/sprites/" + AssetGlobals.STREET_LAMP + ".png");
     }
 
     create(): void {
         this.add.image(this.game.renderer.width / 2, this.game.renderer.height / 2, AssetGlobals.BG_ROAD);
         this.steeringWheel = this.add.sprite(this.game.renderer.width * 0.5, this.game.renderer.height * 0.75, AssetGlobals.SPRITE_STEERING);
         this.steeringWheel.setScale(0.4, 0.4);
+        this.cameras.main.setZoom(1.2);
+        this.cameras.main.centerOn(this.game.renderer.width / 2, this.game.renderer.height / 2);
         this.cactuses = [
             this.add.sprite(0, 0, AssetGlobals.SPRITE_CACTUS),
             this.add.sprite(0, 0, AssetGlobals.SPRITE_CACTUS),
@@ -80,10 +83,10 @@ export class SteeringWheelScene extends Phaser.Scene {
 
         // compute interpolation table
         var startX = 800;
-        var startY = 450;
+        var startY = 700;
         var startZ = 0.01;
         var endX = 100;
-        var endY = 500;
+        var endY = 750;
         var endZ = 0.2;
 
         var i = 0;
