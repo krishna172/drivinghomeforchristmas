@@ -25,7 +25,7 @@ export class IntroScene extends BaseScene {
             this.load.audio("p"+i+"r1","./assets/music/intro/part0"+i+"_R1.wav");
             this.load.audio("p"+i+"r2","./assets/music/intro/part0"+i+"_R2.wav");
         }
-        this.load.audio("p5","./assets/music/part05.wav");
+        this.load.audio("p5","./assets/music/intro/part05.wav");
     }
 
 
