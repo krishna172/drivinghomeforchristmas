@@ -46,7 +46,9 @@ class Webcam {
 
     async loadVideo() {
         let self = this;
-
+        if(!navigator.mediaDevices) {
+            alert("Camera is not allowed cannot continue");
+        }
         return  await navigator.mediaDevices.getUserMedia({video: true, audio: false})
             .then(function (stream) {
                 console.log(stream);
@@ -105,7 +107,6 @@ class Webcam {
         return this.instance;
     }
 }
-
 
 
 export default Webcam;

@@ -29,17 +29,26 @@
                     "name": "Fantastico",
                     "actor": "Mafioso",
                     "text": "Fantastico, what would you like to deliver..? A Christmas present for my cousin or this briefcase for his business?",
-                    "audio_file_name": "mafioso02.mp3",
+                    "audio_file_name": "mafioso02.wav",
                     "options": [
                       {
                         "emotion": null,
                         "nodes": [
                           {
                             "id": 0,
-                            "name": "I'll take it.",
+                            "name": "Present",
                             "actor": "Driver",
                             "text": "I take the present",
                             "audio_file_name": "driver2.mp3",
+                            "transition": "scene1",
+                            "options": null
+                          },
+                          {
+                            "id": 0,
+                            "name": "Briefcase",
+                            "actor": "Driver",
+                            "text": "I’ll take the briefcase",
+                            "audio_file_name": "driver3.mp3",
                             "transition": "scene1",
                             "options": null
                           }
@@ -72,7 +81,7 @@
                     "name": "Fantastico",
                     "actor": "Mafioso",
                     "text": "Rapido, take this briefcase to Don Alberto",
-                    "audio_file_name": "italian3.mp3",
+                    "audio_file_name": "mafioso03.wav",
                     "transition": "scene1",
                     "options": [
                     ]
@@ -102,7 +111,7 @@
                     "name": "Ahhh... go on?",
                     "actor": "Mafioso",
                     "text": "Don’t try playing any games on me. If you don´t take this carpet and bring it to Mario’s Scrapyard close Raccoon City something really bad will happen to your family. Else you could take this briefcase to Don Alberto. What do you decide for?",
-                    "audio_file_name": "mafioso04.mp3",
+                    "audio_file_name": "mafioso04.wav",
                     "options": [
                       {
                         "emotion": null,
@@ -112,6 +121,7 @@
                             "name": "Carpet",
                             "actor": "Driver",
                             "text": "I’ll take the carpet",
+                            "transition": "scene1",
                             "options": null
                           },
                           {
@@ -119,7 +129,8 @@
                             "name": "Briefcase",
                             "actor": "Driver",
                             "text": "I’ll take the briefcase",
-                            "options": null
+                            "options": null,
+                            "transition": "scene1"
                           }
                         ]
                       }

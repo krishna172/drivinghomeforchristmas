@@ -8,6 +8,7 @@
 import "phaser";
 import {MainScene} from "./scenes/mainScene";
 import {LoadingScene} from "./scenes/loadingScene";
+import {MenuScene} from "./scenes/menuScene";
 import {SteeringWheelScene} from "./scenes/steeringwheelScene";
 import GameConfig = Phaser.Types.Core.GameConfig;
 
@@ -28,7 +29,7 @@ const config: GameConfig = {
     type: Phaser.AUTO,
     parent: "game",
 
-    scene: [SteeringWheelScene,IntroScene, LoadingScene, MainScene],
+    scene: [MenuScene, IntroScene, LoadingScene, MainScene, SteeringWheelScene],
     physics: {
         default: "arcade",
         arcade: {

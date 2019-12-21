@@ -16,6 +16,7 @@ export class MainScene extends BaseScene {
     private dbox: DialogBox;
     private _currentEmotion: Emotion;
     private _soundController: SoundController;
+    private _sceneData: SceneLoadingData;
 
     constructor() {
         super({
@@ -27,13 +28,20 @@ export class MainScene extends BaseScene {
     private webcam: Webcam;
     private video: DOMElement;
 
+    init(data): void
+    {
+        console.log('init', data);
+        this._sceneData = data;
+        console.log(this._sceneData.key);
+    }
+
     preload() {
         this.load.audio("radio_static","./assets/music/radio_static.wav");
         this.load.audio("radio00","./assets/music/radio00.mp3");
         this.load.audio("radio01","./assets/music/radio01.mp3");
         this.load.audio("radio02","./assets/music/radio02.mp3");
-
-        this._sceneDescription = new SceneLoader(this, "scene").loadScene();
+console.log(this._sceneData.key+"     is the key")
+        this._sceneDescription = new SceneLoader(this, this._sceneData.key).loadScene();
         this.webcam = Webcam.getInstance();
         this._conversationTree = this._sceneDescription.conversationTree;
         console.log(this._conversationTree);
@@ -91,12 +99,6 @@ export class MainScene extends BaseScene {
 
         });
 
-
-        this.input.keyboard.on("keydown_X", function (event) {
-            let key = "scene0"; //todo actual scene key from conversation node transition
-            SceneHelper.transitionScene(game, new SceneLoadingData(key));
-        });
-
         this.input.keyboard.on("keydown_D", function (event) {
             SceneHelper.steeringScene(game,new SceneLoadingData("sceneSteering"));
         });
@@ -131,18 +133,18 @@ export class MainScene extends BaseScene {
         super.onLastDetectPassed();
         const self = this;
         this.webcam.detectFaces(this, function(){
-            Webcam.getInstance().updateCamCanvas(this.textures);
+            Webcam.getInstance().updateCamCanvas(self.textures);
             self.renderWebCamPic();
         });
     }
 
     renderWebCamPic() {
         let image = this.add.image(
-            this.sys.canvas.width/2,
+            this.game.renderer.width/2,
             0,
             "webcam"
         );
-        image.setOrigin(1, 0);
+        image.setOrigin(1, 0.5);
         image.setScale(0.5);
 
     }
@@ -161,7 +163,6 @@ export class MainScene extends BaseScene {
     let options: Array<ConversationNode>;
     let optionsText: string;
     optionsText = ""
-    console.log(conversationTree);
     if(conversationTree == null){
       return;
     }
@@ -174,9 +175,13 @@ export class MainScene extends BaseScene {
         conversationTree.wasPlayed = true;
     }
 
+      if(conversationTree.transition != null){
+          console.log("###########################"+conversationTree.transition);
+          SceneHelper.transitionScene(this,new SceneLoadingData(conversationTree.transition));
+      }
+
     if(conversationTree.options != null){
         for (let option of conversationTree.options) {
-            console.log(option.emotion);
           if (option.emotion == emotion || option.emotion == null) {
             options = option.nodes;
           }
