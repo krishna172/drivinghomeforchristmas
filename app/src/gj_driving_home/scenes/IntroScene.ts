@@ -12,16 +12,6 @@ export class IntroScene extends BaseScene {
     private currentSound: Phaser.Sound.BaseSound;
 
 
-    init(data): void
-    {
-        console.log('init', data);
-        this._sceneData = data;
-        if(!this._sceneData.key){
-            this._sceneData.key = "IntroScene"
-        }
-
-    }
-
     preload() {
         this.load.image("bg_intro", "./assets/backgrounds/bg_scene_00.jpg");
         this.load.audio("radio_static","./assets/music/radio_static.wav");
@@ -44,7 +34,7 @@ export class IntroScene extends BaseScene {
         this.radioStatic.on('complete', function () {
             console.log("completed radio static");
             const finished = new FinishedStage(self.sound.add("p5"), function () {
-                SceneHelper.transitionScene(self, new SceneLoadingData("scene0"))
+                SceneHelper.transitionScene(self, new SceneLoadingData("scene0",null))
             });
             const i4 = new IntroStage(
                 self,
@@ -83,7 +73,7 @@ export class IntroScene extends BaseScene {
         let game = this;
         this.input.keyboard.on("keydown_X", function (event) {
             game.sound.stopAll();
-            SceneHelper.transitionScene(game,new SceneLoadingData("scene0"));
+            SceneHelper.transitionScene(game,new SceneLoadingData("scene0",null));
         });
         this.renderWebCamPic();
     }

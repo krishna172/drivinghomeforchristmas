@@ -41,6 +41,7 @@
                             "text": "I take the present",
                             "audio_file_name": "driver2.mp3",
                             "transition": "scene1",
+                            "item" : "present",
                             "options": null
                           },
                           {
@@ -50,6 +51,7 @@
                             "text": "I’ll take the briefcase",
                             "audio_file_name": "driver3.mp3",
                             "transition": "scene1",
+                            "item" : "briefcase",
                             "options": null
                           }
                         ]
@@ -83,6 +85,7 @@
                     "text": "Rapido, take this briefcase to Don Alberto",
                     "audio_file_name": "mafioso03.wav",
                     "transition": "scene1",
+                    "item" : "briefcase",
                     "options": [
                     ]
                   }
@@ -122,6 +125,7 @@
                             "actor": "Driver",
                             "text": "I’ll take the carpet",
                             "transition": "scene1",
+                            "item" : "carpet",
                             "options": null
                           },
                           {
@@ -130,6 +134,7 @@
                             "actor": "Driver",
                             "text": "I’ll take the briefcase",
                             "options": null,
+                            "item" : "briefcase",
                             "transition": "scene1"
                           }
                         ]

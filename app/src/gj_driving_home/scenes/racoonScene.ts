@@ -44,18 +44,9 @@ export class RacoonScene extends Phaser.Scene {
         });
     }
 
-    init(data): void {
-        console.log('init steering', data);
-        this._sceneData = data;
-        if (!this._sceneData.key) {
-
-            this._sceneData.key = "sceneSteering"
-        }
-    }
 
     preload(): void {
 
-        this.load.json('scene', './assets/sceneDescriptions/' + this._sceneData.key + '.json');
         this.load.image(AssetGlobals.BG_ROAD, ["./assets/backgrounds/" + AssetGlobals.BG_ROAD + ".jpg","./assets/lm.png"]);
         this.load.image(AssetGlobals.SPRITE_STEERING, ["./assets/sprites/" + AssetGlobals.SPRITE_STEERING + ".png","./assets/lm.png"]);
         this.load.image(AssetGlobals.SPRITE_CACTUS, ["./assets/sprites/" + AssetGlobals.STREET_LAMP + ".png","./assets/lm.png"]);
@@ -151,7 +142,7 @@ export class RacoonScene extends Phaser.Scene {
     update(time: number, delta: number): void {
         this.racoonTimer -= delta;
         if(this.racoonTimer <= -7000){
-            SceneHelper.transitionScene(this,new SceneLoadingData("scene0"));
+            SceneHelper.transitionScene(this,new SceneLoadingData("scene0",null));
         }
         if(this.racoonTimer <= -5000){
             this.renderActionText("Maybe a TRASHPANDA .... Damn");
