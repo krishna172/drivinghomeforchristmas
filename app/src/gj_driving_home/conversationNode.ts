@@ -9,6 +9,7 @@ export class ConversationNode {
     transition : string;
     actor: string;
     options: Array<EmotionOptions>;
+    wasPlayed = true;
 
 
     constructor(id: number, name: string, text: string, audio_file_name: string, transition: string, options: Array<EmotionOptions>) {

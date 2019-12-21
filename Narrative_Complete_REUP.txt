@@ -1,0 +1,300 @@
+
+[INTRODUCTION SCENE] Intro
+[ACTOR] Narrator
+[TEXT]”  ”
+[BG_SOUND_RADIO_ON]
+[BG_MUSIC_NAME]”music00.mp3”
+[BG_IMAGE_NAME]”bg_scene_00.jpg”
+
+
+
+[SCENE 1] Meet the Mafioso
+[BG_MUSIC_MAFIA]
+[BG_IMAGE_MAFIA]
+[ACTOR] Mafioso
+[TEXT] “Ciao Signor, you must be Giovanni, the driver from my cousin Don Alberto. It's good that I meet you here, because I need you to make a delivery to his mansion in Raccoon City. What do you think?”
+[VOICE_ITALIAN1]
+[OPTION] 
+	[EMOTION] Happy
+	[ACTOR] Driver
+	[TEXT] ”It would be my pleasure”
+	[VOICE_DRIVER1]
+
+	[ACTOR] Mafioso
+    [TEXT] “Fantastico, what would you like to deliver..? A Christmas present for my cousin or this briefcase for his business?”
+	[VOICE_ITALIAN2]
+	[OPTION] 
+			[ACTOR] Driver
+			[TEXT] “I’ll take the present”
+			[VOICE_DRIVER2]
+
+			[TEXT] ”I’ll take the briefcase” 
+[VOICE_DRIVER3]
+
+
+	[EMOTION] Neutral
+	[ACTOR] Driver
+	[TEXT] ”I can do that”
+	[VOICE_DRIVER4]
+	[ACTOR] Mafioso
+[TEXT] “Rapido, take this briefcase to Don Alberto”
+	[VOICE_ITALIAN3]
+
+
+	[EMOTION] Surprised/Afraid
+	[ACTOR] Driver
+[TEXT] ”what the hell? You must’ve mistaken me for someone else. I don’t know this man”
+	[VOICE_DRIVER5]
+	[ACTOR] Mafioso
+[TEXT] “Don’t try playing any games on me. If you don´t take this carpet and bring it to Mario’s Scrapyard close Raccoon City something really bad will happen to your family. Else you could take this briefcase to Don Alberto. What do you decide for?”
+	[VOICE_ITALIAN4]
+	[OPTION] 
+			[ACTOR] Driver
+			[TEXT]”I’ll take the carpet”
+			[VOICE_DRIVER6]
+			[ACTOR] Driver
+	 		[TEXT]”I’ll take the briefcase” 
+            [VOICE_DRIVER7]
+
+
+
+[TRANSITION]
+
+
+
+
+[INTERLUDE SCENE] Raccoon Crash
+[BG_MUSIC_RACOON]
+[BG_IMAGE_RACOON]
+[BG_SOUND_CRASH]
+[BG_IMAGE_CRASH]
+[SCREAM_RACOON]
+[BG_IMAGE_BROKENCARLIGHT]
+[ACTOR] Driver
+[TEXT] “What the hell?”
+[VOICE_DRIVER8]
+[BG_SOUND_WIPERBLADES]
+[BG_IMAGE_WIPERBLADES]
+
+
+
+
+
+
+
+
+
+[SCENE 2] Meet the Cop
+[BG_MUSIC_POLICE]
+[BG_SOUND_POLICESIREN]
+[BG_IMAGE_POLICE]
+[ACTOR] Cop
+[TEXT] “Good evening, sir. Please, turn off your car’s motor and radio. License and registration, please! You know why I stopped you, right? “
+[VOICE_COP1]
+[BG_SOUND_RADIO_OFF]
+[BG_SOUND_CAR_OFF]
+ [OPTION] 
+	[EMOTION] Happy
+	[ACTOR] Driver
+[TEXT] ”Oh, it might be because of the broken headlight. I just had a little accident a minute ago. I will get it fixed as soon as possible, officer”
+	[VOICE_DRIVER9]
+	[ACTOR] Cop
+[TEXT] “That’s correct, sir. You seem quite happy about your `little accident´. Can you open up the trunk for me and show me your first-aid kit, please?”
+[VOICE_COP2]
+	
+	[EMOTION] Neutral
+	[ACTOR] Driver
+	[TEXT] ”I’m in a hurry, I don’t know why you stopped me.”
+	[VOICE_DRIVER10]
+	[ACTOR] Cop
+[TEXT] “Your headlight is broken. You seem unaware of the condition of your car. Police. Can you open up the trunk for me and show me your first-aid kit, please? “
+[VOICE_COP3]
+
+	[EMOTION] Surprised/Afraid
+	[ACTOR] Driver
+	[TEXT] ”I’m sorry, officer. I have no idea.”
+	[VOICE_DRIVER11]
+	[ACTOR] Cop
+[TEXT] “You seem surprised. Didn’t you notice your broken headlight? 
+Can you open up the trunk for me and show me your first-aid kit, please?” 
+[VOICE_COP4]
+	
+
+
+
+
+
+
+
+[SCENE 3] The Trunk
+[SOUND_TRUNK_OPEN]
+[ACTOR] Cop
+[TEXT] "Alright, what do we have here…? “
+[VOICE_COP5]
+[OPTION] 
+	[ITEM] Present
+[IMAGE_PRESENT]
+	[ACTOR]Cop
+	[TEXT] ”What is that? “
+[VOICE_COP6]
+	[OPTION] 
+		[EMOTION] Happy
+		[ACTOR] Driver
+		[TEXT] ”This is just a Christmas present for my wife, officer.”
+		[VOICE_DRIVER12]
+		[ACTOR]Cop
+[TEXT] ”Ok, sir. I believe you. You may continue your journey. Merry Christmas. “
+[VOICE_COP7]
+[BG_SOUND_CAR_ON]
+[BG_SOUND_RADIO_ON]
+[ACTOR] Radio Host
+[TEXT] “You’re listening to Radio Game Jam FM and the roads seem to be quiet. Have a safe trip and Merry Christmas.” 
+[VOICE_RADIO]
+[WINCONDITION1] Game Over
+
+		[EMOTION] Neutral
+		[ACTOR] Driver
+		[TEXT] ”This is just a Christmas present for my wife, officer.”
+		[VOICE_DRIVER12]
+		[ACTOR] Cop
+[TEXT] ”Ok, sir. I believe you. You may continue your journey. Merry Christmas. “
+[VOICE_COP7]
+[BG_SOUND_CAR_ON]
+[BG_SOUND_RADIO_ON]
+[ACTOR] Radio Host
+[TEXT] “You’re listening to Radio Game Jam FM and the roads seem to be quiet. Have a safe trip and Merry Christmas.” 
+[VOICE_RADIO]
+[WINCONDITION1] Game Over
+
+		[EMOTION] Surprised/Angry
+		[ACTOR] Driver
+[TEXT] ”Why do you ask what it is. Isn’t it obvious? It’s a Christmas gift for my wife”
+		[VOICE_DRIVER13]
+		[ACTOR]Cop
+		[TEXT] ”I’ll have to make sure of that. Please open up the box sir. “
+[VOICE_COP8]
+[SOUND_PRESENT_OPEN]
+[ACTOR]Cop
+[TEXT]”Oh, it’s just a box with a new camera. You can leave now. Merry Christmas “
+[VOICE_COP9]
+[BG_SOUND_CAR_ON]
+[BG_SOUND_RADIO_ON]
+[ACTOR] Radio Host
+[TEXT] “You’re listening to Radio Game Jam FM and the roads seem to be quiet. Have a safe trip and Merry Christmas.” 
+[VOICE_RADIO]
+[WINCONDITION1] Game Over
+
+[ITEM] Briefcase
+[IMAGE_BRIEFCASE]
+	[ACTOR]Cop
+	[TEXT] ”What is that? “
+[VOICE_COP6]
+	[OPTION] 
+		[EMOTION] Happy
+		[ACTOR] Driver
+		[TEXT]” This is just my work briefcase, nothing illegal about that, right...”
+		[VOICE_DRIVER14]
+		[ACTOR]Cop
+[TEXT] ”You sound suspicious. Why don’t you open up the briefcase for me, sir? “
+[VOICE_COP10]
+[ACTOR] Driver
+		[TEXT]” As you wish. As you can see there’s nothi…”
+		[VOICE_DRIVER15]
+[SOUND_BRIEFCASE_OPEN]
+[SOUND_EXPLOSION]
+[ACTOR] Radio Host
+[TEXT] “Good evening on Radio Game Jam FM and a report of an explosion at the Lower Manhattan highway. Emergency responders are on their way. Drivers should circumvent the area. Drive safe and Merry Christmas.” 
+[VOICE_RADIO]
+[LOSECONDITION1] Game Over
+
+		[EMOTION] Neutral
+		[ACTOR] Driver
+		[TEXT]” This is just my work briefcase, nothing illegal about that, right...”
+		[VOICE_DRIVER14]
+		[ACTOR]Cop
+[TEXT]” You sound suspicious. Why don’t you open up the briefcase for me, sir? “
+[VOICE_COP10]
+[ACTOR] Driver
+		[TEXT]” As you wish. As you can see there’s nothi…”
+		[VOICE_DRIVER15]
+[SOUND_BRIEFCASE_OPEN]
+[SOUND_EXPLOSION]
+[ACTOR] Radio Host
+[TEXT] “Good evening on Radio Game Jam FM and a report of an explosion at the Lower Manhattan highway. Emergency responders are on their way. Drivers should circumvent the area. Drive safe and Merry Christmas.” 
+[VOICE_RADIO]
+[LOSECONDITION1] Game Over
+
+		[EMOTION] Surprised/Angry
+		[ACTOR] Driver
+[TEXT] “A briefcase, of course. I need it for my work as a teacher. What do you think it looks like?
+		[VOICE_DRIVER16]
+		[ACTOR]Cop
+[TEXT] ”Why so angry though? I believe you. You may continue your journey. Merry Christmas “
+[VOICE_COP11]
+[BG_SOUND_CAR_ON]
+[BG_SOUND_RADIO_ON]
+[ACTOR] Radio Host
+[TEXT] “You’re listening to Radio Game Jam FM and the roads seem to be quiet. Have a safe trip and Merry Christmas.” 
+[VOICE_RADIO]
+[WINCONDITION1] Game Over
+
+[ITEM] Carpet
+[IMAGE_CARPET]
+	[ACTOR]Cop
+	[TEXT] ”What is that? “
+[VOICE_COP5]
+	[OPTION] 
+		[EMOTION] Happy
+		[ACTOR] Driver
+		[TEXT]” This is just a carpet, nothing illegal about that, right?”				[VOICE_DRIVER17]
+		[ACTOR] Cop
+[TEXT] ”You sound suspicious. Why don’t you unwrap the carpet for me, sir? “
+[VOICE_COP12]
+[SOUND_CARPET_OPEN]
+[ACTOR] Driver
+[TEXT] “As you wish. As you can see there’s nothing suspicious about it.”
+[VOICE_DRIVER18]
+[ACTOR] Cop
+[TEXT] ”WHAT?! Is that a dead person wrapped in the carpet? On your knees, motherfucker! NOW! You’re under arrest. “
+[VOICE_COP13]
+[BG_SOUND_RADIO_ON]
+[ACTOR] Radio Host
+[TEXT] “Good evening on Radio Game Jam FM and a report of an incident at the Lower Manhattan highway. During a routine inspection police found a dead body in the trunk of the car. The deceased has not been identified yet. A suspect is in custody. Drivers should circumvent the area. Drive safe and Merry Christmas.” 
+[VOICE_RADIO]
+[LOSECONDITION2] Game Over
+
+		[EMOTION] Neutral
+		[ACTOR] Driver
+[TEXT] ”This is just my grandma’s old carpet, officer, nothing illegal about that, right?”
+		[VOICE_DRIVER19]
+		[ACTOR]Cop
+[TEXT] ”So it seems. Thank you, sir. You may continue on your journey. Merry Christmas “
+[VOICE_COP14]
+[BG_SOUND_CAR_ON]
+[BG_SOUND_RADIO_ON]
+[ACTOR] Radio Host
+[TEXT] “You’re listening to Radio Game Jam FM and the roads seem to be quiet. Have a safe trip and Merry Christmas.” 
+[VOICE_RADIO]
+[WINCONDITION1] Game Over
+
+		[EMOTION] Surprised/Angry
+		[ACTOR] Driver
+		[TEXT] ”A carpet, what else? Can’t you see that?”
+		[VOICE_DRIVER20]
+		[ACTOR]Cop
+		[TEXT] ”You sound suspicious. Why don’t you unwrap the carpet for me, sir? “
+[VOICE_COP12]
+[SOUND_CARPET_OPEN]
+[ACTOR] Driver
+[TEXT] “As you wish. As you can see there’s nothing suspicious about it.”
+[VOICE_DRIVER18]
+[ACTOR] Cop
+[TEXT] ”WHAT?! Is that a dead person wrapped in the carpet? On your knees, motherfucker! NOW! You’re under arrest. “
+[VOICE_COP13]
+[BG_SOUND_RADIO_ON]
+[ACTOR] Radio Host
+[TEXT] “Good evening on Radio Game Jam FM and a report of an incident at the Lower Manhattan highway. During a routine inspection police found a dead body in the trunk of the car. The deceased has not been identified yet. A suspect is in custody. Drivers should circumvent the area. Drive safe and Merry Christmas.” 
+[VOICE_RADIO]
+[LOSECONDITION2] Game Over
+
+	

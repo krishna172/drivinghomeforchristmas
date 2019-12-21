@@ -77,6 +77,11 @@ export class IntroScene extends BaseScene {
             );
             i1.start();
         })
+        let game = this;
+        this.input.keyboard.on("keydown_X", function (event) {
+            game.sound.stopAll();
+            SceneHelper.transitionScene(game,new SceneLoadingData("scene0"));
+        });
         this.renderWebCamPic();
     }
 
