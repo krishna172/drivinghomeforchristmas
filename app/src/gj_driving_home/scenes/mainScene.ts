@@ -8,9 +8,10 @@ import {ConversationNode} from "../conversationNode";
 import {Emotion} from "../emotion";
 import {AssetGlobals} from "../assetsGlobals";
 import DOMElement = Phaser.GameObjects.DOMElement;
+import BaseScene from "./BaseScene";
 
 
-export class MainScene extends Phaser.Scene {
+export class MainScene extends BaseScene {
     private dbox: DialogBox;
     private _currentEmotion: Emotion;
 
@@ -24,13 +25,11 @@ export class MainScene extends Phaser.Scene {
     private webcam: Webcam;
     private video: DOMElement;
 
-    async preload() {
+    preload() {
         this._sceneDescription = new SceneLoader(this, "scene").loadScene();
-        this.webcam = new Webcam();
-        this.video = this.add.dom(0, 0, this.webcam.htmlVideoDOM);
+        this.webcam = Webcam.getInstance();
         this._conversationTree = this._sceneDescription.conversationTree;
         this.load.image(AssetGlobals.Knob, "./assets/knob/" + AssetGlobals.Knob);
-        await this.webcam.init();
 
     }
 
@@ -39,7 +38,6 @@ export class MainScene extends Phaser.Scene {
 
     create(): void {
         this._timeSinceLastDetect = 0;
-        this.webcam.init();
         this.sound.play(this._sceneDescription.bg_music_name, {loop: true});
         console.log("added video");
 
@@ -152,25 +150,10 @@ export class MainScene extends Phaser.Scene {
 
     }
 
-    setExpression(expression: string) {
-        console.log(expression);
-        switch (expression) {
-            case "happy":
-                this._currentEmotion = Emotion.Happy;
-                break;
-            case "angry":
-                this._currentEmotion = Emotion.Angry;
-                break;
-            case "neutral":
-                this._currentEmotion = Emotion.NEUTRAL;
-                break;
-            case "surprised":
-                this._currentEmotion = Emotion.Surprised;
-                break;
-            default:
-                this._currentEmotion = null;
-        }
-        console.log(this._currentEmotion+ "");
+    onEmotion(emotion: Emotion) {
+        this._currentEmotion = emotion;
     }
+
+
 }
 

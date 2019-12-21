@@ -12,6 +12,7 @@ import GameConfig = Phaser.Types.Core.GameConfig;
 
 import * as canvas from 'canvas';
 import * as faceapi from 'face-api.js';
+import Webcam from "./video";
 
 const {Canvas, Image, ImageData} = canvas;
 
@@ -40,10 +41,12 @@ export class Game extends Phaser.Game {
     constructor(config: GameConfig) {
         super(config);
     }
+
 }
 
 // when the page is loaded, create our game instance
-window.onload = () => {
+window.onload = async () => {
+    await Webcam.init();
     const game = new Game(config);
 };
 
