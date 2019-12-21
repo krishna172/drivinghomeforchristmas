@@ -1,6 +1,6 @@
 {
   "title":"First Scene",
-  "bg_music_name":"music00.mp3",
+  "bg_music_name":"music01.mp3",
   "bg_image_name":"bg_scene_00.jpg",
   "conversationTree":{
     "id":3,

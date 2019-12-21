@@ -28,6 +28,7 @@ export class MainScene extends Phaser.Scene {
   private video: DOMElement;
 
   async preload() {
+    this.load.audio("radio_static","./assets/music/radio_static.wav");
     this._sceneDescription = new SceneLoader(this,"scene").loadScene();
     this.webcam = new Webcam();
     this.video = this.add.dom(0, 0, this.webcam.htmlVideoDOM);
@@ -40,8 +41,9 @@ export class MainScene extends Phaser.Scene {
 
   create(): void {
     this._soundController = SoundController.getInstance();
-    this._soundController.playMusic(this.sound, this._sceneDescription.bg_music_name,true);
-    //this.sound.play(this._sceneDescription.bg_music_name,{loop:true});
+    this._soundController.sound = this.sound;
+    //this._soundController.playSound("radio_static");
+    //this._soundController.playMusic(this._sceneDescription.bg_music_name,true);
     this.webcam.init();
     console.log("added video");
 
@@ -104,7 +106,7 @@ export class MainScene extends Phaser.Scene {
     const radioButton = image
         .setInteractive()
         .on('pointerdown', () => {
-          this.sound.play(this._sceneDescription.bg_music_name);
+          SoundController.getInstance().initRadioSong();
           image.angle +=  10;
         });
 

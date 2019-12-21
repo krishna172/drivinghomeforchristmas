@@ -2,10 +2,17 @@ import BaseSound = Phaser.Sound.BaseSound;
 import BaseSoundManager = Phaser.Sound.BaseSoundManager;
 
 export class SoundController {
+    set sound(value: Phaser.Sound.BaseSoundManager) {
+        this._sound = value;
+    }
 
     private musicArray:Array<BaseSound>;
     private soundArray:Array<BaseSound>;
     static  sc:SoundController;
+    private state:RadioState = RadioState.Playing;
+    private timePassedInState:integer = 0;
+    private radioStateTime: integer = 0;
+    private _sound:BaseSoundManager;
 
 
     private constructor() {
@@ -20,9 +27,7 @@ export class SoundController {
     }
 
     stopAllMusic(){
-        console.log(this.musicArray.length +  " in stop all music")
         for (let musicArrayElement of this.musicArray) {
-            console.log("in for")
             musicArrayElement.stop();
         }
     }
@@ -34,20 +39,50 @@ export class SoundController {
 
 
 
-    playSound(sound: BaseSoundManager,name: string){
-        this.soundArray.push(sound.add(name));
-        sound.play(name);
+    playSound(name: string){
+        this.soundArray.push(this._sound.add(name));
+        this._sound.play(name);
     }
 
-    playMusic(sound: BaseSoundManager, musicName: string, looping:boolean){
-        this.stopAllMusic();
-        let bs:BaseSound = sound.add(musicName);
-        console.log(this.musicArray.length + " before");
-        this.musicArray.push(bs);
-        console.log(this.musicArray.length + " after");
 
-        bs.play(null,{loop:looping});
-        //sound.play(musicName,{loop:looping});
+    public initRadioSong(){
+        this.stopAllMusic();
+        this.playRadioStatic(this.getRandomInt(1000));
+    }
+
+
+    update(delta:integer){
+        this.timePassedInState+=delta;
+        if(this.state == RadioState.Static){
+                if(this.timePassedInState >= this.radioStateTime){
+                    this.state = RadioState.Playing;
+                    this.timePassedInState = 0;
+                    this.stopAllMusic();
+                    this.playNextRadioSong();
+                }
+        }
+        if(this.state == RadioState.Playing){
+            if(this.timePassedInState >= this.radioStateTime){
+                this.state = RadioState.Playing;
+                this.timePassedInState = 0;
+                this.stopAllMusic();
+                this.playNextRadioSong();
+            }
+        }
+    }
+
+    private playNextRadioSong() {
+        this.playMusic("radio"+this.getRandomInt(2),false);
+        this.radioStateTime = 3000; //TODO: Check how to get song length And maybe add random input time
+        this.state = RadioState.Playing;
+    }
+
+
+    playMusic(musicName: string, looping:boolean){
+        this.stopAllMusic();
+        let bs:BaseSound = this._sound.add(musicName);
+        this.musicArray.push(bs);
+        bs.play({loop:looping});
     }
 
     static getInstance() {
@@ -56,4 +91,21 @@ export class SoundController {
         }
         return SoundController.sc;
     }
+
+    getRandomInt(max) {
+        return Math.floor(Math.random() * Math.floor(max));
+    }
+
+
+    private playRadioStatic(randomInt: number) {
+        this.playMusic("radio_static",true);
+        this.radioStateTime = randomInt;
+        this.state = RadioState.Static;
+
+    }
+}
+enum RadioState {
+    Playing = 1,
+    Static,
+    Mute
 }
