@@ -32,11 +32,15 @@ export class MainScene extends BaseScene {
         this.load.audio("radio00","./assets/music/radio00.mp3");
         this.load.audio("radio01","./assets/music/radio01.mp3");
         this.load.audio("radio02","./assets/music/radio02.mp3");
-
+      
         this._sceneDescription = new SceneLoader(this, "scene").loadScene();
         this.webcam = Webcam.getInstance();
         this._conversationTree = this._sceneDescription.conversationTree;
         this.load.image(AssetGlobals.Knob, "./assets/knob/" + AssetGlobals.Knob);
+
+        this.input.keyboard.on("keydown_D", function (event) {
+          SceneHelper.steeringScene(game,new SceneLoadingData("sceneSteering"));
+        });
 
     }
 
