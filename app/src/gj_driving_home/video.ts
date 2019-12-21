@@ -1,11 +1,20 @@
 
 class Webcam {
     public htmlVideo: HTMLVideoElement;
+    public htmlVideoDOM: HTMLVideoElement;
     public stream: MediaStream;
 
+    public constructor() {
+        this.htmlVideoDOM = <HTMLVideoElement> document.getElementById('video');
+        this.htmlVideo = document.createElement('video');;
+        // @ts-ignore
+        this.htmlVideo.playsinline = true;
+        this.htmlVideo.width = 200;
+        this.htmlVideo.height = 125;
+        this.htmlVideo.autoplay = true;
+    }
 
     public async init() {
-        this.htmlVideo = <HTMLVideoElement> document.getElementById("video");
         this.stream = await this.loadVideo();
     }
 
@@ -15,18 +24,15 @@ class Webcam {
 
     async loadVideo() {
         let self = this;
-        self.htmlVideo = document.createElement('video');
-        // @ts-ignore
-        self.htmlVideo.playsinline = true;
-        self.htmlVideo.width = 200;
-        self.htmlVideo.height = 125;
-        self.htmlVideo.autoplay = true;
+
         return  await navigator.mediaDevices.getUserMedia({video: true, audio: false})
             .then(function (stream) {
                 console.log(stream);
-                self.htmlVideo.srcObject = stream;
-                self.htmlVideo.play();
+                //https://phaser.io/examples/v3/view/game-objects/dom-element/video-element#
+                self.htmlVideoDOM.srcObject = stream;
+                self.htmlVideoDOM.play();
                 self.stream = stream;
+
                 console.log("Loaded video", self)
             })
             .catch(function (err) {

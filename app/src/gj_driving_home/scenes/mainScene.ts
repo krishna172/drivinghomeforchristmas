@@ -27,15 +27,17 @@ export class MainScene extends Phaser.Scene {
   async preload() {
     this._sceneDescription = new SceneLoader(this,"scene").loadScene();
     this.webcam = new Webcam();
-    await this.webcam.init()
+    this.video = this.add.dom(0, 0, this.webcam.htmlVideoDOM);
     this._conversationTree = this._sceneDescription.conversationTree;
   }
 
   private _conversationTree : ConversationNode;
 
   create(): void {
+    this.webcam.init();
     this.sound.play(this._sceneDescription.bg_music_name,{loop:true});
-    this.video = this.add.dom(100, 100, this.webcam.htmlVideo);
+    console.log("added video");
+
     console.log(this._sceneDescription.bg_image_name);
     this.add.image(this.game.renderer.width/2,this.game.renderer.height/2,this._sceneDescription.bg_image_name);
     this.renderConversationNode(this._conversationTree, this._currentEmotion);
