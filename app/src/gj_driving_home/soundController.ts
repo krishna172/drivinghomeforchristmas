@@ -1,26 +1,29 @@
-import Scene = Phaser.Scene;
 import BaseSound = Phaser.Sound.BaseSound;
+import BaseSoundManager = Phaser.Sound.BaseSoundManager;
 
 export class SoundController {
 
-    private _scene: Scene;
-    private musicArray:BaseSound[];
-    private soundArray:BaseSound[];
+    private musicArray:Array<BaseSound>;
+    private soundArray:Array<BaseSound>;
+    static  sc:SoundController;
 
 
-    constructor(scene: Scene) {
-        this._scene = scene;
+    private constructor() {
+        this.musicArray = new Array<BaseSound>();
+        this.soundArray = new Array<BaseSound>();
     }
 
     stopAllSounds(){
-        for (let i = 0; i < this.soundArray.length; i++) {
-            this.soundArray[i].stop();
+        for (let soundArrayElement of this.soundArray) {
+            soundArrayElement.stop();
         }
     }
 
     stopAllMusic(){
-        for (let i = 0; i < this.musicArray.length; i++) {
-            this.musicArray[i].stop();
+        console.log(this.musicArray.length +  " in stop all music")
+        for (let musicArrayElement of this.musicArray) {
+            console.log("in for")
+            musicArrayElement.stop();
         }
     }
 
@@ -31,26 +34,26 @@ export class SoundController {
 
 
 
-    playSound(name: string){
-        this.soundArray.push(this.scene.sound.add(name));
-        this._scene.sound.play(name);
+    playSound(sound: BaseSoundManager,name: string){
+        this.soundArray.push(sound.add(name));
+        sound.play(name);
     }
 
-    playMusic(musicName: string, looping:boolean){
+    playMusic(sound: BaseSoundManager, musicName: string, looping:boolean){
         this.stopAllMusic();
-      this.musicArray.push(this.scene.sound.add(musicName));
-      this._scene.sound.play(musicName,{loop:looping});
+        let bs:BaseSound = sound.add(musicName);
+        console.log(this.musicArray.length + " before");
+        this.musicArray.push(bs);
+        console.log(this.musicArray.length + " after");
+
+        bs.play(null,{loop:looping});
+        //sound.play(musicName,{loop:looping});
     }
 
-
-
-
-
-    get scene(): Phaser.Scene {
-        return this._scene;
-    }
-
-    set scene(value: Phaser.Scene) {
-        this._scene = value;
+    static getInstance() {
+        if (SoundController.sc==null){
+            SoundController.sc = new SoundController();
+        }
+        return SoundController.sc;
     }
 }

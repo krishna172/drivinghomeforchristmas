@@ -11,7 +11,7 @@ export class SceneHelper {
 
     public static transitionScene(game: Phaser.Scene, sceneKey: SceneLoadingData): void {
         console.log("here we go again for "+ sceneKey);
-        game.sound.stopAll();
+        //game.sound.stopAll();
         game.scene.manager.stop('MainScene');
         game.scene.manager.start('LoadingScene', sceneKey);
         game.scene.manager.dump();

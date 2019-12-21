@@ -6,10 +6,12 @@ import {DialogBox} from "../dialogBox";
 import {ConversationNode} from "../conversationNode";
 import {Emotion} from "../emotion";
 import {EmotionOptions} from "../emotionOptions";
+import {SoundController} from "../soundController";
 
 export class MainScene extends Phaser.Scene {
   private dbox: DialogBox;
   private _currentEmotion: Emotion;
+  private _soundController: SoundController
 
   constructor() {
     super({
@@ -27,7 +29,9 @@ export class MainScene extends Phaser.Scene {
   private _conversationTree : ConversationNode;
 
   create(): void {
-    this.sound.play(this._sceneDescription.bg_music_name,{loop:true});
+    this._soundController = SoundController.getInstance();
+    this._soundController.playMusic(this.sound, this._sceneDescription.bg_music_name,true);
+    //this.sound.play(this._sceneDescription.bg_music_name,{loop:true});
     this.add.image(this.game.renderer.width/2,this.game.renderer.height/2,this._sceneDescription.bg_image_name);
     this.renderConversationNode(this._conversationTree, this._currentEmotion);
     let game = this;
