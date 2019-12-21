@@ -1,3 +1,4 @@
+import * as faceapi from 'face-api.js';
 
 class Webcam {
     public htmlVideo: HTMLVideoElement;
@@ -15,10 +16,14 @@ class Webcam {
     }
 
     public async init() {
+        await faceapi.nets.ssdMobilenetv1.loadFromUri('assets/weights');
+        await faceapi.nets.faceLandmark68Net.loadFromUri('assets/weights');
+        await faceapi.nets.faceExpressionNet.loadFromUri('assets/weights');
         this.stream = await this.loadVideo();
     }
 
     public isLoaded() {
+
         return this.stream != null;
     }
 
@@ -41,6 +46,18 @@ class Webcam {
             });
     }
 
+    async detectFaces() {
+        try {
+            const detectionsWithExpressions = await faceapi.detectSingleFace(
+                this.htmlVideoDOM,
+                new faceapi.SsdMobilenetv1Options()
+            ).withFaceLandmarks().withFaceExpressions();
+
+            expression = detectionsWithExpressions.expressions.asSortedArray()[0];
+        } catch(e) {
+            console.error(e);
+        }
+    }
 }
 
 

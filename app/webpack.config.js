@@ -27,5 +27,8 @@ module.exports = {
     alias: {
       phaser: phaser
     }
+  },
+  node: {
+    fs: "empty"
   }
 };
