@@ -28,10 +28,9 @@ export class MainScene extends Phaser.Scene {
   async preload() {
     this._sceneDescription = new SceneLoader(this,"scene").loadScene();
     this.webcam = new Webcam();
-    await this.webcam.init()
     this._conversationTree = this._sceneDescription.conversationTree;
     this.load.image( AssetGlobals.Knob, "./assets/knob/"+AssetGlobals.Knob);
-
+    await this.webcam.init()
   }
 
   private _conversationTree : ConversationNode;
@@ -65,22 +64,25 @@ export class MainScene extends Phaser.Scene {
       }
 
 
+      if(game._conversationTree != null){
 
-      switch (code) {
-        case "Digit1":
-          game._conversationTree = game._conversationTree[1];
-          break;
-        case "Digit2":
-          game._conversationTree = game._conversationTree[2];
-          break;
-        case "Digit3":
-          game._conversationTree = game._conversationTree[3];
-          break;
-        case "Digit4":
-          game._conversationTree = game._conversationTree[4];
-          break;
+            switch (code) {
+              case "Digit1":
+                game._conversationTree = game._conversationTree[1];
+                break;
+              case "Digit2":
+                game._conversationTree = game._conversationTree[2];
+                break;
+              case "Digit3":
+                game._conversationTree = game._conversationTree[3];
+                break;
+              case "Digit4":
+                game._conversationTree = game._conversationTree[4];
+                break;
+            }
+            game.renderConversationNode(game._conversationTree, game._currentEmotion);
       }
-      game.renderConversationNode(game._conversationTree, game._currentEmotion);
+
 
 
     });
@@ -91,13 +93,12 @@ export class MainScene extends Phaser.Scene {
       SceneHelper.transitionScene(game,new SceneLoadingData(key));
     });
 
-    let image = this.add.image(100, 100, AssetGlobals.Knob );
+    let image = this.add.image(this.game.renderer.width - 150, this.game.renderer.height - 150, AssetGlobals.Knob );
     const radioButton = image
         .setInteractive()
         .on('pointerdown', () => {
           this.sound.play(this._sceneDescription.bg_music_name);
-          image.angle += (image.angle + 10)
-
+          image.angle +=  10;
         });
 
   }
@@ -117,6 +118,9 @@ export class MainScene extends Phaser.Scene {
     let options: Array<ConversationNode>;
     let optionsText: string;
     optionsText = "";
+    if(conversationTree == null){
+      return;
+    }
     for (let option of conversationTree.options) {
       if (option.emotion == emotion) {
         options = option.nodes;
