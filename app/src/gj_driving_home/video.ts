@@ -53,7 +53,8 @@ class Webcam {
                 new faceapi.SsdMobilenetv1Options()
             ).withFaceLandmarks().withFaceExpressions();
 
-            expression = detectionsWithExpressions.expressions.asSortedArray()[0];
+            const expression = detectionsWithExpressions.expressions.asSortedArray()[0];
+            console.log(expression);
         } catch(e) {
             console.error(e);
         }
