@@ -81,7 +81,6 @@ export class SteeringWheelScene extends Phaser.Scene {
         var startX = 800;
         var startY = 450;
         var startZ = 0.01;
-
         var endX = 100;
         var endY = 500;
         var endZ = 0.2;
@@ -126,8 +125,6 @@ export class SteeringWheelScene extends Phaser.Scene {
             this.linearInterpolation();
     }
 
-
-
     linearInterpolation() {
         this.initFps0 = (this.initFps0+1) % this.fpsInterpolation;
         this.cactuses[0].x = this.interpolationX[this.initFps0];
@@ -135,6 +132,7 @@ export class SteeringWheelScene extends Phaser.Scene {
         this.cactuses[0].setScale(this.interpolationZ[this.initFps0], this.interpolationZ[this.initFps0]);
 
         this.initFps1 = (this.initFps1+1) % this.fpsInterpolation;
+        // other side of the street
         this.cactuses[1].x = this.game.renderer.width - this.interpolationX[this.initFps1];
         this.cactuses[1].y = this.interpolationY[this.initFps1];
         this.cactuses[1].setScale(this.interpolationZ[this.initFps1], this.interpolationZ[this.initFps1]);
@@ -149,7 +147,6 @@ export class SteeringWheelScene extends Phaser.Scene {
     updateSteeringWheelAndCamera() {
         var camera = this.cameras.main;
         var limit = false;
-        //console.log(this.steeringWheel.angle, this.MIN_ANGLE, this.MAX_ANGLE);
         //left is pressed and we are in the bounds
         if (this.cursor.left.isDown) {
             if (camera.x < this.MAX_ANGLE - this.INIT_OFFSET) {
@@ -163,21 +160,22 @@ export class SteeringWheelScene extends Phaser.Scene {
                 // we reach the limit
                 limit = true;
             }
-        } else
+        } else {
             //right is pressed and we are in the bounds
-        if (this.cursor.right.isDown) {
-            if (camera.x > this.MIN_ANGLE - this.INIT_OFFSET) {
-                this.cameras.main.x -= this.STEP;
-                this.steeringWheel.x += this.STEP;
-                if (this.steeringWheel.angle < this.MAX_ANGLE) {
-                    this.steeringWheel.angle += this.STEP;
+            if (this.cursor.right.isDown) {
+                if (camera.x > this.MIN_ANGLE - this.INIT_OFFSET) {
+                    this.cameras.main.x -= this.STEP;
+                    this.steeringWheel.x += this.STEP;
+                    if (this.steeringWheel.angle < this.MAX_ANGLE) {
+                        this.steeringWheel.angle += this.STEP;
+                    }
+                } else {
+                    limit = true;
                 }
-            } else {
-                limit = true;
             }
         }
 
-        // automatically recenter steering wheel if no input or we reach the limit
+        // automatically re-center steering wheel if no input or we reach the limit
         if (limit || (this.cursor.left.isUp && this.cursor.right.isUp)) {
             // no input -> recenter. Add 0.1 error to avoid floating point aprox
             if (this.steeringWheel.angle < -1) {
