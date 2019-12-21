@@ -7,6 +7,7 @@ class Webcam {
     public htmlVideoDOM: HTMLVideoElement;
     public stream: MediaStream;
     private modelsLoaded: boolean;
+    private detectionActive: boolean;
 
     private static instance: Webcam;
 
@@ -18,6 +19,7 @@ class Webcam {
         this.htmlVideo.width = 200;
         this.htmlVideo.height = 125;
         this.htmlVideo.autoplay = true;
+        this.detectionActive = false;
     }
 
     public static async loadModels() {
@@ -61,7 +63,13 @@ class Webcam {
 
     async detectFaces(mainScene : MainScene) {
         let emotion = null;
-        console.log("Started " + Date.now())
+        if(this.detectionActive) {
+            console.log("Skip loading expression already running");
+            return;
+        }
+        this.detectionActive = true;
+        let started = Date.now();
+        console.log("Started " + started);
         try {
             const detectionsWithExpressions = await faceapi.detectSingleFace(
                 this.htmlVideoDOM,
@@ -74,7 +82,8 @@ class Webcam {
             console.error(e);
         }
         mainScene.onEmotion(emotion);
-        console.log("Finished " + Date.now() + " " + emotion)
+        this.detectionActive = false;
+        console.log("Finished " + (Date.now() - started) + " " + emotion);
     }
 
     static getInstance() {
