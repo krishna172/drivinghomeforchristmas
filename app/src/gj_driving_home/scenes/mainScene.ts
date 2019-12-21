@@ -32,6 +32,10 @@ export class MainScene extends BaseScene {
     {
         console.log('init', data);
         this._sceneData = data;
+        //item scene hack
+        if(this._sceneData.key == "scene2"){
+            this._sceneData.key = "scene2_"+this._sceneData.item;
+        }
         console.log(this._sceneData.key);
     }
 
@@ -100,7 +104,7 @@ console.log(this._sceneData.key+"     is the key")
         });
 
         this.input.keyboard.on("keydown_D", function (event) {
-            SceneHelper.steeringScene(game,new SceneLoadingData("sceneSteering"));
+            SceneHelper.steeringScene(game,null);
         });
 
     let image = this.add.image(this.game.renderer.width - 150, this.game.renderer.height - 150, AssetGlobals.Knob );
@@ -125,6 +129,7 @@ console.log(this._sceneData.key+"     is the key")
 
     update(time: number, delta: number): void {
         super.update(time, delta);
+        console.log("Hallo Veit, das ist die "+this._sceneData.key+" Szene. Viel spaß.");
         this._soundController.update(delta);
     }
 
@@ -177,7 +182,13 @@ console.log(this._sceneData.key+"     is the key")
 
       if(conversationTree.transition != null){
           console.log("###########################"+conversationTree.transition);
-          SceneHelper.transitionScene(this,new SceneLoadingData(conversationTree.transition));
+          if(conversationTree.item == null){
+              conversationTree.item = this._sceneData.item;
+              console.log("we bring our item from last scene: "+conversationTree.item);
+          }else{
+              console.log("we bring our item "+ conversationTree.item);
+          }
+          SceneHelper.transitionScene(this,new SceneLoadingData(conversationTree.transition,conversationTree.item));
       }
 
     if(conversationTree.options != null){

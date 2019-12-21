@@ -6,7 +6,7 @@
     "id": 3,
     "name": "Faith",
     "actor": "Cop",
-    "text": "Alright, what do we have here…?",
+    "text": "Alright, what do we have here…? What ist that?",
     "audio_file_name": "cop05.wav",
     "transition": null,
     "options": [
@@ -15,10 +15,10 @@
         "nodes": [
           {
             "id": 0,
-            "name": "Little accident",
+            "name": "Just a Present",
             "actor": "Driver",
-            "text": "Oh, it might be because of the broken headlight. I just had a little accident a minute ago. I will get it fixed as soon as possible, officer",
-            "audio_file_name": "driver9.mp3",
+            "text": "This is just a Christmas present for my wife, officer. I just had a little accident a minute ago. I will get it fixed as soon as possible, officer",
+            "audio_file_name": "driver12.mp3",
             "transition": null,
             "options": [
               {
@@ -26,60 +26,119 @@
                 "nodes": [
                   {
                     "id": 0,
-                    "name": "Uhmm...",
+                    "name": "Ok.",
                     "actor": "Cop",
-                    "text": "That’s correct, sir. You seem quite happy about your `little accident´. Can you open up the trunk for me and show me your first-aid kit, please?",
-                    "audio_file_name": "cop02.mp3",
+                    "text": "Ok, sir. I believe you. You may continue your journey. Merry Christmas.",
+                    "audio_file_name": "cop07.mp3",
                     "options": [
                       {
-                        "emotion": 0,
+                        "emotion": null,
                         "nodes": [
                           {
                             "id": 0,
-                            "name": "I’m in a hurry.",
-                            "actor": "Driver",
-                            "text": "I’m in a hurry, I don’t know why you stopped me.",
-                            "audio_file_name": "driver10.mp3",
+                            "name": "You Win!",
+                            "actor": "Radio Host",
+                            "text": "You’re listening to Radio Game Jam FM and the roads seem to be quiet. Have a safe trip and Merry Christmas.",
+                            "audio_file_name": "radio_host01.mp3",
                             "options": [
-                              {
-                                "emotion": null,
-                                "nodes": [
-                                  {
-                                    "id": 0,
-                                    "name": "Na na na!",
-                                    "actor": "cop",
-                                    "text": "Your headlight is broken. You seem unaware of the condition of your car. Police. Can you open up the trunk for me and show me your first-aid kit, please?",
-                                    "transition": "scene2",
-                                    "audio_file_name": "cop3.mp3",
-                                    "options": null
-                                  }
-                                ]
-                              }
                             ]
                           }
                         ]
-                      },
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "emotion": 0,
+        "nodes": [
+          {
+            "id": 0,
+            "name": "Just a Present",
+            "actor": "Driver",
+            "text": "This is just a Christmas present for my wife, officer. I just had a little accident a minute ago. I will get it fixed as soon as possible, officer",
+            "audio_file_name": "driver12.mp3",
+            "transition": null,
+            "options": [
+              {
+                "emotion": null,
+                "nodes": [
+                  {
+                    "id": 0,
+                    "name": "Ok.",
+                    "actor": "Cop",
+                    "text": "Ok, sir. I believe you. You may continue your journey. Merry Christmas.",
+                    "audio_file_name": "cop07.mp3",
+                    "options": [
                       {
-                        "emotion": 3,
+                        "emotion": null,
                         "nodes": [
                           {
                             "id": 0,
-                            "name": "I’m sorry",
-                            "actor": "Driver",
-                            "text": "I’m sorry, officer. I have no idea.",
-                            "audio_file_name": "driver10.mp3",
+                            "name": "You Win!",
+                            "actor": "Radio Host",
+                            "text": "You’re listening to Radio Game Jam FM and the roads seem to be quiet. Have a safe trip and Merry Christmas.",
+                            "audio_file_name": "radio_host01.mp3",
+                            "options": [
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ,
+      {
+        "emotion": 3,
+        "nodes": [
+          {
+            "id": 0,
+            "name": "Just a Present",
+            "actor": "Driver",
+            "text": "Why do you ask what it is. Isn’t it obvious? It’s a Christmas gift for my wife.",
+            "audio_file_name": "driver13.mp3",
+            "transition": null,
+            "options": [
+              {
+                "emotion": null,
+                "nodes": [
+                  {
+                    "id": 0,
+                    "name": "Ok.",
+                    "actor": "Cop",
+                    "text": "I’ll have to make sure of that. Please open up the box sir.",
+                    "audio_file_name": "cop08.mp3",
+                    "options": [
+                      {
+                        "emotion": null,
+                        "nodes": [
+                          {
+                            "id": 0,
+                            "name": "Just a camera.",
+                            "actor": "Radio Host",
+                            "text": "Oh, it’s just a box with a new camera. You can leave now. Merry Christmas.",
+                            "audio_file_name": "cop09.mp3",
                             "options": [
                               {
                                 "emotion": null,
                                 "nodes": [
                                   {
                                     "id": 0,
-                                    "name": "Na na na!",
-                                    "actor": "cop",
-                                    "text": "You seem surprised. Didn’t you notice your broken headlight? \nCan you open up the trunk for me and show me your first-aid kit, please?",
-                                    "audio_file_name": "cop4.mp3",
-                                    "transition": "scene2",
-                                    "options": null
+                                    "name": "You Win!",
+                                    "actor": "Radio Host",
+                                    "text": "You’re listening to Radio Game Jam FM and the roads seem to be quiet. Have a safe trip and Merry Christmas.",
+                                    "audio_file_name": "radio_host01.mp3",
+                                    "options": [
+                                    ]
                                   }
                                 ]
                               }
@@ -95,6 +154,7 @@
           }
         ]
       }
+
     ]
 }
 }

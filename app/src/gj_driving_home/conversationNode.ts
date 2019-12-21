@@ -10,6 +10,7 @@ export class ConversationNode {
     actor: string;
     options: Array<EmotionOptions>;
     wasPlayed = true;
+    item: string;
 
 
     constructor(id: number, name: string, text: string, audio_file_name: string, transition: string, options: Array<EmotionOptions>) {
