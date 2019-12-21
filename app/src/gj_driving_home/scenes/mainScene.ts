@@ -138,11 +138,11 @@ export class MainScene extends BaseScene {
 
     renderWebCamPic() {
         let image = this.add.image(
-            this.sys.canvas.width/2,
+            this.game.renderer.width/2,
             0,
             "webcam"
         );
-        image.setOrigin(1, 0);
+        image.setOrigin(1, 0.5);
         image.setScale(0.5);
 
     }
