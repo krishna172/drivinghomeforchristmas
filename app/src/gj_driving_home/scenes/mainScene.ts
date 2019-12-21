@@ -115,7 +115,7 @@ export class MainScene extends BaseScene {
     private navigate(game: this, nbr: number) {
         if (game._conversationTree.options) {
             for (let option of game._conversationTree.options) {
-                if (option.emotion == game._currentEmotion) {
+                if (option.emotion == game._currentEmotion || option.emotion == null) {
                     game._conversationTree = option.nodes[nbr];
                 }
             }
@@ -145,23 +145,30 @@ export class MainScene extends BaseScene {
   private renderConversationNode(conversationTree: ConversationNode, emotion: Emotion) {
     let options: Array<ConversationNode>;
     let optionsText: string;
-    optionsText = "";
+    optionsText = ""
+    console.log(conversationTree);
     if(conversationTree == null){
       return;
     }
     if(!conversationTree.wasPlayed){
-        this._soundController.playSound(conversationTree.audio_file_name);
+        try {
+            this._soundController.playSound(conversationTree.audio_file_name);
+        }catch (e) {
+
+        }
         conversationTree.wasPlayed = true;
     }
+
     if(conversationTree.options != null){
         for (let option of conversationTree.options) {
-          if (option.emotion == emotion) {
+            console.log(option.emotion);
+          if (option.emotion == emotion || option.emotion == null) {
             options = option.nodes;
           }
         }
     }
     let i : number;
-    if(emotion !=null && options){
+    if(options){
       i = 0;
       for (let conversationNode of options) {
         i++;

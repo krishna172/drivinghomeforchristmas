@@ -20,9 +20,9 @@
             "text": "It would be my pleasure",
             "audio_file_name": "driver1.mp3",
             "transition": null,
-            "nodes": [
+            "options": [
               {
-                "emotion": 2,
+                "emotion": null,
                 "nodes": [
                   {
                     "id": 0,
@@ -32,7 +32,7 @@
                     "audio_file_name": "mafioso02.mp3",
                     "options": [
                       {
-                        "emotion": 2,
+                        "emotion": null,
                         "nodes": [
                           {
                             "id": 0,
@@ -40,6 +40,7 @@
                             "actor": "Driver",
                             "text": "I take the present",
                             "audio_file_name": "driver2.mp3",
+                            "transition": "scene1",
                             "options": null
                           }
                         ]
@@ -62,16 +63,17 @@
             "text": "I can do that",
             "audio_file_name": "driver4.mp3",
             "transition": null,
-            "nodes": [
+            "options": [
               {
-                "emotion": 2,
+                "emotion": null,
                 "nodes": [
                   {
                     "id": 0,
                     "name": "Fantastico",
                     "actor": "Mafioso",
-                    "text": "TODO ITALIAN3",
+                    "text": "Rapido, take this briefcase to Don Alberto",
                     "audio_file_name": "italian3.mp3",
+                    "transition": "scene1",
                     "options": [
                     ]
                   }
@@ -88,18 +90,18 @@
             "id": 0,
             "name": "what the hell",
             "actor": "Driver",
-            "text": "what the hell",
+            "text": "what the hell? You must’ve mistaken me for someone else. I don’t know this man",
             "audio_file_name": "driver4.mp3",
             "transition": null,
-            "nodes": [
+            "options": [
               {
-                "emotion": 2,
+                "emotion": null,
                 "nodes": [
                   {
                     "id": 0,
-                    "name": "u better do or…",
+                    "name": "Ahhh... go on?",
                     "actor": "Mafioso",
-                    "text": "u better do or…",
+                    "text": "Don’t try playing any games on me. If you don´t take this carpet and bring it to Mario’s Scrapyard close Raccoon City something really bad will happen to your family. Else you could take this briefcase to Don Alberto. What do you decide for?",
                     "audio_file_name": "mafioso04.mp3",
                     "options": [
                       {
@@ -107,16 +109,16 @@
                         "nodes": [
                           {
                             "id": 0,
-                            "name": "o1",
+                            "name": "Carpet",
                             "actor": "Driver",
-                            "text": "option 1",
+                            "text": "I’ll take the carpet",
                             "options": null
                           },
                           {
                             "id": 0,
-                            "name": "o2",
+                            "name": "Briefcase",
                             "actor": "Driver",
-                            "text": "option 2",
+                            "text": "I’ll take the briefcase",
                             "options": null
                           }
                         ]
