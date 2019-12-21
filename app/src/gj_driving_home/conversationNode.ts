@@ -7,6 +7,7 @@ export class ConversationNode {
     text : string;
     audio_file_name : string;
     transition : string;
+    actor: string;
     options: Array<EmotionOptions>;
 
 
