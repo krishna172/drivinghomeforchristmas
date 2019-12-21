@@ -28,13 +28,13 @@ const config: GameConfig = {
     parent: "game",
 
 
-  scene: [LoadingScene, MainScene, SteeringWheelScene],
-  physics: {
-    default: "arcade",
-    arcade: {
-      gravity: {y: 0,},
-    }
-}};
+    scene: [LoadingScene, MainScene, SteeringWheelScene],
+    physics: {
+        default: "arcade",
+        arcade: {
+            gravity: {y: 0,},
+        }
+    }};
 
 // game class
 export class Game extends Phaser.Game {

@@ -5,6 +5,7 @@ import {DialogBox} from "../dialogBox";
 import {ConversationNode} from "../conversationNode";
 import LoaderPlugin = Phaser.Loader.LoaderPlugin;
 import {SceneLoadingData} from "./sceneLoadingData";
+import CursorKeys = Phaser.Types.Input.Keyboard.CursorKeys;
 
 export class SteeringWheelScene extends Phaser.Scene {
     private dbox: DialogBox;

@@ -39,9 +39,6 @@ export class MainScene extends BaseScene {
         console.log(this._conversationTree);
         this.load.image(AssetGlobals.Knob, "./assets/knob/" + AssetGlobals.Knob);
 
-        this.input.keyboard.on("keydown_D", function (event) {
-          SceneHelper.steeringScene(game,new SceneLoadingData("sceneSteering"));
-        });
 
     }
 
@@ -52,7 +49,7 @@ export class MainScene extends BaseScene {
         this._soundController = SoundController.getInstance();
         this._soundController.sound = this.sound;
         this._timeSinceLastDetect = 0;
-        //this.sound.play(this._sceneDescription.bg_music_name, {loop: true});
+        Webcam.init();
         console.log("added video");
         this.add.image(this.game.renderer.width / 2, this.game.renderer.height / 2, this._sceneDescription.bg_image_name);
         this.renderConversationNode(this._conversationTree, this._currentEmotion);
@@ -108,6 +105,10 @@ export class MainScene extends BaseScene {
         this.input.keyboard.on("keydown_X", function (event) {
             let key = "scene0"; //todo actual scene key from conversation node transition
             SceneHelper.transitionScene(game, new SceneLoadingData(key));
+        });
+
+        this.input.keyboard.on("keydown_D", function (event) {
+            SceneHelper.steeringScene(game,new SceneLoadingData("sceneSteering"));
         });
 
     let image = this.add.image(this.game.renderer.width - 150, this.game.renderer.height - 150, AssetGlobals.Knob );
