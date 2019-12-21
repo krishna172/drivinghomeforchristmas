@@ -2,6 +2,8 @@ import BaseScene from "./BaseScene";
 import {Emotion, EmotionDetector} from "../emotion";
 import Webcam from "../video";
 import BaseSound = Phaser.Sound.BaseSound;
+import {SceneHelper} from "./sceneHelper";
+import {SceneLoadingData} from "./sceneLoadingData";
 
 export class IntroScene extends BaseScene {
     private _sceneData: any;
@@ -38,7 +40,7 @@ export class IntroScene extends BaseScene {
         this.radioStatic.on('complete', function () {
             console.log("completed radio static");
             const finished = new FinishedStage(self.sound.add("p5"), function () {
-                console.log("switch now??");
+                SceneHelper.transitionScene(self, new SceneLoadingData("scene0"))
             });
             const i4 = new IntroStage(
                 self.sound.add("p4"),
