@@ -43,7 +43,6 @@ export class MainScene extends BaseScene {
     }
 
     private _conversationTree: ConversationNode;
-    private _timeSinceLastDetect: number;
 
     create(): void {
         this._soundController = SoundController.getInstance();
@@ -123,14 +122,30 @@ export class MainScene extends BaseScene {
     }
 
     update(time: number, delta: number): void {
-        this._timeSinceLastDetect += delta;
+        super.update(time, delta);
         this._soundController.update(delta);
-        if(this._timeSinceLastDetect>200){
-            this._timeSinceLastDetect = 0;
-            this.webcam.detectFaces(this);
-        }
     }
 
+
+    onLastDetectPassed() {
+        super.onLastDetectPassed();
+        const self = this;
+        this.webcam.detectFaces(this, function(){
+            Webcam.getInstance().updateCamCanvas(self.textures);
+            self.renderWebCamPic();
+        });
+    }
+
+    renderWebCamPic() {
+        let image = this.add.image(
+            this.sys.canvas.width/2,
+            0,
+            "webcam"
+        );
+        image.setOrigin(1, 0);
+        image.setScale(0.5);
+
+    }
 
     renderActionText(text: string) {
         if (this.dbox) {
