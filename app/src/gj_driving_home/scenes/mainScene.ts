@@ -43,7 +43,6 @@ export class MainScene extends BaseScene {
     }
 
     private _conversationTree: ConversationNode;
-    private _timeSinceLastDetect: number;
 
     create(): void {
         this._soundController = SoundController.getInstance();
@@ -115,7 +114,7 @@ export class MainScene extends BaseScene {
     private navigate(game: this, nbr: number) {
         if (game._conversationTree.options) {
             for (let option of game._conversationTree.options) {
-                if (option.emotion == game._currentEmotion) {
+                if (option.emotion == game._currentEmotion || option.emotion == null) {
                     game._conversationTree = option.nodes[nbr];
                 }
             }
@@ -123,14 +122,30 @@ export class MainScene extends BaseScene {
     }
 
     update(time: number, delta: number): void {
-        this._timeSinceLastDetect += delta;
+        super.update(time, delta);
         this._soundController.update(delta);
-        if(this._timeSinceLastDetect>200){
-            this._timeSinceLastDetect = 0;
-            this.webcam.detectFaces(this);
-        }
     }
 
+
+    onLastDetectPassed() {
+        super.onLastDetectPassed();
+        const self = this;
+        this.webcam.detectFaces(this, function(){
+            Webcam.getInstance().updateCamCanvas(this.textures);
+            self.renderWebCamPic();
+        });
+    }
+
+    renderWebCamPic() {
+        let image = this.add.image(
+            this.sys.canvas.width/2,
+            0,
+            "webcam"
+        );
+        image.setOrigin(1, 0);
+        image.setScale(0.5);
+
+    }
 
     renderActionText(text: string) {
         if (this.dbox) {
@@ -145,23 +160,30 @@ export class MainScene extends BaseScene {
   private renderConversationNode(conversationTree: ConversationNode, emotion: Emotion) {
     let options: Array<ConversationNode>;
     let optionsText: string;
-    optionsText = "";
+    optionsText = ""
+    console.log(conversationTree);
     if(conversationTree == null){
       return;
     }
     if(!conversationTree.wasPlayed){
-        this._soundController.playSound(conversationTree.audio_file_name);
+        try {
+            this._soundController.playSound(conversationTree.audio_file_name);
+        }catch (e) {
+
+        }
         conversationTree.wasPlayed = true;
     }
+
     if(conversationTree.options != null){
         for (let option of conversationTree.options) {
-          if (option.emotion == emotion) {
+            console.log(option.emotion);
+          if (option.emotion == emotion || option.emotion == null) {
             options = option.nodes;
           }
         }
     }
     let i : number;
-    if(emotion !=null && options){
+    if(options){
       i = 0;
       for (let conversationNode of options) {
         i++;

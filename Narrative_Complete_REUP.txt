@@ -19,8 +19,9 @@
 	[ACTOR] Driver
 	[TEXT] ”It would be my pleasure”
 	[VOICE_DRIVER1]
+
 	[ACTOR] Mafioso
-[TEXT] “Fantastico, what would you like to deliver..? A Christmas present for my cousin or this briefcase for his business?”
+    [TEXT] “Fantastico, what would you like to deliver..? A Christmas present for my cousin or this briefcase for his business?”
 	[VOICE_ITALIAN2]
 	[OPTION] 
 			[ACTOR] Driver
@@ -53,8 +54,14 @@
 			[VOICE_DRIVER6]
 			[ACTOR] Driver
 	 		[TEXT]”I’ll take the briefcase” 
-[VOICE_DRIVER7]
+            [VOICE_DRIVER7]
+
+
+
 [TRANSITION]
+
+
+
 
 [INTERLUDE SCENE] Raccoon Crash
 [BG_MUSIC_RACOON]
@@ -68,6 +75,14 @@
 [VOICE_DRIVER8]
 [BG_SOUND_WIPERBLADES]
 [BG_IMAGE_WIPERBLADES]
+
+
+
+
+
+
+
+
 
 [SCENE 2] Meet the Cop
 [BG_MUSIC_POLICE]
@@ -104,6 +119,11 @@
 Can you open up the trunk for me and show me your first-aid kit, please?” 
 [VOICE_COP4]
 	
+
+
+
+
+
 
 
 [SCENE 3] The Trunk

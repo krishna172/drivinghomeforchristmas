@@ -4,6 +4,7 @@ import Webcam from "../video";
 import BaseSound = Phaser.Sound.BaseSound;
 import {SceneHelper} from "./sceneHelper";
 import {SceneLoadingData} from "./sceneLoadingData";
+import Texture = Phaser.Textures.Texture;
 
 export class IntroScene extends BaseScene {
     private _sceneData: any;
@@ -33,7 +34,7 @@ export class IntroScene extends BaseScene {
 
     create(): void {
         this.radioStatic = this.sound.add("radio_static");
-
+        Webcam.getInstance().updateCamCanvas(this.textures);
 
         this.radioStatic.play();
         const self = this;
@@ -43,6 +44,7 @@ export class IntroScene extends BaseScene {
                 SceneHelper.transitionScene(self, new SceneLoadingData("scene0"))
             });
             const i4 = new IntroStage(
+                self,
                 self.sound.add("p4"),
                 self.sound.add("p4r1"),
                 self.sound.add("p4r2"),
@@ -50,6 +52,7 @@ export class IntroScene extends BaseScene {
                 finished
             );
             const i3 = new IntroStage(
+                self,
                 self.sound.add("p3"),
                 self.sound.add("p3r1"),
                 self.sound.add("p3r2"),
@@ -57,6 +60,7 @@ export class IntroScene extends BaseScene {
                 i4
             );
             const i2 = new IntroStage(
+                self,
                 self.sound.add("p2"),
                 self.sound.add("p2r1"),
                 self.sound.add("p2r2"),
@@ -64,6 +68,7 @@ export class IntroScene extends BaseScene {
                 i3
             );
             const i1 = new IntroStage(
+                self,
                 self.sound.add("p1"),
                 self.sound.add("p1r1"),
                 self.sound.add("p1r2"),
@@ -77,23 +82,45 @@ export class IntroScene extends BaseScene {
             game.sound.stopAll();
             SceneHelper.transitionScene(game,new SceneLoadingData("scene0"));
         });
+        this.renderWebCamPic();
     }
+
 
     onEmotion(emotion: Emotion) {
     }
 
+
+    onLastDetectPassed() {
+        super.onLastDetectPassed();
+        Webcam.getInstance().updateCamCanvas(this.textures);
+        this.renderWebCamPic();
+
+    }
+
+    renderWebCamPic() {
+        let image = this.add.image(
+            this.sys.canvas.width/2,
+            0,
+            "webcam"
+        );
+        image.setOrigin(1, 0);
+        image.setScale(0.5);
+
+    }
 
 }
 
 
 class IntroStage implements EmotionDetector {
     protected task: Phaser.Sound.BaseSound;
+    private introScene: IntroScene;
     private success: Phaser.Sound.BaseSound;
     private fail: Phaser.Sound.BaseSound;
     private readonly emotionGoal: Emotion;
     private nextStage: IntroStage;
 
-    constructor(task: BaseSound, success: BaseSound, fail: BaseSound, emotion: Emotion, nextStage: IntroStage) {
+    constructor(introScene: IntroScene, task: BaseSound, success: BaseSound, fail: BaseSound, emotion: Emotion, nextStage: IntroStage) {
+        this.introScene = introScene;
         this.task = task;
         this.success = success;
         this.fail = fail;
@@ -107,9 +134,11 @@ class IntroStage implements EmotionDetector {
         const self = this;
         this.task.on('complete', async function () {
             const video = await Webcam.init();
-            await video.detectFaces(self);
+            await video.detectFaces(self, null);
         } )
     }
+
+
 
     async onEmotion(emotion: Emotion) {
         console.log("Detected for emotion " + Emotion[this.emotionGoal] + " was " +  Emotion[emotion]);
@@ -124,7 +153,10 @@ class IntroStage implements EmotionDetector {
             this.fail.play();
             this.fail.on('complete', async function() {
                 const video = await Webcam.init();
-                await video.detectFaces(self);
+                await video.detectFaces(self, function() {
+                    video.updateCamCanvas(self.introScene.textures);
+                    self.introScene.renderWebCamPic();
+                });
             })
         }
     }
@@ -137,7 +169,7 @@ class FinishedStage extends IntroStage {
     private readonly finished: Function;
 
     constructor(task: BaseSound, finished: Function) {
-        super(task, null, null, null, null);
+        super(null, task, null, null, null, null);
         this.finished = finished;
     }
 
