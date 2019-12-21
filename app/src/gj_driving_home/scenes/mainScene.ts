@@ -9,11 +9,13 @@ import {Emotion} from "../emotion";
 import {SoundController} from "../soundController";
 import {AssetGlobals} from "../assetsGlobals";
 import DOMElement = Phaser.GameObjects.DOMElement;
+import BaseScene from "./BaseScene";
 
-export class MainScene extends Phaser.Scene {
-  private dbox: DialogBox;
-  private _currentEmotion: Emotion;
-  private _soundController: SoundController
+
+export class MainScene extends BaseScene {
+    private dbox: DialogBox;
+    private _currentEmotion: Emotion;
+    private _soundController: SoundController;
 
     constructor() {
         super({
@@ -25,17 +27,17 @@ export class MainScene extends Phaser.Scene {
     private webcam: Webcam;
     private video: DOMElement;
 
-  async preload() {
-    this.load.audio("radio_static","./assets/music/radio_static.wav");
-    this.load.audio("radio00","./assets/music/radio00.mp3");
-    this.load.audio("radio01","./assets/music/radio01.mp3");
-    this.load.audio("radio02","./assets/music/radio02.mp3");
+    preload() {
+        this.load.audio("radio_static","./assets/music/radio_static.wav");
+        this.load.audio("radio00","./assets/music/radio00.mp3");
+        this.load.audio("radio01","./assets/music/radio01.mp3");
+        this.load.audio("radio02","./assets/music/radio02.mp3");
+
         this._sceneDescription = new SceneLoader(this, "scene").loadScene();
-        this.webcam = new Webcam();
-        this.video = this.add.dom(0, 0, this.webcam.htmlVideoDOM);
+        this.webcam = Webcam.getInstance();
         this._conversationTree = this._sceneDescription.conversationTree;
         this.load.image(AssetGlobals.Knob, "./assets/knob/" + AssetGlobals.Knob);
-        await this.webcam.init();
+
 
     }
 
@@ -46,7 +48,7 @@ export class MainScene extends Phaser.Scene {
         this._soundController = SoundController.getInstance();
         this._soundController.sound = this.sound;
         this._timeSinceLastDetect = 0;
-        this.webcam.init();
+        Webcam.init();
         console.log("added video");
 
         console.log(this._sceneDescription.bg_image_name);
@@ -104,6 +106,10 @@ export class MainScene extends Phaser.Scene {
             SceneHelper.transitionScene(game, new SceneLoadingData(key));
         });
 
+        this.input.keyboard.on("keydown_D", function (event) {
+            SceneHelper.steeringScene(game,new SceneLoadingData("sceneSteering"));
+        });
+
     let image = this.add.image(this.game.renderer.width - 150, this.game.renderer.height - 150, AssetGlobals.Knob );
     const radioButton = image
         .setInteractive()
@@ -159,25 +165,10 @@ export class MainScene extends Phaser.Scene {
 
     }
 
-    setExpression(expression: string) {
-        console.log(expression);
-        switch (expression) {
-            case "happy":
-                this._currentEmotion = Emotion.Happy;
-                break;
-            case "angry":
-                this._currentEmotion = Emotion.Angry;
-                break;
-            case "neutral":
-                this._currentEmotion = Emotion.NEUTRAL;
-                break;
-            case "surprised":
-                this._currentEmotion = Emotion.Surprised;
-                break;
-            default:
-                this._currentEmotion = null;
-        }
-        console.log(this._currentEmotion+ "");
+    onEmotion(emotion: Emotion) {
+        this._currentEmotion = emotion;
     }
+
+
 }
 
