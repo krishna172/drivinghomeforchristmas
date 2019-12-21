@@ -1,0 +1,100 @@
+{
+  "title": "The Trunk",
+  "bg_music_name": "trunk.mp3",
+  "bg_image_name": "trunk.jpg",
+  "conversationTree": {
+    "id": 3,
+    "name": "Faith",
+    "actor": "Cop",
+    "text": "Alright, what do we have here…?",
+    "audio_file_name": "cop1.wav",
+    "transition": null,
+    "options": [
+      {
+        "emotion": 1,
+        "nodes": [
+          {
+            "id": 0,
+            "name": "Little accident",
+            "actor": "Driver",
+            "text": "Oh, it might be because of the broken headlight. I just had a little accident a minute ago. I will get it fixed as soon as possible, officer",
+            "audio_file_name": "driver9.mp3",
+            "transition": null,
+            "options": [
+              {
+                "emotion": null,
+                "nodes": [
+                  {
+                    "id": 0,
+                    "name": "Uhmm...",
+                    "actor": "Cop",
+                    "text": "That’s correct, sir. You seem quite happy about your `little accident´. Can you open up the trunk for me and show me your first-aid kit, please?",
+                    "audio_file_name": "cop02.mp3",
+                    "options": [
+                      {
+                        "emotion": 0,
+                        "nodes": [
+                          {
+                            "id": 0,
+                            "name": "I’m in a hurry.",
+                            "actor": "Driver",
+                            "text": "I’m in a hurry, I don’t know why you stopped me.",
+                            "audio_file_name": "driver10.mp3",
+                            "options": [
+                              {
+                                "emotion": null,
+                                "nodes": [
+                                  {
+                                    "id": 0,
+                                    "name": "Na na na!",
+                                    "actor": "cop",
+                                    "text": "Your headlight is broken. You seem unaware of the condition of your car. Police. Can you open up the trunk for me and show me your first-aid kit, please?",
+                                    "transition": "scene2",
+                                    "audio_file_name": "cop3.mp3",
+                                    "options": null
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "emotion": 3,
+                        "nodes": [
+                          {
+                            "id": 0,
+                            "name": "I’m sorry",
+                            "actor": "Driver",
+                            "text": "I’m sorry, officer. I have no idea.",
+                            "audio_file_name": "driver10.mp3",
+                            "options": [
+                              {
+                                "emotion": null,
+                                "nodes": [
+                                  {
+                                    "id": 0,
+                                    "name": "Na na na!",
+                                    "actor": "cop",
+                                    "text": "You seem surprised. Didn’t you notice your broken headlight? \nCan you open up the trunk for me and show me your first-aid kit, please?",
+                                    "audio_file_name": "cop4.mp3",
+                                    "transition": "scene2",
+                                    "options": null
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+}
+}
