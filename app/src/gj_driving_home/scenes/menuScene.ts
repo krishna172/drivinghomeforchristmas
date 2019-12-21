@@ -52,7 +52,7 @@ export class MenuScene extends Phaser.Scene {
         btnCreditsTxt.setOrigin(0.5,0.5);
 
         btnPlay.on("pointerup", () => {
-            console.log("playbutton pressed");
+            SceneHelper.transitionScene(this, new SceneLoadingData("scene0"));
 
         });
 
@@ -62,7 +62,7 @@ export class MenuScene extends Phaser.Scene {
         });
 
         btnTutorial.on("pointerup", () => {
-            console.log("tutorialbutton pressed");
+            SceneHelper.switchToTutorialScene(this);
 
         });
 

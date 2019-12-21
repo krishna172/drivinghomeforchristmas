@@ -11,10 +11,17 @@ export class SceneHelper {
         scene.dump();
     }
 
+    public static switchToTutorialScene(game: Phaser.Scene) {
+        game.scene.manager.stop("MenuScene");
+        game.scene.manager.start("IntroScene");
+        game.scene.manager.dump();
+    }
+
     public static transitionScene(game: Phaser.Scene, sceneKey: SceneLoadingData): void {
         console.log("here we go again for "+ sceneKey);
 
         SoundController.getInstance().sound = game.sound;
+        game.scene.manager.stop("MenuScene");
         game.scene.manager.stop('MainScene');
         game.scene.manager.start('LoadingScene', sceneKey);
         game.scene.manager.dump();

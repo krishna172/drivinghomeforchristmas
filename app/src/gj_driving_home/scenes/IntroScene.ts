@@ -17,7 +17,7 @@ export class IntroScene extends BaseScene {
         console.log('init', data);
         this._sceneData = data;
         if(!this._sceneData.key){
-            this._sceneData.key = "introScene"
+            this._sceneData.key = "IntroScene"
         }
 
     }
