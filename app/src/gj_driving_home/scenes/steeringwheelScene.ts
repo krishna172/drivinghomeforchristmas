@@ -41,18 +41,8 @@ export class SteeringWheelScene extends Phaser.Scene {
         });
     }
 
-    init(data): void {
-        console.log('init steering', data);
-        this._sceneData = data;
-        if (!this._sceneData.key) {
-
-            this._sceneData.key = "sceneSteering"
-        }
-    }
 
     preload(): void {
-
-        this.load.json('scene', './assets/sceneDescriptions/' + this._sceneData.key + '.json');
         this.load.image(AssetGlobals.BG_ROAD, ["./assets/backgrounds/" + AssetGlobals.BG_ROAD + ".jpg","./assets/lm.png"]);
         this.load.image(AssetGlobals.SPRITE_STEERING, ["./assets/sprites/" + AssetGlobals.SPRITE_STEERING + ".png","./assets/lm.png"]);
         this.load.image(AssetGlobals.SPRITE_CACTUS, ["./assets/sprites/" + AssetGlobals.STREET_LAMP + ".png","./assets/lm.png"]);

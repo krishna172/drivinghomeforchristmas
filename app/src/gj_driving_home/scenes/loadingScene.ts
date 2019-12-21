@@ -20,11 +20,11 @@ export class LoadingScene extends Phaser.Scene {
   {
     console.log('init', data);
     this._sceneData = data;
-    console.log(this._sceneData.key);
+    console.log(this._sceneData.getKey());
   }
 
   preload(): void {
-    this.load.json(this._sceneData.key, './assets/sceneDescriptions/'+this._sceneData.key+'.json');
+    this.load.json(this._sceneData.getKey(), './assets/sceneDescriptions/'+this._sceneData.getKey()+'.json');
     this.load.image( AssetGlobals.BG_IMAGE_LOADING, "./assets/backgrounds/"+AssetGlobals.BG_IMAGE_LOADING+".jpg");
   }
 

@@ -33,10 +33,8 @@ export class MainScene extends BaseScene {
         console.log('init', data);
         this._sceneData = data;
         //item scene hack
-        if(this._sceneData.key == "scene2"){
-            this._sceneData.key = "scene2_"+this._sceneData.item;
-        }
-        console.log(this._sceneData.key);
+
+        console.log(this._sceneData.getKey());
     }
 
     preload() {
@@ -44,8 +42,8 @@ export class MainScene extends BaseScene {
         this.load.audio("radio00","./assets/music/radio00.mp3");
         this.load.audio("radio01","./assets/music/radio01.mp3");
         this.load.audio("radio02","./assets/music/radio02.mp3");
-console.log(this._sceneData.key+"     is the key")
-        this._sceneDescription = new SceneLoader(this, this._sceneData.key).loadScene();
+console.log(this._sceneData.getKey()+"     is the key")
+        this._sceneDescription = new SceneLoader(this, this._sceneData.getKey()).loadScene();
         this.webcam = Webcam.getInstance();
         this._conversationTree = this._sceneDescription.conversationTree;
         console.log(this._conversationTree);
@@ -129,7 +127,7 @@ console.log(this._sceneData.key+"     is the key")
 
     update(time: number, delta: number): void {
         super.update(time, delta);
-        console.log("Hallo Veit, das ist die "+this._sceneData.key+" Szene. Viel spaß.");
+        console.log("Hallo Veit, das ist die "+this._sceneData.getKey()+" Szene. Viel spaß.");
         this._soundController.update(delta);
     }
 

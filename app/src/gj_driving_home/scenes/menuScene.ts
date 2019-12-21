@@ -12,14 +12,6 @@ export class MenuScene extends Phaser.Scene {
         });
     }
 
-    init(data): void {
-        console.log('init menu', data);
-        this._sceneData = data;
-        if (!this._sceneData.key) {
-            this._sceneData.key = "sceneMenu"
-        }
-    }
-
     preload(): void {
         console.log("preload menu scene")
         this.load.image('btnBgTaxi', 'assets/buttons/btn_bg_taxi.png');
@@ -52,7 +44,7 @@ export class MenuScene extends Phaser.Scene {
         btnCreditsTxt.setOrigin(0.5,0.5);
 
         btnPlay.on("pointerup", () => {
-            SceneHelper.transitionScene(this, new SceneLoadingData("scene0"));
+            SceneHelper.transitionScene(this, new SceneLoadingData("scene0",null));
 
         });
 
@@ -69,7 +61,7 @@ export class MenuScene extends Phaser.Scene {
         let game = this;
         this.input.keyboard.on("keydown_X", function (event) {
             game.sound.stopAll();
-            SceneHelper.transitionScene(game,new SceneLoadingData("scene0"));
+            SceneHelper.transitionScene(game,new SceneLoadingData("scene0",null));
         });
 
     }
