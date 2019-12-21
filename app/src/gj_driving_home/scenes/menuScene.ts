@@ -23,21 +23,14 @@ export class MenuScene extends Phaser.Scene {
     create(): void {
         console.log("menu scene created")
         this.cameras.main.setBackgroundColor("#FFFFFF");
-        Webcam.getInstance().updateCamCanvas(this.textures);
-        let image = this.add.image(
-            this.game.renderer.width/2,
-            0.54 * (this.game.renderer.height / 2),
-            "webcam"
-        );
-        image.setOrigin(0.5, 0);
-        image.setScale(0.7);
-        image.flipX = true;
-
 
         this.add.image(
             this.game.renderer.width/2,
             this.game.renderer.height/2,
             AssetGlobals.BG_IMAGE_MENU);
+
+        Webcam.getInstance().updateCamCanvas(this.textures);
+        this.renderWebCamPic();
 
         let centerX = this.game.renderer.width / 3.2;
         let centerY = 4 * (this.game.renderer.height / 5);
@@ -85,6 +78,23 @@ export class MenuScene extends Phaser.Scene {
             SceneHelper.transitionScene(game,new SceneLoadingData("scene0",null));
         });
 
+    }
+
+    update(): void{
+        console.log("update menu")
+        Webcam.getInstance().updateCamCanvas(this.textures);
+        this.renderWebCamPic();
+    }
+
+    renderWebCamPic() {
+        let image = this.add.image(
+            this.game.renderer.width/2,
+            0.54 * (this.game.renderer.height / 2),
+            "webcam"
+        );
+        image.setOrigin(0.5, 0);
+        image.setScale(0.7);
+        image.flipX = true;
     }
 
 }
