@@ -37,7 +37,7 @@ export class MainScene extends Phaser.Scene {
   private _conversationTree : ConversationNode;
 
   create(): void {
-    this.webcam.init();
+    //this.webcam.init();
     this.sound.play(this._sceneDescription.bg_music_name,{loop:true});
     console.log("added video");
 
