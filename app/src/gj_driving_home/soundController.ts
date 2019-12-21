@@ -47,7 +47,7 @@ export class SoundController {
 
     public initRadioSong(){
         this.stopAllMusic();
-        this.playRadioStatic(this.getRandomInt(1000));
+        this.playRadioStatic(1000+this.getRandomInt(1000));
     }
 
 
@@ -55,6 +55,7 @@ export class SoundController {
         this.timePassedInState+=delta;
         if(this.state == RadioState.Static){
                 if(this.timePassedInState >= this.radioStateTime){
+                    console.log("Switch State to Playing");
                     this.state = RadioState.Playing;
                     this.timePassedInState = 0;
                     this.stopAllMusic();
@@ -63,6 +64,7 @@ export class SoundController {
         }
         if(this.state == RadioState.Playing){
             if(this.timePassedInState >= this.radioStateTime){
+                console.log("Switch State to Playing");
                 this.state = RadioState.Playing;
                 this.timePassedInState = 0;
                 this.stopAllMusic();
@@ -72,7 +74,7 @@ export class SoundController {
     }
 
     private playNextRadioSong() {
-        this.playMusic("radio"+this.getRandomInt(2),false);
+        this.playMusic("radio0"+this.getRandomInt(2),false);
         this.radioStateTime = 3000; //TODO: Check how to get song length And maybe add random input time
         this.state = RadioState.Playing;
     }
@@ -94,6 +96,7 @@ export class SoundController {
 
     getRandomInt(max) {
         return Math.floor(Math.random() * Math.floor(max));
+
     }
 
 

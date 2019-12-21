@@ -41,6 +41,8 @@ export class LoadingScene extends Phaser.Scene {
       SceneHelper.switchToMainScreen(game.scene.manager);
     });
   }
+
+
   renderActionText(text: string) {
     if(this.dbox){
       this.dbox.toggleWindow();
