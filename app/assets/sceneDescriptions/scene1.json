@@ -1,13 +1,13 @@
 {
-  "title": "Meet the Mafioso",
-  "bg_music_name": "mafia.mp3",
-  "bg_image_name": "mafia.jpg",
+  "title": "Meet the Cop",
+  "bg_music_name": "police.mp3",
+  "bg_image_name": "police.jpg",
   "conversationTree": {
     "id": 3,
     "name": "Faith",
-    "actor": "Mafioso",
-    "text": "Hello Signor, you must be the driver from my cousin Don Alberto. It's good that I meet you here, because I need you to make a delivery... What do you think?",
-    "audio_file_name": "mafioso01.wav",
+    "actor": "Cop",
+    "text": "Good evening, sir. Please, turn off your car’s motor and radio. License and registration, please! You know why I stopped you, right?",
+    "audio_file_name": "cop1.wav",
     "transition": null,
     "options": [
       {
@@ -15,10 +15,10 @@
         "nodes": [
           {
             "id": 0,
-            "name": "A Pleasure",
+            "name": "Little accident",
             "actor": "Driver",
-            "text": "It would be my pleasure",
-            "audio_file_name": "driver1.mp3",
+            "text": "Oh, it might be because of the broken headlight. I just had a little accident a minute ago. I will get it fixed as soon as possible, officer",
+            "audio_file_name": "driver9.mp3",
             "transition": null,
             "options": [
               {
@@ -26,23 +26,61 @@
                 "nodes": [
                   {
                     "id": 0,
-                    "name": "Fantastico",
-                    "actor": "Mafioso",
-                    "text": "Fantastico, what would you like to deliver..? A Christmas present for my cousin or this briefcase for his business?",
-                    "audio_file_name": "mafioso02.mp3",
+                    "name": "Uhmm...",
+                    "actor": "Cop",
+                    "text": "That’s correct, sir. You seem quite happy about your `little accident´. Can you open up the trunk for me and show me your first-aid kit, please?",
+                    "audio_file_name": "cop02.mp3",
                     "options": [
                       {
-                        "emotion": null,
+                        "emotion": 0,
                         "nodes": [
                           {
                             "id": 0,
-                            "name": "I'll take it.",
+                            "name": "I’m in a hurry.",
                             "actor": "Driver",
-                            "text": "I take the present",
-                            "audio_file_name": "driver2.mp3",
-                            "transition": "scene1",
-                            "options": null
-                          }
+                            "text": "I’m in a hurry, I don’t know why you stopped me.",
+                            "audio_file_name": "driver10.mp3",
+                            "options": [
+                              {
+                                "emotion": null,
+                                "nodes": [
+                                  {
+                                    "id": 0,
+                                    "name": "Na na na!",
+                                    "actor": "cop",
+                                    "text": "Your headlight is broken. You seem unaware of the condition of your car. Police. Can you open up the trunk for me and show me your first-aid kit, please?",
+                                    "audio_file_name": "cop3.mp3",
+                                    "options": null
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "emotion": 0,
+                            "nodes": [
+                              {
+                                "id": 0,
+                                "name": "I’m sorry",
+                                "actor": "Driver",
+                                "text": "I’m sorry, officer. I have no idea.",
+                                "audio_file_name": "driver10.mp3",
+                                "options": [
+                                  {
+                                    "emotion": null,
+                                    "nodes": [
+                                      {
+                                        "id": 0,
+                                        "name": "Na na na!",
+                                        "actor": "cop",
+                                        "text": "You seem surprised. Didn’t you notice your broken headlight? \nCan you open up the trunk for me and show me your first-aid kit, please?",
+                                        "audio_file_name": "cop4.mp3",
+                                        "options": null
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
                         ]
                       }
                     ]
