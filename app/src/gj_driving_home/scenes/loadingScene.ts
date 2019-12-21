@@ -1,6 +1,6 @@
 import {AssetGlobals} from "../assetsGlobals";
 import {SceneDescription} from "../sceneDescription";
-import {SceenHelper} from "./sceenHelper";
+import {SceneHelper} from "./sceneHelper";
 import {DialogBox} from "../dialogBox";
 import {ConversationNode} from "../conversationNode";
 import LoaderPlugin = Phaser.Loader.LoaderPlugin;
@@ -27,7 +27,7 @@ export class LoadingScene extends Phaser.Scene {
     let game = this;
     this.renderActionText("press x to start!")
     this.input.keyboard.on("keydown_X", function (event) {
-      SceenHelper.switchToMainScreen(game.scene.manager);
+      SceneHelper.switchToMainScreen(game.scene.manager);
     });
   }
   renderActionText(text: string) {

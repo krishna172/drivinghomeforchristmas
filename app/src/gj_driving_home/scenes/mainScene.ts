@@ -1,6 +1,6 @@
 import {AssetGlobals} from "../assetsGlobals";
 import {SceneDescription} from "../sceneDescription";
-import {SceenHelper} from "./sceenHelper";
+import {SceneHelper} from "./sceneHelper";
 import {ConversationNode} from "../conversationNode";
 import LoaderPlugin = Phaser.Loader.LoaderPlugin;
 

@@ -1,4 +1,4 @@
-export class SceenHelper {
+export class SceneHelper {
 
     public static switchToMainScreen(scene: Phaser.Scenes.SceneManager): void {
         console.log("here we go again!");
