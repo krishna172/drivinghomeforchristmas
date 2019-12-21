@@ -131,7 +131,7 @@ export class MainScene extends BaseScene {
         super.onLastDetectPassed();
         const self = this;
         this.webcam.detectFaces(this, function(){
-            Webcam.getInstance().updateCamCanvas(this.textures);
+            Webcam.getInstance().updateCamCanvas(self.textures);
             self.renderWebCamPic();
         });
     }
