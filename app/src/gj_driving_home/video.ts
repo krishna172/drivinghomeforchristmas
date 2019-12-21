@@ -61,6 +61,7 @@ class Webcam {
 
     async detectFaces(mainScene : MainScene) {
         let emotion = null;
+        console.log("Started " + Date.now())
         try {
             const detectionsWithExpressions = await faceapi.detectSingleFace(
                 this.htmlVideoDOM,
@@ -73,6 +74,7 @@ class Webcam {
             console.error(e);
         }
         mainScene.onEmotion(emotion);
+        console.log("Finished " + Date.now() + " " + emotion)
     }
 
     static getInstance() {

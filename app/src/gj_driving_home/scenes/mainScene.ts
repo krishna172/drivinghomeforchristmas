@@ -6,6 +6,7 @@ import Webcam from "../video";
 import {DialogBox} from "../dialogBox";
 import {ConversationNode} from "../conversationNode";
 import {Emotion} from "../emotion";
+import {SoundController} from "../soundController";
 import {AssetGlobals} from "../assetsGlobals";
 import DOMElement = Phaser.GameObjects.DOMElement;
 import BaseScene from "./BaseScene";
@@ -14,6 +15,7 @@ import BaseScene from "./BaseScene";
 export class MainScene extends BaseScene {
     private dbox: DialogBox;
     private _currentEmotion: Emotion;
+    private _soundController: SoundController;
 
     constructor() {
         super({
@@ -26,6 +28,11 @@ export class MainScene extends BaseScene {
     private video: DOMElement;
 
     preload() {
+        this.load.audio("radio_static","./assets/music/radio_static.wav");
+        this.load.audio("radio00","./assets/music/radio00.mp3");
+        this.load.audio("radio01","./assets/music/radio01.mp3");
+        this.load.audio("radio02","./assets/music/radio02.mp3");
+
         this._sceneDescription = new SceneLoader(this, "scene").loadScene();
         this.webcam = Webcam.getInstance();
         this._conversationTree = this._sceneDescription.conversationTree;
@@ -37,8 +44,10 @@ export class MainScene extends BaseScene {
     private _timeSinceLastDetect: number;
 
     create(): void {
+        this._soundController = SoundController.getInstance();
+        this._soundController.sound = this.sound;
         this._timeSinceLastDetect = 0;
-        this.sound.play(this._sceneDescription.bg_music_name, {loop: true});
+        //this.sound.play(this._sceneDescription.bg_music_name, {loop: true});
         console.log("added video");
 
         console.log(this._sceneDescription.bg_image_name);
@@ -100,7 +109,7 @@ export class MainScene extends BaseScene {
     const radioButton = image
         .setInteractive()
         .on('pointerdown', () => {
-          this.sound.play(this._sceneDescription.bg_music_name);
+          SoundController.getInstance().initRadioSong();
           image.angle +=  10;
         });
 
@@ -108,6 +117,7 @@ export class MainScene extends BaseScene {
 
     update(time: number, delta: number): void {
         this._timeSinceLastDetect += delta;
+        this._soundController.update(delta);
         if(this._timeSinceLastDetect>200){
             this._timeSinceLastDetect = 0;
             this.webcam.detectFaces(this);
