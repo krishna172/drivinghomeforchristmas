@@ -43,24 +43,24 @@
         "nodes":[
           {
             "id":0,
-            "name":"Die",
-            "text":"I'd like to die.",
+            "name":"Die slowly",
+            "text":"I'd like to die slowly.",
             "audio_file_name":"sound04.mp3",
             "transition":"GameOver",
             "options":null
           },
           {
             "id":1,
-            "name":"Live",
-            "text":"I'd like to live",
+            "name":"Live fast",
+            "text":"I'd like to live fast",
             "audio_file_name":"sound03.mp3",
             "transition":null,
             "options":null
           },
           {
             "id":2,
-            "name":"Ignore",
-            "text":"Once again, blub!!",
+            "name":"Ignore everything",
+            "text":"i don't care!!",
             "audio_file_name":"sound02.mp3",
             "transition":null,
             "options":null
