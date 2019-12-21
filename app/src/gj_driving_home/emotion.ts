@@ -5,3 +5,6 @@ export enum Emotion {
     Surprised,
 }
 
+export interface EmotionDetector {
+    onEmotion(emotion: Emotion);
+}
