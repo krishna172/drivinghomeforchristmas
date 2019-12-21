@@ -18,13 +18,13 @@ export class MainScene extends Phaser.Scene {
   }
 
   create(): void {
-
     this.sound.play(this._sceneDescription.bg_music_name,{loop:true});
     console.log(this._sceneDescription.bg_image_name);
     this.add.image(this.game.renderer.width/2,this.game.renderer.height/2,this._sceneDescription.bg_image_name);
     let game = this;
     this.input.keyboard.on("keydown_X", function (event) {
-      SceneHelper.transitionScene(game,new SceneLoadingData("scene0"));
+      let key = "scene0"; //todo actual scene key from conversation node transition
+      SceneHelper.transitionScene(game,new SceneLoadingData(key));
     });
   }
 
