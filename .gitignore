@@ -13,3 +13,5 @@ app/node_modules/*
 *.tsx
 npmlogs/*
 phaserenv/*
+nodeenv/*
+venv/*

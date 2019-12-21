@@ -31,7 +31,7 @@ export class DialogBox {
         this.borderColor = 0x263441;
         this.borderAlpha = 1;
         this.windowAlpha = 0.8;
-        this.windowColor = 0x1e62ce;
+        this.windowColor = 0x292929;
         this.windowWidth = 1500;
         this.windowHeight = 250;
         this.padding = 32;
