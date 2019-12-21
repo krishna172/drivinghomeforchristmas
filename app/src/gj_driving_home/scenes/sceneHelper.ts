@@ -18,7 +18,7 @@ export class SceneHelper {
     }
 
     public static transitionScene(game: Phaser.Scene, sceneKey: SceneLoadingData): void {
-        console.log("here we go again for "+ sceneKey.key);
+        console.log("here we go again for "+ sceneKey.getKey());
 
         SoundController.getInstance().sound = game.sound;
         game.scene.manager.stop("MenuScene");
