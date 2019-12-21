@@ -2,6 +2,7 @@ import * as faceapi from 'face-api.js';
 import {MainScene} from "./scenes/mainScene";
 import BaseScene from "./scenes/BaseScene";
 import {EmotionDetector} from "./emotion";
+import TextureManager = Phaser.Textures.TextureManager;
 
 class Webcam {
     public htmlVideo: HTMLVideoElement;
@@ -62,11 +63,25 @@ class Webcam {
             });
     }
 
-    async detectFaces(emotionDetector : EmotionDetector) {
+    updateCamCanvas(textures: TextureManager) {
+        const canvas = <HTMLCanvasElement> document.createElement("canvas");
+        const videoEl = Webcam.getInstance().htmlVideoDOM;
+        canvas.width = videoEl.videoWidth;
+        canvas.height = videoEl.videoHeight;
+        const context2D = canvas.getContext("2d");
+        context2D.drawImage(videoEl, 0, 0, videoEl.videoWidth, videoEl.videoHeight);
+        textures.removeKey("webcam");
+        textures.addCanvas("webcam", canvas);
+    }
+
+    async detectFaces(emotionDetector : EmotionDetector, beforeDetect: Function) {
         let emotion = null;
         if(this.detectionActive) {
             console.log("detectFaces: Skip loading expression already running");
             return;
+        }
+        if(beforeDetect) {
+            beforeDetect();
         }
         this.detectionActive = true;
         let started = Date.now();
