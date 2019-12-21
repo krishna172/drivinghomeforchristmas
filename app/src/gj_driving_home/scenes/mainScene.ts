@@ -47,7 +47,6 @@ export class MainScene extends Phaser.Scene {
         this._soundController.sound = this.sound;
         this._timeSinceLastDetect = 0;
         this.webcam.init();
-        //this.sound.play(this._sceneDescription.bg_music_name, {loop: true});
         console.log("added video");
 
         console.log(this._sceneDescription.bg_image_name);
