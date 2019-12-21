@@ -6,7 +6,7 @@
     "id": 3,
     "name": "Faith",
     "actor": "Cop",
-    "text": "Alright, what do we have here…?",
+    "text": "Alright, what do we have here…? What ist that?",
     "audio_file_name": "cop05.wav",
     "transition": null,
     "options": [
@@ -15,10 +15,10 @@
         "nodes": [
           {
             "id": 0,
-            "name": "Little accident",
+            "name": "Just a plain old carpet",
             "actor": "Driver",
-            "text": "Oh, it might be because of the broken headlight. I just had a little accident a minute ago. I will get it fixed as soon as possible, officer",
-            "audio_file_name": "driver9.mp3",
+            "text": "This is just a carpet, nothing illegal about that, right?",
+            "audio_file_name": "driver17.mp3",
             "transition": null,
             "options": [
               {
@@ -26,32 +26,46 @@
                 "nodes": [
                   {
                     "id": 0,
-                    "name": "Uhmm...",
+                    "name": "Ok.",
                     "actor": "Cop",
-                    "text": "That’s correct, sir. You seem quite happy about your `little accident´. Can you open up the trunk for me and show me your first-aid kit, please?",
-                    "audio_file_name": "cop02.mp3",
+                    "text": "You sound suspicious. Why don’t you unwrap the carpet for me, sir?",
+                    "audio_file_name": "cop12.mp3",
                     "options": [
                       {
-                        "emotion": 0,
+                        "emotion": 1,
                         "nodes": [
                           {
                             "id": 0,
-                            "name": "I’m in a hurry.",
+                            "name": "As you wish",
                             "actor": "Driver",
-                            "text": "I’m in a hurry, I don’t know why you stopped me.",
-                            "audio_file_name": "driver10.mp3",
+                            "text": "As you wish. As you can see there’s nothing suspicious about it.",
+                            "audio_file_name": "driver18.mp3",
                             "options": [
                               {
                                 "emotion": null,
                                 "nodes": [
                                   {
                                     "id": 0,
-                                    "name": "Na na na!",
-                                    "actor": "cop",
-                                    "text": "Your headlight is broken. You seem unaware of the condition of your car. Police. Can you open up the trunk for me and show me your first-aid kit, please?",
-                                    "transition": "scene2",
-                                    "audio_file_name": "cop3.mp3",
-                                    "options": null
+                                    "name": "As you wish",
+                                    "actor": "Cop",
+                                    "text": "”WHAT?! Is that a dead person wrapped in the carpet? On your knees, motherfucker! NOW! You’re under arrest. “\n",
+                                    "audio_file_name": "cop13.mp3",
+                                    "options": [
+                                      {
+                                        "emotion": null,
+                                        "nodes": [
+                                          {
+                                            "id": 0,
+                                            "name": "You Loose!",
+                                            "actor": "Radio Host",
+                                            "text": "Good evening on Radio Game Jam FM and a report of an incident at the Lower Manhattan highway. During a routine inspection police found a dead body in the trunk of the car. The deceased has not been identified yet. A suspect is in custody. Drivers should circumvent the area. Drive safe and Merry Christmas.",
+                                            "audio_file_name": "radio_host02.mp3",
+                                            "options": [
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
                                   }
                                 ]
                               }
@@ -60,26 +74,96 @@
                         ]
                       },
                       {
-                        "emotion": 3,
+                        "emotion": 0,
                         "nodes": [
                           {
                             "id": 0,
-                            "name": "I’m sorry",
+                            "name": "Just an old carpet",
                             "actor": "Driver",
-                            "text": "I’m sorry, officer. I have no idea.",
-                            "audio_file_name": "driver10.mp3",
+                            "text": "This is just my grandma’s old carpet, officer, nothing illegal about that, right?",
+                            "audio_file_name": "driver19.mp3",
                             "options": [
                               {
                                 "emotion": null,
                                 "nodes": [
                                   {
                                     "id": 0,
-                                    "name": "Na na na!",
-                                    "actor": "cop",
-                                    "text": "You seem surprised. Didn’t you notice your broken headlight? \nCan you open up the trunk for me and show me your first-aid kit, please?",
-                                    "audio_file_name": "cop4.mp3",
-                                    "transition": "scene2",
-                                    "options": null
+                                    "name": "Ok!",
+                                    "actor": "Cop",
+                                    "text": "So it seems. Thank you, sir. You may continue on your journey. Merry Christmas",
+                                    "audio_file_name": "cop14.mp3",
+                                    "options": [
+                                      {
+                                        "emotion": null,
+                                        "nodes": [
+                                          {
+                                            "id": 0,
+                                            "name": "You Win!",
+                                            "actor": "Radio Host",
+                                            "text": "You’re listening to Radio Game Jam FM and the roads seem to be quiet. Have a safe trip and Merry Christmas.",
+                                            "audio_file_name": "radio_host01.mp3",
+                                            "options": [
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "emotion": 0,
+                        "nodes": [
+                          {
+                            "id": 3,
+                            "name": "A carpet, what else?",
+                            "actor": "Driver",
+                            "text": "A carpet, what else? Can’t you see that?",
+                            "audio_file_name": "driver20.mp3",
+                            "options": [
+                              {
+                                "emotion": null,
+                                "nodes": [
+                                  {
+                                    "id": 0,
+                                    "name": "As you wish",
+                                    "actor": "Driver",
+                                    "text": "As you wish. As you can see there’s nothing suspicious about it.",
+                                    "audio_file_name": "driver18.mp3",
+                                    "options": [
+                                      {
+                                        "emotion": null,
+                                        "nodes": [
+                                          {
+                                            "id": 0,
+                                            "name": "As you wish",
+                                            "actor": "Cop",
+                                            "text": "”WHAT?! Is that a dead person wrapped in the carpet? On your knees, motherfucker! NOW! You’re under arrest. “\n",
+                                            "audio_file_name": "cop13.mp3",
+                                            "options": [
+                                              {
+                                                "emotion": null,
+                                                "nodes": [
+                                                  {
+                                                    "id": 0,
+                                                    "name": "You Loose!",
+                                                    "actor": "Radio Host",
+                                                    "text": "Good evening on Radio Game Jam FM and a report of an incident at the Lower Manhattan highway. During a routine inspection police found a dead body in the trunk of the car. The deceased has not been identified yet. A suspect is in custody. Drivers should circumvent the area. Drive safe and Merry Christmas.",
+                                                    "audio_file_name": "radio_host02.mp3",
+                                                    "options": [
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
                                   }
                                 ]
                               }
@@ -96,5 +180,5 @@
         ]
       }
     ]
-}
+  }
 }

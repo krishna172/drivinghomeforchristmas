@@ -179,14 +179,20 @@ console.log(this._sceneData.getKey()+"     is the key")
     }
 
       if(conversationTree.transition != null){
-          console.log("###########################"+conversationTree.transition);
           if(conversationTree.item == null){
               conversationTree.item = this._sceneData.item;
               console.log("we bring our item from last scene: "+conversationTree.item);
           }else{
               console.log("we bring our item "+ conversationTree.item);
           }
-          SceneHelper.transitionScene(this,new SceneLoadingData(conversationTree.transition,conversationTree.item));
+          let sceneLoadingData = new SceneLoadingData(conversationTree.transition,conversationTree.item);
+
+          if(this._sceneData.getKey() == "scene0"){
+              SceneHelper.switchToRaccoonScene(this,sceneLoadingData);
+          }else{
+              SceneHelper.transitionScene(this,sceneLoadingData);
+
+          }
       }
 
     if(conversationTree.options != null){
