@@ -26,6 +26,11 @@ export class MainScene extends Phaser.Scene {
     this.input.keyboard.on("keydown_X", function (event) {
       SceneHelper.transitionScene(game,new SceneLoadingData("scene0"));
     });
+    //TODO debug steering
+    this.input.keyboard.on("keydown_D", function (event) {
+      console.log("DE");
+      SceneHelper.steeringScene(game,new SceneLoadingData("sceneSteering"));
+    });
   }
 
 

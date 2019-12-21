@@ -9,6 +9,7 @@
 import "phaser";
 import {MainScene} from "./scenes/mainScene";
 import {LoadingScene} from "./scenes/loadingScene";
+import {SteeringWheelScene} from "./scenes/steeringwheelScene";
 
 // main game configuration
 // main game configuration
@@ -21,7 +22,7 @@ const config: GameConfig = {
   pixelArt: false,
   parent: "game",
 
-  scene: [LoadingScene, MainScene],
+  scene: [LoadingScene, MainScene, SteeringWheelScene],
   physics: {
     default: "arcade",
     arcade: {
