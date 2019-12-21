@@ -8,6 +8,7 @@
 import "phaser";
 import {MainScene} from "./scenes/mainScene";
 import {LoadingScene} from "./scenes/loadingScene";
+import {SteeringWheelScene} from "./scenes/steeringwheelScene";
 import GameConfig = Phaser.Types.Core.GameConfig;
 
 import * as canvas from 'canvas';
@@ -16,7 +17,6 @@ import Webcam from "./video";
 import {IntroScene} from "./scenes/IntroScene";
 
 const {Canvas, Image, ImageData} = canvas;
-
 
 // main game configuration
 // main game configuration
@@ -28,14 +28,13 @@ const config: GameConfig = {
     type: Phaser.AUTO,
     parent: "game",
 
-    scene: [IntroScene, LoadingScene, MainScene],
+    scene: [IntroScene, LoadingScene, MainScene, SteeringWheelScene],
     physics: {
         default: "arcade",
         arcade: {
             gravity: {y: 0,},
         }
-    }
-};
+    }};
 
 // game class
 export class Game extends Phaser.Game {

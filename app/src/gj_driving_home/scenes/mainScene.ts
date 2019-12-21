@@ -36,7 +36,9 @@ export class MainScene extends BaseScene {
         this._sceneDescription = new SceneLoader(this, "scene").loadScene();
         this.webcam = Webcam.getInstance();
         this._conversationTree = this._sceneDescription.conversationTree;
+        console.log(this._conversationTree);
         this.load.image(AssetGlobals.Knob, "./assets/knob/" + AssetGlobals.Knob);
+
 
     }
 
@@ -47,49 +49,49 @@ export class MainScene extends BaseScene {
         this._soundController = SoundController.getInstance();
         this._soundController.sound = this.sound;
         this._timeSinceLastDetect = 0;
-        //this.sound.play(this._sceneDescription.bg_music_name, {loop: true});
+        Webcam.init();
         console.log("added video");
-
-        console.log(this._sceneDescription.bg_image_name);
         this.add.image(this.game.renderer.width / 2, this.game.renderer.height / 2, this._sceneDescription.bg_image_name);
         this.renderConversationNode(this._conversationTree, this._currentEmotion);
         let game = this;
 
-        //TODO actual emotion detection here
-
         this.input.keyboard.on('keydown', function (event) {
             let code = event.code;
-
-            switch (code) {
-                case "KeyA":
-                    game._currentEmotion = Emotion.Angry;
-                    break;
-                case "KeyH":
-                    game._currentEmotion = Emotion.Happy;
-                    break;
-                case "KeyN":
-                    game._currentEmotion = Emotion.NEUTRAL;
-                    break;
-                case "KeyS":
-                    game._currentEmotion = Emotion.Surprised;
-                    break;
-            }
-
-
       if(game._conversationTree != null){
 
             switch (code) {
               case "Digit1":
-                game._conversationTree = game._conversationTree[1];
-                break;
+                  console.log("selected digit 1 *********************");
+                  console.log(game._conversationTree);
+                  for (let option of game._conversationTree.options) {
+                      if(option.emotion == game._currentEmotion){
+                          game._conversationTree = option.nodes[0];
+                      }
+                  }
+                  console.log(game._conversationTree);
+
+                  break;
               case "Digit2":
-                game._conversationTree = game._conversationTree[2];
+                  console.log("selected digit 2 *********************");
+                  for (let option of game._conversationTree.options) {
+                      if(option.emotion == game._currentEmotion){
+                          game._conversationTree = option.nodes[1];
+                      }
+                  }
                 break;
               case "Digit3":
-                game._conversationTree = game._conversationTree[3];
+                  for (let option of game._conversationTree.options) {
+                      if(option.emotion == game._currentEmotion){
+                          game._conversationTree= option.nodes[2];
+                      }
+                  }
                 break;
               case "Digit4":
-                game._conversationTree = game._conversationTree[4];
+                  for (let option of game._conversationTree.options) {
+                      if(option.emotion == game._currentEmotion){
+                          game._conversationTree = option.nodes[3];
+                      }
+                  }
                 break;
             }
             game.renderConversationNode(game._conversationTree, game._currentEmotion);
@@ -103,6 +105,10 @@ export class MainScene extends BaseScene {
         this.input.keyboard.on("keydown_X", function (event) {
             let key = "scene0"; //todo actual scene key from conversation node transition
             SceneHelper.transitionScene(game, new SceneLoadingData(key));
+        });
+
+        this.input.keyboard.on("keydown_D", function (event) {
+            SceneHelper.steeringScene(game,new SceneLoadingData("sceneSteering"));
         });
 
     let image = this.add.image(this.game.renderer.width - 150, this.game.renderer.height - 150, AssetGlobals.Knob );
@@ -152,11 +158,11 @@ export class MainScene extends BaseScene {
       i = 0;
       for (let conversationNode of options) {
         i++;
-        optionsText += "["+i+"]  "+conversationNode.name+"   ";
+        optionsText += "["+i+"]  "+conversationNode.name+"   " ;
       }
     }
 
-        this.renderActionText(conversationTree.text + '\n' + optionsText);
+        this.renderActionText(conversationTree.text + '\n' + optionsText + Emotion[this._currentEmotion]);
 
     }
 

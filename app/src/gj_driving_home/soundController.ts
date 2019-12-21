@@ -9,7 +9,7 @@ export class SoundController {
     private musicArray:Array<BaseSound>;
     private soundArray:Array<BaseSound>;
     static  sc:SoundController;
-    private state:RadioState = RadioState.Playing;
+    private state:RadioState = RadioState.Mute;
     private timePassedInState:integer = 0;
     private radioStateTime: integer = 0;
     private _sound:BaseSoundManager;
@@ -47,7 +47,7 @@ export class SoundController {
 
     public initRadioSong(){
         this.stopAllMusic();
-        this.playRadioStatic(1000+this.getRandomInt(1000));
+        this.playRadioStatic(250+this.getRandomInt(1000));
     }
 
 
@@ -56,27 +56,23 @@ export class SoundController {
         if(this.state == RadioState.Static){
                 if(this.timePassedInState >= this.radioStateTime){
                     console.log("Switch State to Playing");
-                    this.state = RadioState.Playing;
-                    this.timePassedInState = 0;
-                    this.stopAllMusic();
                     this.playNextRadioSong();
                 }
         }
-        if(this.state == RadioState.Playing){
+        else if(this.state == RadioState.Playing){
             if(this.timePassedInState >= this.radioStateTime){
                 console.log("Switch State to Playing");
-                this.state = RadioState.Playing;
-                this.timePassedInState = 0;
-                this.stopAllMusic();
                 this.playNextRadioSong();
             }
         }
     }
 
     private playNextRadioSong() {
-        this.playMusic("radio0"+this.getRandomInt(2),false);
-        this.radioStateTime = 3000; //TODO: Check how to get song length And maybe add random input time
-        this.state = RadioState.Playing;
+        this.stopAllMusic();
+        this.switchState(RadioState.Playing, 120000);
+        let x = "radio0"+this.getRandomInt(3);
+        this.playMusic(x,false);
+        console.log(x);
     }
 
 
@@ -102,11 +98,22 @@ export class SoundController {
 
     private playRadioStatic(randomInt: number) {
         this.playMusic("radio_static",true);
-        this.radioStateTime = randomInt;
-        this.state = RadioState.Static;
+        this.switchState(RadioState.Static, randomInt);
+        console.log("Radio State Time" + this.radioStateTime)
+
+    }
+
+    private switchState(state:RadioState, time:number){
+        this.timePassedInState = 0;
+        this.radioStateTime = time;
+        this.state = state;
 
     }
 }
+
+
+
+
 enum RadioState {
     Playing = 1,
     Static,
