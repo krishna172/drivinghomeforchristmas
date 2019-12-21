@@ -3,6 +3,7 @@ import {SceneDescription} from "../sceneDescription";
 import {SceneHelper} from "./sceneHelper";
 import {SceneLoadingData} from "./sceneLoadingData";
 import {AssetGlobals} from "../assetsGlobals";
+import Webcam from "../video";
 
 export class MenuScene extends Phaser.Scene {
 
@@ -29,11 +30,26 @@ export class MenuScene extends Phaser.Scene {
 
     create(): void {
         console.log("menu scene created")
+        this.cameras.main.setBackgroundColor("#FFFFFF");
+        Webcam.getInstance().updateCamCanvas(this.textures);
+        let image = this.add.image(
+            this.game.renderer.width/2,
+            0.54 * (this.game.renderer.height / 2),
+            "webcam"
+        );
+        image.setOrigin(0.5, 0);
+        image.setScale(0.7);
+        image.flipX = true;
 
-        this.add.image(this.game.renderer.width/2,this.game.renderer.height/2,AssetGlobals.BG_IMAGE_MENU);
 
-        let centerX = this.game.renderer.width / 3;
+        this.add.image(
+            this.game.renderer.width/2,
+            this.game.renderer.height/2,
+            AssetGlobals.BG_IMAGE_MENU);
+
+        let centerX = this.game.renderer.width / 3.2;
         let centerY = 4 * (this.game.renderer.height / 5);
+
 
         let btnGap = (centerX / 3);
         let btnPlay = this.add.image(centerX, centerY, AssetGlobals.BTN_BG).setScale(0.5, 0.5);
@@ -78,6 +94,5 @@ export class MenuScene extends Phaser.Scene {
         });
 
     }
-
 
 }
