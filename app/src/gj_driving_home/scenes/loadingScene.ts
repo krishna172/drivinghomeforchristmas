@@ -4,9 +4,11 @@ import {SceneHelper} from "./sceneHelper";
 import {DialogBox} from "../dialogBox";
 import {ConversationNode} from "../conversationNode";
 import LoaderPlugin = Phaser.Loader.LoaderPlugin;
+import {SceneLoadingData} from "./sceneLoadingData";
 
 export class LoadingScene extends Phaser.Scene {
   private dbox: DialogBox;
+  private _sceneData: SceneLoadingData;
 
   constructor() {
     super({
@@ -14,8 +16,17 @@ export class LoadingScene extends Phaser.Scene {
     });
   }
 
+  init(data): void
+  {
+    console.log('init', data);
+    this._sceneData = data;
+    if(!this._sceneData.key){
+      this._sceneData.key = "scene0"
+    }
+  }
+
   preload(): void {
-    this.load.json('scene0', './assets/sceneDescriptions/scene0.json');
+    this.load.json('scene', './assets/sceneDescriptions/'+this._sceneData.key+'.json');
     this.load.image( AssetGlobals.BG_IMAGE_LOADING, "./assets/backgrounds/"+AssetGlobals.BG_IMAGE_LOADING+".jpg");
   }
 
