@@ -1,69 +1,83 @@
 {
-  "title":"First Scene",
-  "bg_music_name":"music00.mp3",
-  "bg_image_name":"bg_scene_00.jpg",
-  "conversationTree":{
-    "id":3,
-    "name":"Faith",
-    "text":"Hello, decide your faith!.",
-    "audio_file_name":"sound01.mp3",
-    "transition":null,
-    "options":[
+  "title": "Meet the Mafioso",
+  "bg_music_name": "mafia.mp3",
+  "bg_image_name": "mafia.jpg",
+  "conversationTree": {
+    "id": 3,
+    "name": "Faith",
+    "actor": "Mafioso",
+    "text": "Hello Signor, you must be the driver from my cousin Don Alberto. It's good that I meet you here, because I need you to make a delivery... What do you think?",
+    "audio_file_name": "italian1.mp3",
+    "transition": null,
+    "options": [
       {
-        "emotion":2,
-        "nodes":[
+        "emotion": 2,
+        "nodes": [
           {
-            "id":0,
-            "name":"Die",
-            "text":"I'd like to die.",
-            "audio_file_name":"sound04.mp3",
-            "transition":"GameOver",
-            "options":null
-          },
-          {
-            "id":1,
-            "name":"Live",
-            "text":"I'd like to live",
-            "audio_file_name":"sound03.mp3",
-            "transition":null,
-            "options":null
-          },
-          {
-            "id":2,
-            "name":"Ignore",
-            "text":"Once again, blub!!",
-            "audio_file_name":"sound02.mp3",
-            "transition":null,
-            "options":null
-          }
-        ]
-      },
-      {
-        "emotion":1,
-        "nodes":[
-          {
-            "id":0,
-            "name":"Die",
-            "text":"I'd like to die.",
-            "audio_file_name":"sound04.mp3",
-            "transition":"GameOver",
-            "options":null
-          },
-          {
-            "id":1,
-            "name":"Live",
-            "text":"I'd like to live",
-            "audio_file_name":"sound03.mp3",
-            "transition":null,
-            "options":null
-          },
-          {
-            "id":2,
-            "name":"Ignore",
-            "text":"Once again, blub!!",
-            "audio_file_name":"sound02.mp3",
-            "transition":null,
-            "options":null
+            "id": 0,
+            "name": "A Pleasure",
+            "actor": "Driver",
+            "text": "It would be my pleasure",
+            "audio_file_name": "driver1.mp3",
+            "transition": null,
+            "nodes": [
+              {
+                "emotion": 2,
+                "nodes": [
+                  {
+                    "id": 0,
+                    "name": "Fantastico",
+                    "actor": "Mafioso",
+                    "text": "Fantastico, what would you like to deliver..? A Christmas present for my cousin or this briefcase for his business?",
+                    "audio_file_name": "italian2.mp3",
+                    "options": [
+                      {
+                        "emotion": 2,
+                        "nodes": [
+                          {
+                            "id": 0,
+                            "name": "I'll take it.",
+                            "actor": "Driver",
+                            "text": "I take the present",
+                            "audio_file_name": "driver2.mp3",
+                            "options": null
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "emotion": 1,
+                "nodes": [
+                  {
+                    "id": 0,
+                    "name": "Die slowly",
+                    "text": "I'd like to die slowly.",
+                    "audio_file_name": "sound04.mp3",
+                    "transition": "GameOver",
+                    "options": null
+                  },
+                  {
+                    "id": 1,
+                    "name": "Live fast",
+                    "text": "I'd like to live fast",
+                    "audio_file_name": "sound03.mp3",
+                    "transition": null,
+                    "options": null
+                  },
+                  {
+                    "id": 2,
+                    "name": "Ignore everything",
+                    "text": "i don't care!!",
+                    "audio_file_name": "sound02.mp3",
+                    "transition": null,
+                    "options": null
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
