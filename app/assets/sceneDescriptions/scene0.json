@@ -11,7 +11,7 @@
     "transition": null,
     "options": [
       {
-        "emotion": 2,
+        "emotion": 0,
         "nodes": [
           {
             "id": 0,
@@ -47,33 +47,81 @@
                     ]
                   }
                 ]
-              },
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "emotion": 0,
+        "nodes": [
+          {
+            "id": 0,
+            "name": "I can do that",
+            "actor": "Driver",
+            "text": "I can do that",
+            "audio_file_name": "driver4.mp3",
+            "transition": null,
+            "nodes": [
               {
-                "emotion": 1,
+                "emotion": 2,
                 "nodes": [
                   {
                     "id": 0,
-                    "name": "Die slowly",
-                    "text": "I'd like to die slowly.",
-                    "audio_file_name": "sound04.mp3",
-                    "transition": "GameOver",
-                    "options": null
-                  },
+                    "name": "Fantastico",
+                    "actor": "Mafioso",
+                    "text": "TODO ITALIAN3",
+                    "audio_file_name": "italian3.mp3",
+                    "options": [
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "emotion": 3,
+        "nodes": [
+          {
+            "id": 0,
+            "name": "what the hell",
+            "actor": "Driver",
+            "text": "what the hell",
+            "audio_file_name": "driver4.mp3",
+            "transition": null,
+            "nodes": [
+              {
+                "emotion": 2,
+                "nodes": [
                   {
-                    "id": 1,
-                    "name": "Live fast",
-                    "text": "I'd like to live fast",
-                    "audio_file_name": "sound03.mp3",
-                    "transition": null,
-                    "options": null
-                  },
-                  {
-                    "id": 2,
-                    "name": "Ignore everything",
-                    "text": "i don't care!!",
-                    "audio_file_name": "sound02.mp3",
-                    "transition": null,
-                    "options": null
+                    "id": 0,
+                    "name": "u better do or…",
+                    "actor": "Mafioso",
+                    "text": "u better do or…",
+                    "audio_file_name": "italian4.mp3",
+                    "options": [
+                      {
+                        "emotion": null,
+                        "nodes": [
+                          {
+                            "id": 0,
+                            "name": "o1",
+                            "actor": "Driver",
+                            "text": "option 1",
+                            "options": null
+                          },
+                          {
+                            "id": 0,
+                            "name": "o2",
+                            "actor": "Driver",
+                            "text": "option 2",
+                            "options": null
+                          }
+                        ]
+                      }
+                    ]
                   }
                 ]
               }
