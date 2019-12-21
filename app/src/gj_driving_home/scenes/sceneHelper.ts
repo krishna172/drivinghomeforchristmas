@@ -21,6 +21,7 @@ export class SceneHelper {
         console.log("here we go again for "+ sceneKey.getKey());
 
         SoundController.getInstance().sound = game.sound;
+        game.scene.manager.stop("MenuScene");
         game.scene.manager.stop("RacoonScene");
         game.scene.manager.stop('MainScene');
         game.scene.manager.start('LoadingScene', sceneKey);
