@@ -7,7 +7,6 @@ import {DialogBox} from "../dialogBox";
 import {ConversationNode} from "../conversationNode";
 import {Emotion} from "../emotion";
 import {AssetGlobals} from "../assetsGlobals";
-
 import DOMElement = Phaser.GameObjects.DOMElement;
 
 
@@ -36,8 +35,10 @@ export class MainScene extends Phaser.Scene {
     }
 
     private _conversationTree: ConversationNode;
+    private _timeSinceLastDetect: number;
 
     create(): void {
+        this._timeSinceLastDetect = 0;
         this.webcam.init();
         this.sound.play(this._sceneDescription.bg_music_name, {loop: true});
         console.log("added video");
@@ -108,8 +109,13 @@ export class MainScene extends Phaser.Scene {
     }
 
     update(time: number, delta: number): void {
-        this.webcam.detectFaces();
+        this._timeSinceLastDetect += delta;
+        if(this._timeSinceLastDetect>200){
+            this._timeSinceLastDetect = 0;
+            this.webcam.detectFaces(this);
+        }
     }
+
 
     renderActionText(text: string) {
         if (this.dbox) {
@@ -144,6 +150,27 @@ export class MainScene extends Phaser.Scene {
 
         this.renderActionText(conversationTree.text + '\n' + optionsText);
 
+    }
+
+    setExpression(expression: string) {
+        console.log(expression);
+        switch (expression) {
+            case "happy":
+                this._currentEmotion = Emotion.Happy;
+                break;
+            case "angry":
+                this._currentEmotion = Emotion.Angry;
+                break;
+            case "neutral":
+                this._currentEmotion = Emotion.NEUTRAL;
+                break;
+            case "surprised":
+                this._currentEmotion = Emotion.Surprised;
+                break;
+            default:
+                this._currentEmotion = null;
+        }
+        console.log(this._currentEmotion+ "");
     }
 }
 

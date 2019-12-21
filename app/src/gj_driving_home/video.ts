@@ -1,4 +1,5 @@
 import * as faceapi from 'face-api.js';
+import {MainScene} from "./scenes/mainScene";
 
 class Webcam {
     public htmlVideo: HTMLVideoElement;
@@ -46,7 +47,7 @@ class Webcam {
             });
     }
 
-    async detectFaces() {
+    async detectFaces(mainScene : MainScene) {
         try {
             const detectionsWithExpressions = await faceapi.detectSingleFace(
                 this.htmlVideoDOM,
@@ -54,7 +55,11 @@ class Webcam {
             ).withFaceLandmarks().withFaceExpressions();
 
             const expression = detectionsWithExpressions.expressions.asSortedArray()[0];
-            console.log(expression);
+            if(expression!=null){
+                mainScene.setExpression(expression.expression)
+            }else{
+                mainScene.setExpression(null);
+            }
         } catch(e) {
             console.error(e);
         }
