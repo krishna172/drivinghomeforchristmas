@@ -2,11 +2,15 @@ import {SceneDescription} from "../sceneDescription";
 import {SceneHelper} from "./sceneHelper";
 import {SceneLoadingData} from "./sceneLoadingData";
 import {SceneLoader} from "./sceneLoader";
+import Webcam from "../video";
+import Video = Phaser.Device.Video;
+import DOMElement = Phaser.GameObjects.DOMElement;
 import {DialogBox} from "../dialogBox";
 import {ConversationNode} from "../conversationNode";
 import {Emotion} from "../emotion";
 import {EmotionOptions} from "../emotionOptions";
 import {SoundController} from "../soundController";
+import {AssetGlobals} from "../assetsGlobals";
 
 export class MainScene extends Phaser.Scene {
   private dbox: DialogBox;
@@ -20,10 +24,16 @@ export class MainScene extends Phaser.Scene {
   }
 
   private _sceneDescription :SceneDescription;
+  private webcam: Webcam;
+  private video: DOMElement;
 
-  preload(): void {
+  async preload() {
     this._sceneDescription = new SceneLoader(this,"scene").loadScene();
+    this.webcam = new Webcam();
+    this.video = this.add.dom(0, 0, this.webcam.htmlVideoDOM);
     this._conversationTree = this._sceneDescription.conversationTree;
+    this.load.image( AssetGlobals.Knob, "./assets/knob/"+AssetGlobals.Knob);
+
   }
 
   private _conversationTree : ConversationNode;
@@ -32,6 +42,10 @@ export class MainScene extends Phaser.Scene {
     this._soundController = SoundController.getInstance();
     this._soundController.playMusic(this.sound, this._sceneDescription.bg_music_name,true);
     //this.sound.play(this._sceneDescription.bg_music_name,{loop:true});
+    this.webcam.init();
+    console.log("added video");
+
+    console.log(this._sceneDescription.bg_image_name);
     this.add.image(this.game.renderer.width/2,this.game.renderer.height/2,this._sceneDescription.bg_image_name);
     this.renderConversationNode(this._conversationTree, this._currentEmotion);
     let game = this;
@@ -82,6 +96,16 @@ export class MainScene extends Phaser.Scene {
       let key = "scene0"; //todo actual scene key from conversation node transition
       SceneHelper.transitionScene(game,new SceneLoadingData(key));
     });
+
+    let image = this.add.image(100, 100, AssetGlobals.Knob );
+    const radioButton = image
+        .setInteractive()
+        .on('pointerdown', () => {
+          this.sound.play(this._sceneDescription.bg_music_name);
+          image.angle += (image.angle + 10)
+
+        });
+
   }
 
 

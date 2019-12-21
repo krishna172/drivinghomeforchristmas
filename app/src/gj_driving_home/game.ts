@@ -5,39 +5,39 @@
  */
 
 /// <reference path="../phaser.d.ts"/>
-
 import "phaser";
 import {MainScene} from "./scenes/mainScene";
 import {LoadingScene} from "./scenes/loadingScene";
+import GameConfig = Phaser.Types.Core.GameConfig;
 
 // main game configuration
 // main game configuration
 const config: GameConfig = {
 
-  width: 1920,
-  height: 1080,
+    width: 1920,
+    height: 1080,
 
-  type: Phaser.AUTO,
-  pixelArt: false,
-  parent: "game",
+    type: Phaser.AUTO,
+    parent: "game",
 
-  scene: [LoadingScene, MainScene],
-  physics: {
-    default: "arcade",
-    arcade: {
-      gravity: {y: 0,},
+    scene: [LoadingScene, MainScene],
+    physics: {
+        default: "arcade",
+        arcade: {
+            gravity: {y: 0,},
+        }
     }
-  }
 };
 
 // game class
 export class Game extends Phaser.Game {
-  constructor(config: GameConfig) {
-    super(config);
-  }
+    constructor(config: GameConfig) {
+        super(config);
+    }
 }
 
 // when the page is loaded, create our game instance
 window.onload = () => {
-  var game = new Game(config);
+    const game = new Game(config);
 };
+
