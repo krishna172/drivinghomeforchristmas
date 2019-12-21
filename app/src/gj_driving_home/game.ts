@@ -21,7 +21,7 @@ import {RacoonScene} from "./scenes/racoonScene";
 const {Canvas, Image, ImageData} = canvas;
 
 // main game configuration
-// main game configuration
+// main game configurationv
 const config: GameConfig = {
 
     width: 1920,

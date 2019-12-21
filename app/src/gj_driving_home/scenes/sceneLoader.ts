@@ -1,5 +1,6 @@
 import {SceneDescription} from "../sceneDescription";
 import {ConversationNode} from "../conversationNode";
+import {AssetGlobals} from "../assetsGlobals";
 
 export class SceneLoader {
 
@@ -13,7 +14,7 @@ export class SceneLoader {
     }
 
     loadScene(): SceneDescription {
-        this.game.load.image(this.sceneDescription.bg_image_name, "./assets/backgrounds/" + this.sceneDescription.bg_image_name);
+        this.game.load.image(this.sceneDescription.bg_image_name, ["./assets/backgrounds/" + this.sceneDescription.bg_image_name,"./assets/lm.png"]);
         this.game.load.audio(this.sceneDescription.bg_music_name, "./assets/music/" + this.sceneDescription.bg_music_name);
         this.loadConversationNode(this.sceneDescription.conversationTree);
         return this.sceneDescription;

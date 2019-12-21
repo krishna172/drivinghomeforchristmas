@@ -17,6 +17,10 @@ export class MainScene extends BaseScene {
     private _currentEmotion: Emotion;
     private _soundController: SoundController;
     private _sceneData: SceneLoadingData;
+    private redLight: Phaser.GameObjects.Light;
+    private blueLight: Phaser.GameObjects.Light;
+    private redTimer: number = 0;
+    //private blueTimer: number = 100;
 
     constructor() {
         super({
@@ -60,10 +64,16 @@ console.log(this._sceneData.getKey()+"     is the key")
         this._timeSinceLastDetect = 0;
         Webcam.init();
         console.log("added video");
-        this.add.image(this.game.renderer.width / 2, this.game.renderer.height / 2, this._sceneDescription.bg_image_name);
+        let img:Phaser.GameObjects.Image = this.add.image(this.game.renderer.width / 2, this.game.renderer.height / 2, this._sceneDescription.bg_image_name);
         this.renderConversationNode(this._conversationTree, this._currentEmotion);
         let game = this;
-
+        if(this._sceneData.getKey() == "scene1") {
+            console.log("Yay! Scene1 Create")
+            img.setPipeline('Light2D');
+            this.redLight  = this.lights.addLight(920, 320, 1500);
+            this.blueLight  = this.lights.addLight(890, 320, 1500);
+            this.lights.enable().setAmbientColor(0x555555);
+        }
         this.input.keyboard.on('keydown', function (event) {
             let code = event.code;
             console.log(code);
@@ -127,7 +137,31 @@ console.log(this._sceneData.getKey()+"     is the key")
 
     update(time: number, delta: number): void {
         super.update(time, delta);
-        console.log("Hallo Veit, das ist die "+this._sceneData.getKey()+" Szene. Viel spaß.");
+        //console.log("Hallo Veit, das ist die "+this._sceneData.getKey()+" Szene. Viel spaß.");
+        if(this.blueLight != undefined && this._sceneData.getKey() == "scene1"){
+                this.redTimer += delta;
+                //this.blueTimer += delta;
+                this.blueLight.setColor(0x0000ff);
+                //this.blueLight.setIntensity(200);
+                this.redLight.setColor( 0xff0000 );
+                //this.redLight.setIntensity(200);
+                if(this.redTimer >=700 && this.redTimer <= 800){
+                    this.redLight.setIntensity(100);
+                    //console.log("red1");
+                }
+                else if(this.redTimer>=800 && this.redTimer<=900){
+                    //console.log("red2;")
+                    //this.redTimer = 0;
+                    this.redLight.setIntensity(0);
+                }
+                else if(this.redTimer>=900 && this.redTimer<=1000){
+                this.blueLight.setIntensity(100);
+                }
+                else if(this.redTimer>=1000){
+                this.redTimer = 0;
+                this.blueLight.setIntensity(0);
+                }
+        }
         this._soundController.update(delta);
     }
 
