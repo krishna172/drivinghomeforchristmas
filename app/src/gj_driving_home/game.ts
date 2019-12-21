@@ -10,6 +10,12 @@ import {MainScene} from "./scenes/mainScene";
 import {LoadingScene} from "./scenes/loadingScene";
 import GameConfig = Phaser.Types.Core.GameConfig;
 
+import * as canvas from 'canvas';
+import * as faceapi from 'face-api.js';
+
+const {Canvas, Image, ImageData} = canvas;
+
+
 // main game configuration
 // main game configuration
 const config: GameConfig = {

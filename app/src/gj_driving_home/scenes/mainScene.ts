@@ -3,68 +3,69 @@ import {SceneHelper} from "./sceneHelper";
 import {SceneLoadingData} from "./sceneLoadingData";
 import {SceneLoader} from "./sceneLoader";
 import Webcam from "../video";
-import Video = Phaser.Device.Video;
-import DOMElement = Phaser.GameObjects.DOMElement;
 import {DialogBox} from "../dialogBox";
 import {ConversationNode} from "../conversationNode";
 import {Emotion} from "../emotion";
-import {EmotionOptions} from "../emotionOptions";
 import {AssetGlobals} from "../assetsGlobals";
 
+import DOMElement = Phaser.GameObjects.DOMElement;
+
+
 export class MainScene extends Phaser.Scene {
-  private dbox: DialogBox;
-  private _currentEmotion: Emotion;
+    private dbox: DialogBox;
+    private _currentEmotion: Emotion;
 
-  constructor() {
-    super({
-      key: "MainScene"
-    });
-  }
+    constructor() {
+        super({
+            key: "MainScene"
+        });
+    }
 
-  private _sceneDescription :SceneDescription;
-  private webcam: Webcam;
-  private video: DOMElement;
+    private _sceneDescription: SceneDescription;
+    private webcam: Webcam;
+    private video: DOMElement;
 
-  async preload() {
-    this._sceneDescription = new SceneLoader(this,"scene").loadScene();
-    this.webcam = new Webcam();
-    this.video = this.add.dom(0, 0, this.webcam.htmlVideoDOM);
-    this._conversationTree = this._sceneDescription.conversationTree;
-    this.load.image( AssetGlobals.Knob, "./assets/knob/"+AssetGlobals.Knob);
-    await this.webcam.init()
-  }
+    async preload() {
+        this._sceneDescription = new SceneLoader(this, "scene").loadScene();
+        this.webcam = new Webcam();
+        this.video = this.add.dom(0, 0, this.webcam.htmlVideoDOM);
+        this._conversationTree = this._sceneDescription.conversationTree;
+        this.load.image(AssetGlobals.Knob, "./assets/knob/" + AssetGlobals.Knob);
+        await this.webcam.init();
 
-  private _conversationTree : ConversationNode;
+    }
 
-  create(): void {
-    //this.webcam.init();
-    this.sound.play(this._sceneDescription.bg_music_name,{loop:true});
-    console.log("added video");
+    private _conversationTree: ConversationNode;
 
-    console.log(this._sceneDescription.bg_image_name);
-    this.add.image(this.game.renderer.width/2,this.game.renderer.height/2,this._sceneDescription.bg_image_name);
-    this.renderConversationNode(this._conversationTree, this._currentEmotion);
-    let game = this;
+    create(): void {
+        this.webcam.init();
+        this.sound.play(this._sceneDescription.bg_music_name, {loop: true});
+        console.log("added video");
 
-    //TODO actual emotion detection here
+        console.log(this._sceneDescription.bg_image_name);
+        this.add.image(this.game.renderer.width / 2, this.game.renderer.height / 2, this._sceneDescription.bg_image_name);
+        this.renderConversationNode(this._conversationTree, this._currentEmotion);
+        let game = this;
 
-    this.input.keyboard.on('keydown', function (event) {
-      let code = event.code;
+        //TODO actual emotion detection here
 
-      switch (code) {
-        case "KeyA":
-          game._currentEmotion = Emotion.Angry;
-          break;
-        case "KeyH":
-          game._currentEmotion = Emotion.Happy;
-          break;
-        case "KeyN":
-          game._currentEmotion = Emotion.NEUTRAL;
-          break;
-        case "KeyS":
-          game._currentEmotion = Emotion.Surprised;
-          break;
-      }
+        this.input.keyboard.on('keydown', function (event) {
+            let code = event.code;
+
+            switch (code) {
+                case "KeyA":
+                    game._currentEmotion = Emotion.Angry;
+                    break;
+                case "KeyH":
+                    game._currentEmotion = Emotion.Happy;
+                    break;
+                case "KeyN":
+                    game._currentEmotion = Emotion.NEUTRAL;
+                    break;
+                case "KeyS":
+                    game._currentEmotion = Emotion.Surprised;
+                    break;
+            }
 
 
       if(game._conversationTree != null){
@@ -88,13 +89,13 @@ export class MainScene extends Phaser.Scene {
 
 
 
-    });
+        });
 
 
-    this.input.keyboard.on("keydown_X", function (event) {
-      let key = "scene0"; //todo actual scene key from conversation node transition
-      SceneHelper.transitionScene(game,new SceneLoadingData(key));
-    });
+        this.input.keyboard.on("keydown_X", function (event) {
+            let key = "scene0"; //todo actual scene key from conversation node transition
+            SceneHelper.transitionScene(game, new SceneLoadingData(key));
+        });
 
     let image = this.add.image(this.game.renderer.width - 150, this.game.renderer.height - 150, AssetGlobals.Knob );
     const radioButton = image
@@ -104,17 +105,20 @@ export class MainScene extends Phaser.Scene {
           image.angle +=  10;
         });
 
-  }
-
-
-  renderActionText(text: string) {
-    if(this.dbox){
-      this.dbox.toggleWindow();
     }
-    this.dbox = new DialogBox(this);
-    this.dbox._createWindow();
-    this.dbox.setText(text, false);
-  }
+
+    update(time: number, delta: number): void {
+        this.webcam.detectFaces();
+    }
+
+    renderActionText(text: string) {
+        if (this.dbox) {
+            this.dbox.toggleWindow();
+        }
+        this.dbox = new DialogBox(this);
+        this.dbox._createWindow();
+        this.dbox.setText(text, false);
+    }
 
 
   private renderConversationNode(conversationTree: ConversationNode, emotion: Emotion) {
@@ -138,8 +142,8 @@ export class MainScene extends Phaser.Scene {
       }
     }
 
-    this.renderActionText(conversationTree.text+'\n'+ optionsText);
+        this.renderActionText(conversationTree.text + '\n' + optionsText);
 
-  }
+    }
 }
 
