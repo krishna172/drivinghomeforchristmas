@@ -1,6 +1,6 @@
-import {Emotion} from "../emotion";
+import {Emotion, EmotionDetector} from "../emotion";
 
-abstract class BaseScene extends Phaser.Scene {
+abstract class BaseScene extends Phaser.Scene implements EmotionDetector {
 
     abstract onEmotion(emotion: Emotion)
 

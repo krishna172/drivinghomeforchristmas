@@ -1,6 +1,7 @@
 import * as faceapi from 'face-api.js';
 import {MainScene} from "./scenes/mainScene";
 import BaseScene from "./scenes/BaseScene";
+import {EmotionDetector} from "./emotion";
 
 class Webcam {
     public htmlVideo: HTMLVideoElement;
@@ -29,7 +30,7 @@ class Webcam {
         Webcam.instance.modelsLoaded = true;
     }
 
-    public static async init() {
+    public static async init(): Promise<Webcam> {
         if(!this.instance){
             this.instance = new Webcam();
             this.instance.stream = await this.instance.loadVideo();
@@ -61,15 +62,15 @@ class Webcam {
             });
     }
 
-    async detectFaces(mainScene : MainScene) {
+    async detectFaces(emotionDetector : EmotionDetector) {
         let emotion = null;
         if(this.detectionActive) {
-            console.log("Skip loading expression already running");
+            console.log("detectFaces: Skip loading expression already running");
             return;
         }
         this.detectionActive = true;
         let started = Date.now();
-        console.log("Started " + started);
+        console.log("detectFaces: Started " + started);
         try {
             const detectionsWithExpressions = await faceapi.detectSingleFace(
                 this.htmlVideoDOM,
@@ -77,13 +78,14 @@ class Webcam {
             ).withFaceLandmarks().withFaceExpressions();
 
             const expression = detectionsWithExpressions.expressions.asSortedArray()[0];
+            console.log("detectFaces: Detected expression", expression)
             emotion = expression ? BaseScene.calculateExpressionFromString(expression.expression) : null;
         } catch(e) {
             console.error(e);
         }
-        mainScene.onEmotion(emotion);
         this.detectionActive = false;
-        console.log("Finished " + (Date.now() - started) + " " + emotion);
+        emotionDetector.onEmotion(emotion);
+        console.log("detectFaces: Finished " + (Date.now() - started) + " " + emotion);
     }
 
     static getInstance() {

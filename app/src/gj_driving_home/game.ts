@@ -13,6 +13,7 @@ import GameConfig = Phaser.Types.Core.GameConfig;
 import * as canvas from 'canvas';
 import * as faceapi from 'face-api.js';
 import Webcam from "./video";
+import {IntroScene} from "./scenes/IntroScene";
 
 const {Canvas, Image, ImageData} = canvas;
 
@@ -27,7 +28,7 @@ const config: GameConfig = {
     type: Phaser.AUTO,
     parent: "game",
 
-    scene: [LoadingScene, MainScene],
+    scene: [IntroScene, LoadingScene, MainScene],
     physics: {
         default: "arcade",
         arcade: {
