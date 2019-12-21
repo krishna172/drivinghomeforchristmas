@@ -57,41 +57,32 @@ export class MainScene extends BaseScene {
 
         this.input.keyboard.on('keydown', function (event) {
             let code = event.code;
+            console.log(code);
       if(game._conversationTree != null){
 
             switch (code) {
               case "Digit1":
                   console.log("selected digit 1 *********************");
                   console.log(game._conversationTree);
-                  for (let option of game._conversationTree.options) {
-                      if(option.emotion == game._currentEmotion){
-                          game._conversationTree = option.nodes[0];
-                      }
-                  }
+                  game.navigate(game,0);
                   console.log(game._conversationTree);
 
                   break;
               case "Digit2":
                   console.log("selected digit 2 *********************");
-                  for (let option of game._conversationTree.options) {
-                      if(option.emotion == game._currentEmotion){
-                          game._conversationTree = option.nodes[1];
-                      }
-                  }
+                  console.log(game._conversationTree);
+                  game.navigate(game,1);
+                  console.log(game._conversationTree);
                 break;
               case "Digit3":
-                  for (let option of game._conversationTree.options) {
-                      if(option.emotion == game._currentEmotion){
-                          game._conversationTree= option.nodes[2];
-                      }
-                  }
+                  console.log(game._conversationTree);
+                  game.navigate(game,2);
+                  console.log(game._conversationTree);
                 break;
               case "Digit4":
-                  for (let option of game._conversationTree.options) {
-                      if(option.emotion == game._currentEmotion){
-                          game._conversationTree = option.nodes[3];
-                      }
-                  }
+                  console.log(game._conversationTree);
+                  game.navigate(game,3);
+                  console.log(game._conversationTree);
                 break;
             }
             game.renderConversationNode(game._conversationTree, game._currentEmotion);
@@ -121,6 +112,16 @@ export class MainScene extends BaseScene {
 
     }
 
+    private navigate(game: this, nbr: number) {
+        if (game._conversationTree.options) {
+            for (let option of game._conversationTree.options) {
+                if (option.emotion == game._currentEmotion) {
+                    game._conversationTree = option.nodes[nbr];
+                }
+            }
+        }
+    }
+
     update(time: number, delta: number): void {
         this._timeSinceLastDetect += delta;
         this._soundController.update(delta);
@@ -148,10 +149,16 @@ export class MainScene extends BaseScene {
     if(conversationTree == null){
       return;
     }
-    for (let option of conversationTree.options) {
-      if (option.emotion == emotion) {
-        options = option.nodes;
-      }
+    if(!conversationTree.wasPlayed){
+        this._soundController.playSound(conversationTree.audio_file_name);
+        conversationTree.wasPlayed = true;
+    }
+    if(conversationTree.options != null){
+        for (let option of conversationTree.options) {
+          if (option.emotion == emotion) {
+            options = option.nodes;
+          }
+        }
     }
     let i : number;
     if(emotion !=null && options){
@@ -168,6 +175,7 @@ export class MainScene extends BaseScene {
 
     onEmotion(emotion: Emotion) {
         this._currentEmotion = emotion;
+        this.renderConversationNode(this._conversationTree, this._currentEmotion);
     }
 
 
