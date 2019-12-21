@@ -56,30 +56,30 @@
                                 ]
                               }
                             ]
-                          },
+                          }
+                        ]
+                      },
+                      {
+                        "emotion": 3,
+                        "nodes": [
                           {
-                            "emotion": 0,
-                            "nodes": [
+                            "id": 0,
+                            "name": "I’m sorry",
+                            "actor": "Driver",
+                            "text": "I’m sorry, officer. I have no idea.",
+                            "audio_file_name": "driver10.mp3",
+                            "options": [
                               {
-                                "id": 0,
-                                "name": "I’m sorry",
-                                "actor": "Driver",
-                                "text": "I’m sorry, officer. I have no idea.",
-                                "audio_file_name": "driver10.mp3",
-                                "options": [
+                                "emotion": null,
+                                "nodes": [
                                   {
-                                    "emotion": null,
-                                    "nodes": [
-                                      {
-                                        "id": 0,
-                                        "name": "Na na na!",
-                                        "actor": "cop",
-                                        "text": "You seem surprised. Didn’t you notice your broken headlight? \nCan you open up the trunk for me and show me your first-aid kit, please?",
-                                        "audio_file_name": "cop4.mp3",
-                                        "transition": "scene2",
-                                        "options": null
-                                      }
-                                    ]
+                                    "id": 0,
+                                    "name": "Na na na!",
+                                    "actor": "cop",
+                                    "text": "You seem surprised. Didn’t you notice your broken headlight? \nCan you open up the trunk for me and show me your first-aid kit, please?",
+                                    "audio_file_name": "cop4.mp3",
+                                    "transition": "scene2",
+                                    "options": null
                                   }
                                 ]
                               }
@@ -96,5 +96,5 @@
         ]
       }
     ]
-  }
+}
 }

@@ -20,13 +20,11 @@ export class LoadingScene extends Phaser.Scene {
   {
     console.log('init', data);
     this._sceneData = data;
-    if(!this._sceneData.key){
-      this._sceneData.key = "scene0"
-    }
+    console.log(this._sceneData.key);
   }
 
   preload(): void {
-    this.load.json('scene', './assets/sceneDescriptions/'+this._sceneData.key+'.json');
+    this.load.json(this._sceneData.key, './assets/sceneDescriptions/'+this._sceneData.key+'.json');
     this.load.image( AssetGlobals.BG_IMAGE_LOADING, "./assets/backgrounds/"+AssetGlobals.BG_IMAGE_LOADING+".jpg");
   }
 
@@ -35,11 +33,8 @@ export class LoadingScene extends Phaser.Scene {
 
 
 
-    let game = this;
-    this.renderActionText("press x to start!")
-    this.input.keyboard.on("keydown_X", function (event) {
-      SceneHelper.switchToMainScreen(game.scene.manager);
-    });
+    console.log(this._sceneData);
+      SceneHelper.switchToMainScreen(this.scene.manager,this._sceneData);
   }
 
 
