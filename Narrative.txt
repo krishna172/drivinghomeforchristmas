@@ -1,0 +1,68 @@
+[INTRODUCTION SCENE] Intro
+[ACTOR] Narrator
+[TEXT]”  ”
+[BG_MUSIC_NAME]"music00.mp3",
+[BG_IMAGE_NAME]"bg_scene_00.jpg"
+
+
+
+[SCENE 1] Meet the Mafioso
+[BG_MUSIC_MAFIA]
+[BG_IMAGE_MAFIA]
+[ACTOR] Mafioso
+[TEXT] "Hello Signor, you must be the driver from my cousin Don Alberto. It's good that I meet you here, because I need you to make a delivery... What do you think?"
+[VOICE_ITALIAN1]
+[OPTION] 
+	[EMOTION] Happy
+	[ACTOR] Driver
+	[TEXT]”It would be my pleasure”
+	[VOICE_DRIVER1]
+	[ACTOR] Mafioso
+[TEXT] "Fantastico, what would you like to deliver..? A Christmas present for my cousin or this briefcase for his business?”
+	[VOICE_ITALIAN2]
+	[OPTION] 
+			[ACTOR] Driver
+			[TEXT]”I take the present”
+			[VOICE_DRIVER2]
+
+			[TEXT]”I take the briefcase” 
+[VOICE_DRIVER3]
+
+
+	[EMOTION] Neutral
+	[ACTOR] Driver
+	[TEXT]”I can do that”
+	[VOICE_DRIVER4]
+	[ACTOR] Mafioso
+[TEXT] "”
+	[VOICE_ITALIAN3]
+
+
+	[EMOTION] Surprised/Afraid
+	[ACTOR] Driver
+	[TEXT]”what the hell”
+	[VOICE_DRIVER5]
+	[ACTOR] Mafioso
+[TEXT] "u better do or…”
+	[VOICE_ITALIAN4]
+	[OPTION] 
+			[ACTOR] Driver
+			[TEXT]”option1”
+			[VOICE_DRIVER6]
+
+	 		[TEXT]”option2” 
+[VOICE_DRIVER7]
+
+[INTERLUDE SCENE] Raccoon Crash
+[BG_MUSIC_RACOON]
+[BG_IMAGE_RACOON]
+[BG_SOUND_CRASH]
+[BG_IMAGE_CRASH]
+[SCREAM_RACOON]
+[ACTOR] Driver
+[TEXT] “What the hell?”
+[VOICE_DRIVER8]
+[BG_SOUND_WIPERBLADES]
+[BG_IMAGE_WIPERBLADES]
+
+[SCENE 2] Raccoon Crash
