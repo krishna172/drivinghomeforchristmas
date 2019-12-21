@@ -4,3 +4,4 @@ export enum Emotion {
     Angry,
     Surprised,
 }
+
