@@ -44,7 +44,11 @@ export class RacoonScene extends Phaser.Scene {
         });
     }
 
-
+    init(data): void
+    {
+        console.log('init', data);
+        this._sceneData = data;
+    }
     preload(): void {
 
         this.load.image(AssetGlobals.BG_ROAD, ["./assets/backgrounds/" + AssetGlobals.BG_ROAD + ".jpg","./assets/lm.png"]);
@@ -142,7 +146,7 @@ export class RacoonScene extends Phaser.Scene {
     update(time: number, delta: number): void {
         this.racoonTimer -= delta;
         if(this.racoonTimer <= -7000){
-            SceneHelper.transitionScene(this,new SceneLoadingData("scene0",null));
+            SceneHelper.transitionScene(this,this._sceneData);
         }
         if(this.racoonTimer <= -5000){
             this.renderActionText("Maybe a TRASHPANDA .... Damn");

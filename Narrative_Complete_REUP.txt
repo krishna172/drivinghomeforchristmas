@@ -97,18 +97,18 @@
 	[EMOTION] Happy
 	[ACTOR] Driver
 [TEXT] ”Oh, it might be because of the broken headlight. I just had a little accident a minute ago. I will get it fixed as soon as possible, officer”
-	[VOICE_DRIVER9]
-	[ACTOR] Cop
-[TEXT] “That’s correct, sir. You seem quite happy about your `little accident´. Can you open up the trunk for me and show me your first-aid kit, please?”
-[VOICE_COP2]
+            [VOICE_DRIVER9]
+            [ACTOR] Cop
+        [TEXT] “That’s correct, sir. You seem quite happy about your `little accident´. Can you open up the trunk for me and show me your first-aid kit, please?”
+        [VOICE_COP2]
 	
-	[EMOTION] Neutral
-	[ACTOR] Driver
-	[TEXT] ”I’m in a hurry, I don’t know why you stopped me.”
-	[VOICE_DRIVER10]
-	[ACTOR] Cop
-[TEXT] “Your headlight is broken. You seem unaware of the condition of your car. Police. Can you open up the trunk for me and show me your first-aid kit, please? “
-[VOICE_COP3]
+                [EMOTION] Neutral
+                [ACTOR] Driver
+                [TEXT] ”I’m in a hurry, I don’t know why you stopped me.”
+                [VOICE_DRIVER10]
+                [ACTOR] Cop
+            [TEXT] “Your headlight is broken. You seem unaware of the condition of your car. Police. Can you open up the trunk for me and show me your first-aid kit, please? “
+            [VOICE_COP3]
 
 	[EMOTION] Surprised/Afraid
 	[ACTOR] Driver
@@ -131,17 +131,23 @@ Can you open up the trunk for me and show me your first-aid kit, please?”
 [ACTOR] Cop
 [TEXT] "Alright, what do we have here…? “
 [VOICE_COP5]
-[OPTION] 
+[OPTION]
+
+
+
+
 	[ITEM] Present
 [IMAGE_PRESENT]
 	[ACTOR]Cop
 	[TEXT] ”What is that? “
 [VOICE_COP6]
 	[OPTION] 
+
 		[EMOTION] Happy
 		[ACTOR] Driver
 		[TEXT] ”This is just a Christmas present for my wife, officer.”
 		[VOICE_DRIVER12]
+
 		[ACTOR]Cop
 [TEXT] ”Ok, sir. I believe you. You may continue your journey. Merry Christmas. “
 [VOICE_COP7]
@@ -246,7 +252,8 @@ Can you open up the trunk for me and show me your first-aid kit, please?”
 	[OPTION] 
 		[EMOTION] Happy
 		[ACTOR] Driver
-		[TEXT]” This is just a carpet, nothing illegal about that, right?”				[VOICE_DRIVER17]
+		[TEXT]” This is just a carpet, nothing illegal about that, right?”
+					[VOICE_DRIVER17]
 		[ACTOR] Cop
 [TEXT] ”You sound suspicious. Why don’t you unwrap the carpet for me, sir? “
 [VOICE_COP12]
@@ -276,6 +283,8 @@ Can you open up the trunk for me and show me your first-aid kit, please?”
 [TEXT] “You’re listening to Radio Game Jam FM and the roads seem to be quiet. Have a safe trip and Merry Christmas.” 
 [VOICE_RADIO]
 [WINCONDITION1] Game Over
+
+
 
 		[EMOTION] Surprised/Angry
 		[ACTOR] Driver

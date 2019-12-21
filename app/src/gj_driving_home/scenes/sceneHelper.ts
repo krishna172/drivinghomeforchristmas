@@ -22,6 +22,7 @@ export class SceneHelper {
 
         SoundController.getInstance().sound = game.sound;
         game.scene.manager.stop("MenuScene");
+        game.scene.manager.stop("RacoonScene");
         game.scene.manager.stop('MainScene');
         game.scene.manager.start('LoadingScene', sceneKey);
         game.scene.manager.dump();
@@ -32,6 +33,11 @@ export class SceneHelper {
         game.scene.manager.stop('MainScene');
         game.scene.manager.start('SteeringWheelScene', sceneKey);
         game.scene.manager.dump();
+    }
+
+    static switchToRaccoonScene(game: Phaser.Scene, sceneLoadingData: SceneLoadingData) {
+        game.scene.manager.stop('MainScene');
+        game.scene.manager.start('RacoonScene', sceneLoadingData);
     }
 }
 

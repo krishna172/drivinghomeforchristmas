@@ -11,7 +11,7 @@
     "transition": null,
     "options": [
       {
-        "emotion": 1,
+        "emotion": null,
         "nodes": [
           {
             "id": 0,
@@ -32,7 +32,7 @@
                     "audio_file_name": "cop02.mp3",
                     "options": [
                       {
-                        "emotion": 0,
+                        "emotion": null,
                         "nodes": [
                           {
                             "id": 0,
