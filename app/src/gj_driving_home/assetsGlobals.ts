@@ -7,6 +7,7 @@ export class AssetGlobals {
     public static readonly BG_ROAD= 'bg_road';
     public static readonly BG_IMAGE_MENU = 'bg_backmirror';
     public static readonly BTN_BG = 'btn_bg';
+    public static readonly BG_IMAGE_MAIN_CAM = 'bg_backmirror_small';
 
 
     public static readonly SPRITE_STEERING = 'sprite_steering';
