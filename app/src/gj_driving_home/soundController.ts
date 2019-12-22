@@ -62,13 +62,11 @@ export class SoundController {
         this.timePassedInState+=delta;
         if(this.state == RadioState.Static){
                 if(this.timePassedInState >= this.radioStateTime){
-                    console.log("Switch State to Playing");
                     this.playNextRadioSong(true);
                 }
         }
         else if(this.state == RadioState.Playing){
             if(this.timePassedInState >= this.radioStateTime){
-                console.log("Switch State to Playing");
                 this.playNextRadioSong(false);
             }
         }
@@ -80,7 +78,6 @@ export class SoundController {
         let x = "radio"+this.getRandomInt(11);
         let y = this.playMusic(x,false, intermediate);
         this.switchState(RadioState.Playing, y*1000);
-        console.log(x);
     }
 
 
@@ -123,8 +120,6 @@ export class SoundController {
     private playRadioStatic(randomInt: number) {
         this.playMusic("radio_static",true,true);
         this.switchState(RadioState.Static, randomInt);
-        console.log("Radio State Time" + this.radioStateTime)
-
     }
 
     private switchState(state:RadioState, time:number){
@@ -137,7 +132,6 @@ export class SoundController {
 
     public setVolume(){
         for  (let musicArrayElement of this.musicArray) {
-            console.log("MARREVENT set vol " + (this._volumeLevel*0.25));
             // @ts-ignore
             musicArrayElement.setVolume(this._volumeLevel*0.25);
         }

@@ -61,7 +61,10 @@ export class MainScene extends BaseScene {
         this.load.audio("radio9","./assets/music/radio09.mp3");
         this.load.audio("radio10","./assets/music/radio10.mp3");
         this.load.audio("radio11","./assets/music/radio11.mp3");
-        console.log(this._sceneData.getKey()+" is the key")
+        console.log(this._sceneData.getKey()+" is the key");
+        if(this._sceneData.getKey() == "scene_end"){
+            SceneHelper.steeringScene(this,null);
+        }
         this._sceneDescription = new SceneLoader(this, this._sceneData.getKey()).loadScene();
         this.webcam = Webcam.getInstance();
         this._conversationTree = this._sceneDescription.conversationTree;
@@ -203,7 +206,12 @@ export class MainScene extends BaseScene {
         if(this.switchScene && this._actionDelay<=0){
             if(this._sceneData.getKey() == "scene0"){
                 SceneHelper.switchToRaccoonScene(this,this.sceneLoadingData);
-            }else{
+            }
+            else if (this._sceneData.getKey() == "scene_end"){
+                console.log("Switsch Scene " + this._sceneData.getKey())
+                SceneHelper.steeringScene(this,this.sceneLoadingData);
+            }
+            else{
                 SceneHelper.transitionScene(this,this.sceneLoadingData);
             }
             this.switchScene = false;

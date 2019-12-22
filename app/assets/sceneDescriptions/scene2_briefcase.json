@@ -170,6 +170,7 @@
                                 "name": "You Win!",
                                 "actor": "Radio Host",
                                 "text": "You’re listening to Radio Game Jam FM and the roads seem to be quiet. Have a safe trip and Merry Christmas.",
+                                "transition": "scene_end",
                                 "audio_file_name": "radio_host02.mp3",
                                 "options": [
                                 ]
