@@ -14,6 +14,7 @@ export class SoundController {
     private radioStateTime: integer = 0;
     private _sound:BaseSoundManager;
     private _volumeLevel:number = 1;
+    private _currentlyPlaying:BaseSound;
 
 
     private constructor() {
@@ -57,6 +58,7 @@ export class SoundController {
 
 
     update(delta:integer){
+        this.setVolume();
         this.timePassedInState+=delta;
         if(this.state == RadioState.Static){
                 if(this.timePassedInState >= this.radioStateTime){
@@ -75,7 +77,7 @@ export class SoundController {
     private playNextRadioSong(intermediate:boolean) {
         this.stopAllMusic();
 
-        let x = "radio0"+this.getRandomInt(3);
+        let x = "radio"+this.getRandomInt(11);
         let y = this.playMusic(x,false, intermediate);
         this.switchState(RadioState.Playing, y*1000);
         console.log(x);
@@ -100,6 +102,7 @@ export class SoundController {
             loop: false,
             delay: 0
         });
+        this._currentlyPlaying = bs;
         return bs.duration-x;
     }
 
@@ -133,20 +136,12 @@ export class SoundController {
 
 
     public setVolume(){
-            for (let musicArrayElement of this.musicArray) {
-                if(musicArrayElement.isPlaying){
-                    console.log("Volume:: " + this._volumeLevel)
-                    musicArrayElement.pause();
-                    musicArrayElement.play({
-                        mute: false,
-                        volume: 0.25*this._volumeLevel,
-                        rate: 1,
-                        detune: 0,
-                        loop: false,
-                        delay: 0
-                    })
-                }
-            }
+        for  (let musicArrayElement of this.musicArray) {
+            console.log("MARREVENT set vol " + (this._volumeLevel*0.25));
+            // @ts-ignore
+            musicArrayElement.setVolume(this._volumeLevel*0.25);
+        }
+
     }
 
     public adjustVolume(){
@@ -154,9 +149,11 @@ export class SoundController {
             case 0: this._volumeLevel++; break;
             case 1: this._volumeLevel++;break;
             case 2: this._volumeLevel++;break;
-            case 3: this._volumeLevel=0;  break;
+            case 3: this._volumeLevel++;break;
+            case 4: this._volumeLevel=0;  break;
             default: console.log("Fuck, this should not be reachable"); break;
         }
+        this.setVolume();
     }
 }
 

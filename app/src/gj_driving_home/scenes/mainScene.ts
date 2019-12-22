@@ -44,10 +44,19 @@ export class MainScene extends BaseScene {
 
     preload() {
         this.load.audio("radio_static","./assets/music/radio_static.wav");
-        this.load.audio("radio00","./assets/music/radio00.mp3");
-        this.load.audio("radio01","./assets/music/radio01.mp3");
+        this.load.audio("radio0","./assets/music/radio00.mp3");
+        this.load.audio("radio1","./assets/music/radio01.mp3");
         this.load.image("copFem", ["./assets/sprites/cop_fem.png","./assets/b.png"]);
-        this.load.audio("radio02","./assets/music/radio02.mp3");
+        this.load.audio("radio2","./assets/music/radio02.mp3");
+        this.load.audio("radio3","./assets/music/radio03.mp3");
+        this.load.audio("radio4","./assets/music/radio04.mp3");
+        this.load.audio("radio5","./assets/music/radio05.mp3");
+        this.load.audio("radio6","./assets/music/radio06.mp3");
+        this.load.audio("radio7","./assets/music/radio07.mp3");
+        this.load.audio("radio8","./assets/music/radio08.mp3");
+        this.load.audio("radio9","./assets/music/radio09.mp3");
+        this.load.audio("radio10","./assets/music/radio10.mp3");
+        this.load.audio("radio11","./assets/music/radio11.mp3");
         console.log(this._sceneData.getKey()+" is the key")
         this._sceneDescription = new SceneLoader(this, this._sceneData.getKey()).loadScene();
         this.webcam = Webcam.getInstance();
