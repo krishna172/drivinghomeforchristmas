@@ -20,6 +20,7 @@ export class MainScene extends BaseScene {
     private redLight: Phaser.GameObjects.Light;
     private blueLight: Phaser.GameObjects.Light;
     private redTimer: number = 0;
+    private copFem: Phaser.GameObjects.Sprite;
     //private blueTimer: number = 100;
 
     constructor() {
@@ -45,6 +46,7 @@ export class MainScene extends BaseScene {
         this.load.audio("radio_static","./assets/music/radio_static.wav");
         this.load.audio("radio00","./assets/music/radio00.mp3");
         this.load.audio("radio01","./assets/music/radio01.mp3");
+        this.load.image("copFem", ["./assets/sprites/cop_fem.png","./assets/b.png"]);
         this.load.audio("radio02","./assets/music/radio02.mp3");
 console.log(this._sceneData.getKey()+"     is the key")
         this._sceneDescription = new SceneLoader(this, this._sceneData.getKey()).loadScene();
@@ -70,6 +72,9 @@ console.log(this._sceneData.getKey()+"     is the key")
         if(this._sceneData.getKey() == "scene1") {
             console.log("Yay! Scene1 Create")
             img.setPipeline('Light2D');
+            this.copFem = this.add.sprite(this.game.renderer.width * 0.5, this.game.renderer.height * 0.75, "copFem");
+            this.copFem.setPipeline('Light2D');
+
             this.redLight  = this.lights.addLight(920, 320, 1500);
             this.blueLight  = this.lights.addLight(890, 320, 1500);
             this.lights.enable().setAmbientColor(0x555555);
