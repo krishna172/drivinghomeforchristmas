@@ -154,7 +154,7 @@
                                                     "name": "You Loose!",
                                                     "actor": "Radio Host",
                                                     "text": "Good evening on Radio Game Jam FM and a report of an incident at the Lower Manhattan highway. During a routine inspection police found a dead body in the trunk of the car. The deceased has not been identified yet. A suspect is in custody. Drivers should circumvent the area. Drive safe and Merry Christmas.",
-                                                    "audio_file_name": "radio_host02.mp3",
+                                                    "audio_file_name": "incident.wav",
                                                     "options": [
                                                     ]
                                                   }

@@ -59,7 +59,7 @@
                                             "name": "You Loose!",
                                             "actor": "Radio Host",
                                             "text": "Good evening on Radio Game Jam FM and a report of an explosion at the Lower Manhattan highway. Emergency responders are on their way. Drivers should circumvent the area. Drive safe and Merry Christmas.",
-                                            "audio_file_name": "radio_host02.mp3",
+                                            "audio_file_name": "explosion.wav",
                                             "options": [
                                             ]
                                           }
@@ -123,7 +123,7 @@
                                         "name": "You Loose!",
                                         "actor": "Radio Host",
                                         "text": "Good evening on Radio Game Jam FM and a report of an explosion at the Lower Manhattan highway. Emergency responders are on their way. Drivers should circumvent the area. Drive safe and Merry Christmas.",
-                                        "audio_file_name": "radio_host02.mp3",
+                                        "audio_file_name": "radio_win.wav",
                                         "options": [
                                         ]
                                       }
@@ -171,7 +171,7 @@
                                 "actor": "Radio Host",
                                 "text": "You’re listening to Radio Game Jam FM and the roads seem to be quiet. Have a safe trip and Merry Christmas.",
                                 "transition": "scene_end",
-                                "audio_file_name": "radio_host02.mp3",
+                                "audio_file_name": "radio_win.wav",
                                 "options": [
                                 ]
                               }
