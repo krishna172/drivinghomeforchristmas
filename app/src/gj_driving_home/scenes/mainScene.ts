@@ -48,7 +48,7 @@ export class MainScene extends BaseScene {
         this.load.audio("radio01","./assets/music/radio01.mp3");
         this.load.image("copFem", ["./assets/sprites/cop_fem.png","./assets/b.png"]);
         this.load.audio("radio02","./assets/music/radio02.mp3");
-console.log(this._sceneData.getKey()+"     is the key")
+        console.log(this._sceneData.getKey()+" is the key")
         this._sceneDescription = new SceneLoader(this, this._sceneData.getKey()).loadScene();
         this.webcam = Webcam.getInstance();
         this._conversationTree = this._sceneDescription.conversationTree;

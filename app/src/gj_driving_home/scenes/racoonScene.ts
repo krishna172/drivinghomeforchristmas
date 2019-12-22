@@ -92,6 +92,7 @@ export class RacoonScene extends Phaser.Scene {
         //var light  = this.lights.addLight(500, 250, 200);
         this.lights.enable().setAmbientColor(0x555555);
         this.cactuses[0].alpha=100;
+        SoundController.getInstance().initRadioSong();
     }
 
     initCactusPosition() {
@@ -100,7 +101,7 @@ export class RacoonScene extends Phaser.Scene {
         this.cactuses[2].setOrigin(0, 1);
 
 
-        // compute interpolation table
+        // compute interpolation soun
         var startX = 800;
         var startY = 600;
         var startZ = 0.01;
