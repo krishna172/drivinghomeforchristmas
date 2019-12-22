@@ -46,25 +46,11 @@
                                 "nodes": [
                                   {
                                     "id": 0,
-                                    "name": "As you wish",
-                                    "actor": "Cop",
-                                    "text": "”As you wish. As you can see there’s nothi…",
-                                    "audio_file_name": "cop13.mp3",
+                                    "name": "You Loose!",
+                                    "actor": "Radio Host",
+                                    "text": "Good evening on Radio Game Jam FM and a report of an explosion at the Lower Manhattan highway. Emergency responders are on their way. Drivers should circumvent the area. Drive safe and Merry Christmas.",
+                                    "audio_file_name": "explosion.wav",
                                     "options": [
-                                      {
-                                        "emotion": null,
-                                        "nodes": [
-                                          {
-                                            "id": 0,
-                                            "name": "You Loose!",
-                                            "actor": "Radio Host",
-                                            "text": "Good evening on Radio Game Jam FM and a report of an explosion at the Lower Manhattan highway. Emergency responders are on their way. Drivers should circumvent the area. Drive safe and Merry Christmas.",
-                                            "audio_file_name": "explosion.wav",
-                                            "options": [
-                                            ]
-                                          }
-                                        ]
-                                      }
                                     ]
                                   }
                                 ]
