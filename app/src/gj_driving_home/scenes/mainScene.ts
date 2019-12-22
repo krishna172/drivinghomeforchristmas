@@ -90,7 +90,7 @@ export class MainScene extends BaseScene {
         if(this._sceneData.getKey() == "scene1") {
             console.log("Yay! Scene1 Create")
             img.setPipeline('Light2D');
-            this.copFem = this.add.sprite(this.game.renderer.width * 0.5, this.game.renderer.height * 0.75, "copFem");
+            this.copFem = this.add.sprite(this.game.renderer.width * 0.4, this.game.renderer.height * 0.75, "copFem");
             this.copFem.setPipeline('Light2D');
 
             this.redLight  = this.lights.addLight(920, 320, 1500);

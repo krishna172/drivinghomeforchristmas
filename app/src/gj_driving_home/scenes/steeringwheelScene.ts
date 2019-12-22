@@ -7,8 +7,9 @@ import LoaderPlugin = Phaser.Loader.LoaderPlugin;
 import {SceneLoadingData} from "./sceneLoadingData";
 import CursorKeys = Phaser.Types.Input.Keyboard.CursorKeys;
 import Light = Phaser.GameObjects.Light;
+import {SoundController} from "../soundController";
 
-export class SteeringWheelScene extends Phaser.Scene {
+export class SteeringwheelScene extends Phaser.Scene {
     private dbox: DialogBox;
     private _sceneData: SceneLoadingData;
     private cursor: CursorKeys;
@@ -35,24 +36,33 @@ export class SteeringWheelScene extends Phaser.Scene {
     initFps2 = 0;
     currentFps = 0;
 
+
     constructor() {
         super({
             key: "SteeringWheelScene"
         });
     }
 
-
+    init(data): void
+    {
+        console.log('init', data);
+        this._sceneData = data;
+    }
     preload(): void {
+
         this.load.image(AssetGlobals.BG_ROAD, ["./assets/backgrounds/" + AssetGlobals.BG_ROAD + ".jpg","./assets/lm.png"]);
         this.load.image(AssetGlobals.SPRITE_STEERING, ["./assets/sprites/" + AssetGlobals.SPRITE_STEERING + ".png","./assets/lm.png"]);
         this.load.image(AssetGlobals.SPRITE_CACTUS, ["./assets/sprites/" + AssetGlobals.STREET_LAMP + ".png","./assets/lm.png"]);
+        this.load.audio("hitRacoon","./assets/sounds/racoonHit.wav");
+        this.load.image(AssetGlobals.Knob, "./assets/knob/" + AssetGlobals.Knob);
 
 
 
     }
 
     create(): void {
-        this.background  =this.add.image(this.game.renderer.width / 2, this.game.renderer.height / 2, AssetGlobals.BG_ROAD);
+        SoundController.getInstance().sound = this.sound;
+        this.background  = this.add.image(this.game.renderer.width / 2, this.game.renderer.height / 2, AssetGlobals.BG_ROAD);
         this.background.setScale(1.2,1.2);
         this.background.setPipeline('Light2D');
 
@@ -77,13 +87,28 @@ export class SteeringWheelScene extends Phaser.Scene {
 
         this.initCactusPosition();
         let game = this;
-        this.renderActionText("Debug for steering! Press left and right to steer")
         for (var cactus of this.cactuses) {
             cactus.setPipeline('Light2D');
         }
         //var light  = this.lights.addLight(500, 250, 200);
         this.lights.enable().setAmbientColor(0x555555);
         this.cactuses[0].alpha=100;
+        SoundController.getInstance().initRadioSong();
+        let image = this.add.image(this.game.renderer.width - 150, this.game.renderer.height - 150, AssetGlobals.Knob );
+        const radioButton = image
+            .setInteractive()
+            .on('pointerdown', () => {
+                SoundController.getInstance().initRadioSong();
+                image.angle +=  10;
+            });
+
+        let imageVolume = this.add.image(this.game.renderer.width - 375, this.game.renderer.height - 150, AssetGlobals.Knob );
+        const radioKnobVolume = imageVolume
+            .setInteractive()
+            .on('pointerdown', () => {
+                SoundController.getInstance().adjustVolume();
+                imageVolume.angle +=  20;
+            });
     }
 
     initCactusPosition() {
@@ -92,7 +117,7 @@ export class SteeringWheelScene extends Phaser.Scene {
         this.cactuses[2].setOrigin(0, 1);
 
 
-        // compute interpolation table
+        // compute interpolation soun
         var startX = 800;
         var startY = 600;
         var startZ = 0.01;
@@ -136,12 +161,11 @@ export class SteeringWheelScene extends Phaser.Scene {
     }
 
     update(time: number, delta: number): void {
-        this.updateSteeringWheelAndCamera();
-        this.currentFps++;
-        if(this.currentFps % this.fpsSkip == 0)
-            this.linearInterpolation();
-        this.updateLights();
-
+        SoundController.getInstance().update(delta);
+            this.updateSteeringWheelAndCamera();
+            this.currentFps++;
+            if(this.currentFps % this.fpsSkip == 0) this.linearInterpolation();
+            this.updateLights();
     }
 
     private updateLights() {
@@ -154,10 +178,6 @@ export class SteeringWheelScene extends Phaser.Scene {
     }
 
     linearInterpolation() {
-        //this.initFps0 = (this.initFps0+1) % this.fpsInterpolation;
-        //this.cactuses[0].x = this.interpolationX[this.initFps0];
-        //this.cactuses[0].y = this.interpolationY[this.initFps0];
-        //this.cactuses[0].setScale(this.interpolationZ[this.initFps0], this.interpolationZ[this.initFps0]);
 
         this.initFps1 = (this.initFps1+1) % this.fpsInterpolation;
         // other side of the street
