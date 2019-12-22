@@ -38,7 +38,7 @@ export class MainScene extends BaseScene {
         console.log('init', data);
         this._sceneData = data;
         //item scene hack
-
+        this.dbox = null;
         console.log(this._sceneData.getKey());
     }
 
