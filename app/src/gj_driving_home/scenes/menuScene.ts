@@ -63,6 +63,7 @@ export class MenuScene extends Phaser.Scene {
 
         btnCredits.on("pointerup", () => {
             console.log("creditsbutton pressed");
+            SceneHelper.switchToCreditScene(this);
 
         });
 
@@ -73,8 +74,7 @@ export class MenuScene extends Phaser.Scene {
 
         let game = this;
         this.input.keyboard.on("keydown_X", function (event) {
-            game.sound.stopAll();
-            SceneHelper.transitionScene(game,new SceneLoadingData("scene0",null));
+            SceneHelper.switchToMenuScene(this);
         });
 
     }

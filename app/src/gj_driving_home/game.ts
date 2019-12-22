@@ -17,6 +17,7 @@ import * as faceapi from 'face-api.js';
 import Webcam from "./video";
 import {IntroScene} from "./scenes/IntroScene";
 import {RacoonScene} from "./scenes/racoonScene";
+import {CreditScene} from "./scenes/creditScene";
 
 const {Canvas, Image, ImageData} = canvas;
 
@@ -30,7 +31,7 @@ const config: GameConfig = {
     type: Phaser.AUTO,
     parent: "game",
 
-    scene: [MenuScene, IntroScene, LoadingScene, MainScene,RacoonScene,SteeringWheelScene],
+    scene: [MenuScene, IntroScene, LoadingScene, MainScene,RacoonScene,SteeringWheelScene, CreditScene],
     physics: {
         default: "arcade",
         arcade: {
