@@ -39,14 +39,14 @@ export class MenuScene extends Phaser.Scene {
         let btnPlay = this.add.image(centerX, centerY, AssetGlobals.BTN_BG).setScale(0.5, 0.5);
         btnPlay.setVisible(true);
         btnPlay.setInteractive({useHandCursor: true});
-        let btnPlayTxt = this.add.text(centerX, centerY, "Play", {font: '30px monospace'});
+        let btnPlayTxt = this.add.text(centerX, centerY, "Skip Intro", {font: '30px monospace'});
         btnPlayTxt.setOrigin(0.5,0.5);
 
         let btnPosSecond = centerX + (btnPlay.width / 2) + btnGap;
         let btnTutorial = this.add.image(btnPosSecond, centerY, AssetGlobals.BTN_BG).setScale(0.5, 0.5);
         btnTutorial.setVisible(true);
         btnTutorial.setInteractive({useHandCursor: true});
-        let btnTutorialTxt = this.add.text(btnPosSecond, centerY, "Tutorial", {font: '30px monospace'});
+        let btnTutorialTxt = this.add.text(btnPosSecond, centerY, "Play", {font: '30px monospace'});
         btnTutorialTxt.setOrigin(0.5,0.5);
 
         let btnPosThird = centerX + (btnPlay.width) + (btnGap * 2);
