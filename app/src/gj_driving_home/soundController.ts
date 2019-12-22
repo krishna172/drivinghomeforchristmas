@@ -13,7 +13,7 @@ export class SoundController {
     private timePassedInState:integer = 0;
     private radioStateTime: integer = 0;
     private _sound:BaseSoundManager;
-    private _volumeLevel:number;
+    private _volumeLevel:number = 1;
 
 
     private constructor() {
@@ -42,8 +42,11 @@ export class SoundController {
 
 
     playSound(name: string){
-        this.soundArray.push(this._sound.add(name));
+        let x = this._sound.add(name);
+        this.soundArray.push(x);
         this._sound.play(name);
+        return x.duration;
+
     }
 
 

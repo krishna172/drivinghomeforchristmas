@@ -129,11 +129,11 @@ export class MainScene extends BaseScene {
         });
 
         let imageVolume = this.add.image(this.game.renderer.width - 375, this.game.renderer.height - 150, AssetGlobals.Knob );
-        const radioKnobVolume = image
+        const radioKnobVolume = imageVolume
             .setInteractive()
             .on('pointerdown', () => {
-                //SoundController.getInstance().adjustVolume();
-                image.angle +=  10;
+                SoundController.getInstance().adjustVolume();
+                imageVolume.angle +=  20;
             });
 
     }
