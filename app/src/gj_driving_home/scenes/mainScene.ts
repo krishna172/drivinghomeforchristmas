@@ -64,7 +64,9 @@ export class MainScene extends BaseScene {
         this.load.audio("radio11","./assets/music/radio11.mp3");
         console.log(this._sceneData.getKey()+" is the key");
         if(this._sceneData.getKey() == "scene_end"){
+            console.log("Should Work!!!!!!!!!!!!!!!!!!!!!!!");
             SceneHelper.steeringScene(this,null);
+            console.log("Should NOT Work!!!!!!!!!!!!!!!!!!!!!!!");
         }
         this._sceneDescription = new SceneLoader(this, this._sceneData.getKey()).loadScene();
         this.webcam = Webcam.getInstance();

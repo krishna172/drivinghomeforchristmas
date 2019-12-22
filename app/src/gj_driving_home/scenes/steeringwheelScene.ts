@@ -9,7 +9,7 @@ import CursorKeys = Phaser.Types.Input.Keyboard.CursorKeys;
 import Light = Phaser.GameObjects.Light;
 import {SoundController} from "../soundController";
 
-export class SteeringwheelScene extends Phaser.Scene {
+export class SteeringWheelScene extends Phaser.Scene {
     private dbox: DialogBox;
     private _sceneData: SceneLoadingData;
     private cursor: CursorKeys;

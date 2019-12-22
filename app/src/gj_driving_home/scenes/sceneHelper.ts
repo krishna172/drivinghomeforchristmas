@@ -31,8 +31,10 @@ export class SceneHelper {
     public static steeringScene(game: Phaser.Scene, sceneKey: SceneLoadingData): void {
         console.log("Steering scene ", sceneKey);
         game.scene.manager.stop('MainScene');
+        game.scene.manager.dump();
         game.scene.manager.start('SteeringWheelScene', sceneKey);
         game.scene.manager.dump();
+
     }
 
     static switchToRaccoonScene(game: Phaser.Scene, sceneLoadingData: SceneLoadingData) {

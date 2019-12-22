@@ -30,7 +30,7 @@ const config: GameConfig = {
     type: Phaser.AUTO,
     parent: "game",
 
-    scene: [MenuScene, IntroScene, LoadingScene, MainScene, SteeringWheelScene,RacoonScene],
+    scene: [MenuScene, IntroScene, LoadingScene, MainScene,RacoonScene,SteeringWheelScene],
     physics: {
         default: "arcade",
         arcade: {
