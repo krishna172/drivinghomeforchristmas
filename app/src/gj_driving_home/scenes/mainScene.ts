@@ -22,6 +22,9 @@ export class MainScene extends BaseScene {
     private redTimer: number = 0;
     private copFem: Phaser.GameObjects.Sprite;
     //private blueTimer: number = 100;
+    private _actionDelay: number;
+    private switchScene: boolean;
+    private sceneLoadingData: SceneLoadingData;
 
     constructor() {
         super({
@@ -150,6 +153,9 @@ export class MainScene extends BaseScene {
 
     update(time: number, delta: number): void {
         super.update(time, delta);
+        if(this._actionDelay > 0){
+            this._actionDelay -= delta;
+        }
         //console.log("Hallo Veit, das ist die "+this._sceneData.getKey()+" Szene. Viel spaß.");
         if(this.blueLight != undefined && this._sceneData.getKey() == "scene1"){
                 this.redTimer += delta;
@@ -176,6 +182,18 @@ export class MainScene extends BaseScene {
                 }
         }
         this._soundController.update(delta);
+        console.log(this._actionDelay);
+
+        if(this.switchScene && this._actionDelay<=0){
+            if(this._sceneData.getKey() == "scene0"){
+                SceneHelper.switchToRaccoonScene(this,this.sceneLoadingData);
+            }else{
+                SceneHelper.transitionScene(this,this.sceneLoadingData);
+            }
+            this.switchScene = false;
+        }
+
+
     }
 
 
@@ -217,7 +235,9 @@ export class MainScene extends BaseScene {
     }
     if(!conversationTree.wasPlayed){
         try {
-            this._soundController.playSound(conversationTree.audio_file_name);
+            let soundDuration = this._soundController.playSound(conversationTree.audio_file_name);
+           console.log("sound duration "+ soundDuration)
+            this._actionDelay=2000;
         }catch (e) {
 
         }
@@ -231,17 +251,12 @@ export class MainScene extends BaseScene {
           }else{
               console.log("we bring our item "+ conversationTree.item);
           }
-          let sceneLoadingData = new SceneLoadingData(conversationTree.transition,conversationTree.item);
+          this.sceneLoadingData = new SceneLoadingData(conversationTree.transition,conversationTree.item);
 
-          if(this._sceneData.getKey() == "scene0"){
-              SceneHelper.switchToRaccoonScene(this,sceneLoadingData);
-          }else{
-              SceneHelper.transitionScene(this,sceneLoadingData);
-
-          }
+          this.switchScene = true;
       }
 
-    if(conversationTree.options != null){
+    if(conversationTree.options != null && this._actionDelay <= 0){
         for (let option of conversationTree.options) {
           if (option.emotion == emotion || option.emotion == null) {
             options = option.nodes;
