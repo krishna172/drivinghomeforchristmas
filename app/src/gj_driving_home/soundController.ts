@@ -56,31 +56,46 @@ export class SoundController {
         if(this.state == RadioState.Static){
                 if(this.timePassedInState >= this.radioStateTime){
                     console.log("Switch State to Playing");
-                    this.playNextRadioSong();
+                    this.playNextRadioSong(true);
                 }
         }
         else if(this.state == RadioState.Playing){
             if(this.timePassedInState >= this.radioStateTime){
                 console.log("Switch State to Playing");
-                this.playNextRadioSong();
+                this.playNextRadioSong(false);
             }
         }
     }
 
-    private playNextRadioSong() {
+    private playNextRadioSong(intermediate:boolean) {
         this.stopAllMusic();
-        this.switchState(RadioState.Playing, 120000);
+
         let x = "radio0"+this.getRandomInt(3);
-        this.playMusic(x,false);
+        let y = this.playMusic(x,false, intermediate);
+        this.switchState(RadioState.Playing, y*1000);
         console.log(x);
     }
 
 
-    playMusic(musicName: string, looping:boolean){
+    playMusic(musicName: string, looping:boolean, intermediate:boolean):number{
         this.stopAllMusic();
         let bs:BaseSound = this._sound.add(musicName);
         this.musicArray.push(bs);
-        bs.play({loop:looping});
+
+        let x = 0;
+        if(intermediate){
+            x = this.getRandomInt(bs.duration);
+        }
+        bs.play({
+            mute: false,
+            volume: 1,
+            rate: 1,
+            detune: 0,
+            seek: x,
+            loop: false,
+            delay: 0
+        });
+        return bs.duration-x;
     }
 
     static getInstance() {
@@ -97,7 +112,7 @@ export class SoundController {
 
 
     private playRadioStatic(randomInt: number) {
-        this.playMusic("radio_static",true);
+        this.playMusic("radio_static",true,true);
         this.switchState(RadioState.Static, randomInt);
         console.log("Radio State Time" + this.radioStateTime)
 
