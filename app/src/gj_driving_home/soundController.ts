@@ -135,6 +135,7 @@ export class SoundController {
     public setVolume(){
             for (let musicArrayElement of this.musicArray) {
                 if(musicArrayElement.isPlaying){
+                    console.log("Volume:: " + this._volumeLevel)
                     musicArrayElement.pause();
                     musicArrayElement.play({
                         mute: false,
