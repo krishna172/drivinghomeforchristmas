@@ -269,7 +269,7 @@ export class MainScene extends BaseScene {
         try {
             let soundDuration = this._soundController.playSound(conversationTree.audio_file_name);
            console.log("sound duration "+ soundDuration)
-            this._actionDelay=2000;
+            this._actionDelay=soundDuration+2000;
         }catch (e) {
 
         }

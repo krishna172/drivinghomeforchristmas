@@ -11,6 +11,12 @@ export class IntroScene extends BaseScene {
     private radioStatic: Phaser.Sound.BaseSound;
     private currentSound: Phaser.Sound.BaseSound;
 
+    constructor() {
+        super({
+            key: "IntroScene"
+        });
+    }
+
 
     preload() {
         this.load.image("bg_intro", "./assets/backgrounds/bg_scene_00.jpg");
