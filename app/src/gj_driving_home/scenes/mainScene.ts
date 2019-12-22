@@ -38,7 +38,7 @@ export class MainScene extends BaseScene {
         console.log('init', data);
         this._sceneData = data;
         //item scene hack
-
+        this.dbox = null;
         console.log(this._sceneData.getKey());
     }
 
@@ -192,11 +192,10 @@ export class MainScene extends BaseScene {
     }
 
     renderActionText(text: string) {
-        if (this.dbox) {
-            this.dbox.toggleWindow();
+        if (this.dbox == null) {
+            this.dbox = new DialogBox(this);
+            this.dbox._createWindow();
         }
-        this.dbox = new DialogBox(this);
-        this.dbox._createWindow();
         this.dbox.setText(text, false);
     }
 
