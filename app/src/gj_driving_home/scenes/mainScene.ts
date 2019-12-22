@@ -46,6 +46,7 @@ export class MainScene extends BaseScene {
     }
 
     preload() {
+        this.load.image(AssetGlobals.BG_IMAGE_MAIN_CAM, "./assets/backgrounds/"+AssetGlobals.BG_IMAGE_MAIN_CAM+".png");
         this.load.audio("radio_static","./assets/music/radio_static.wav");
         this.load.audio("radio00","./assets/music/radio00.mp3");
         this.load.audio("radio01","./assets/music/radio01.mp3");
@@ -138,6 +139,12 @@ export class MainScene extends BaseScene {
                 SoundController.getInstance().adjustVolume();
                 imageVolume.angle +=  20;
             });
+
+        let bgImageCam = this.add.image(
+            this.game.renderer.width/2,
+            this.game.renderer.height/4,
+            AssetGlobals.BG_IMAGE_MAIN_CAM);
+        bgImageCam.setOrigin(0.5,0.5);
 
     }
 
