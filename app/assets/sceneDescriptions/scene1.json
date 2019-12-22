@@ -7,7 +7,7 @@
     "name": "Faith",
     "actor": "Cop",
     "text": "Good evening, sir. Please, turn off your car’s motor and radio. License and registration, please! You know why I stopped you, right?",
-    "audio_file_name": "cop1.wav",
+    "audio_file_name": "cop01.mp3",
     "transition": null,
     "options": [
       {
@@ -50,7 +50,7 @@
                                     "actor": "cop",
                                     "text": "Your headlight is broken. You seem unaware of the condition of your car. Police. Can you open up the trunk for me and show me your first-aid kit, please?",
                                     "transition": "scene2",
-                                    "audio_file_name": "cop3.mp3",
+                                    "audio_file_name": "cop03.mp3",
                                     "options": null
                                   }
                                 ]
