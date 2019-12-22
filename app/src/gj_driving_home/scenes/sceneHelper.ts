@@ -17,6 +17,18 @@ export class SceneHelper {
         game.scene.manager.dump();
     }
 
+    public static switchToCreditScene(game: Phaser.Scene) {
+        game.scene.manager.stop("MenuScene");
+        game.scene.manager.start("CreditScene");
+        game.scene.manager.dump();
+    }
+
+    public static switchToMenuScene(game: Phaser.Scene) {
+        game.scene.manager.stop("CreditScene");
+        game.scene.manager.start("MenuScene");
+        game.scene.manager.dump();
+    }
+
     public static transitionScene(game: Phaser.Scene, sceneKey: SceneLoadingData): void {
         console.log("here we go again for "+ sceneKey.getKey());
 
