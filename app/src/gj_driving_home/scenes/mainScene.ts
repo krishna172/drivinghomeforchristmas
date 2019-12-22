@@ -25,6 +25,7 @@ export class MainScene extends BaseScene {
     private _actionDelay: number;
     private switchScene: boolean;
     private sceneLoadingData: SceneLoadingData;
+    private bgImageCamText: any;
 
     constructor() {
         super({
@@ -71,6 +72,7 @@ export class MainScene extends BaseScene {
         Webcam.init();
         console.log("added video");
         let img:Phaser.GameObjects.Image = this.add.image(this.game.renderer.width / 2, this.game.renderer.height / 2, this._sceneDescription.bg_image_name);
+
         this.renderConversationNode(this._conversationTree, this._currentEmotion);
         let game = this;
         if(this._sceneData.getKey() == "scene1") {
@@ -141,11 +143,15 @@ export class MainScene extends BaseScene {
             });
 
         let bgImageCam = this.add.image(
-            this.game.renderer.width/2,
-            this.game.renderer.height/4,
+            this.game.renderer.width/2 + 250,
+            this.game.renderer.height/4 + 50,
             AssetGlobals.BG_IMAGE_MAIN_CAM);
         bgImageCam.setOrigin(0.5,0.5);
 
+        this.bgImageCamText = this.add.text(
+            this.game.renderer.width/2+80,
+            this.game.renderer.height/4 + 125,
+            ";-)", {font: '30px monospace'});
     }
 
     private navigate(game: this, nbr: number) {
@@ -215,11 +221,11 @@ export class MainScene extends BaseScene {
 
     renderWebCamPic() {
         let image = this.add.image(
-            this.game.renderer.width/2,
-            0,
+            this.game.renderer.width/2 + 250,
+            this.game.renderer.height/4 - 15,
             "webcam"
         );
-        image.setOrigin(1, 0.5);
+        image.setOrigin(0.5, 0.5);
         image.setScale(0.5);
 
     }
@@ -279,13 +285,21 @@ export class MainScene extends BaseScene {
       }
     }
 
-        this.renderActionText(conversationTree.text + '\n' + optionsText + Emotion[this._currentEmotion]);
+        this.renderActionText(conversationTree.text + '\n' + optionsText); //+ Emotion[this._currentEmotion]
+
 
     }
 
     onEmotion(emotion: Emotion) {
         this._currentEmotion = emotion;
         this.renderConversationNode(this._conversationTree, this._currentEmotion);
+        let emotionText = "";
+        if(this._currentEmotion == null){
+            emotionText = "UNDEFINED";
+        }else{
+            emotionText = Emotion[this._currentEmotion];
+        }
+        this.bgImageCamText.setText(emotionText);
     }
 
 
