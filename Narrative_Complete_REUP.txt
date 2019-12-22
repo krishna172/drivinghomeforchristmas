@@ -190,6 +190,8 @@ Can you open up the trunk for me and show me your first-aid kit, please?”
 [VOICE_RADIO]
 [WINCONDITION1] Game Over
 
+
+
 [ITEM] Briefcase
 [IMAGE_BRIEFCASE]
 	[ACTOR]Cop
@@ -212,6 +214,8 @@ Can you open up the trunk for me and show me your first-aid kit, please?”
 [TEXT] “Good evening on Radio Game Jam FM and a report of an explosion at the Lower Manhattan highway. Emergency responders are on their way. Drivers should circumvent the area. Drive safe and Merry Christmas.” 
 [VOICE_RADIO]
 [LOSECONDITION1] Game Over
+
+
 
 		[EMOTION] Neutral
 		[ACTOR] Driver
