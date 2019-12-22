@@ -128,6 +128,14 @@ export class MainScene extends BaseScene {
           image.angle +=  10;
         });
 
+        let imageVolume = this.add.image(this.game.renderer.width - 375, this.game.renderer.height - 150, AssetGlobals.Knob );
+        const radioKnobVolume = imageVolume
+            .setInteractive()
+            .on('pointerdown', () => {
+                SoundController.getInstance().adjustVolume();
+                imageVolume.angle +=  20;
+            });
+
     }
 
     private navigate(game: this, nbr: number) {
