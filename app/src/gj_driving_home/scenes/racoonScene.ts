@@ -146,6 +146,7 @@ export class RacoonScene extends Phaser.Scene {
 
     update(time: number, delta: number): void {
         this.racoonTimer -= delta;
+        SoundController.getInstance().update(delta);
         if(this.racoonTimer <= -7000){
             SceneHelper.transitionScene(this,this._sceneData);
         }

@@ -13,6 +13,7 @@ export class SoundController {
     private timePassedInState:integer = 0;
     private radioStateTime: integer = 0;
     private _sound:BaseSoundManager;
+    private _volumeLevel:number;
 
 
     private constructor() {
@@ -31,6 +32,7 @@ export class SoundController {
             musicArrayElement.stop();
         }
     }
+
 
     stopAllAudio(){
         this.stopAllMusic();
@@ -88,7 +90,7 @@ export class SoundController {
         }
         bs.play({
             mute: false,
-            volume: 1,
+            volume: 0.25*this._volumeLevel,
             rate: 1,
             detune: 0,
             seek: x,
@@ -97,6 +99,7 @@ export class SoundController {
         });
         return bs.duration-x;
     }
+
 
     static getInstance() {
         if (SoundController.sc==null){
@@ -123,6 +126,33 @@ export class SoundController {
         this.radioStateTime = time;
         this.state = state;
 
+    }
+
+
+    public setVolume(){
+            for (let musicArrayElement of this.musicArray) {
+                if(musicArrayElement.isPlaying){
+                    musicArrayElement.pause();
+                    musicArrayElement.play({
+                        mute: false,
+                        volume: 0.25*this._volumeLevel,
+                        rate: 1,
+                        detune: 0,
+                        loop: false,
+                        delay: 0
+                    })
+                }
+            }
+    }
+
+    public adjustVolume(){
+        switch(this._volumeLevel){
+            case 0: this._volumeLevel++; break;
+            case 1: this._volumeLevel++;break;
+            case 2: this._volumeLevel++;break;
+            case 3: this._volumeLevel=0;  break;
+            default: console.log("Fuck, this should not be reachable"); break;
+        }
     }
 }
 
