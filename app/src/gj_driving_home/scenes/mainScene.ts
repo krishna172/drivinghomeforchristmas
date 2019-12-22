@@ -192,11 +192,10 @@ console.log(this._sceneData.getKey()+"     is the key")
     }
 
     renderActionText(text: string) {
-        if (this.dbox) {
-            this.dbox.toggleWindow();
+        if (this.dbox == null) {
+            this.dbox = new DialogBox(this);
+            this.dbox._createWindow();
         }
-        this.dbox = new DialogBox(this);
-        this.dbox._createWindow();
         this.dbox.setText(text, false);
     }
 
