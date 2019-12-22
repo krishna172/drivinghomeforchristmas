@@ -7,11 +7,11 @@
     "name": "Faith",
     "actor": "Cop",
     "text": "Alright, what do we have here…? What ist that?",
-    "audio_file_name": "cop05.wav",
+    "audio_file_name": "cop05.mp3",
     "transition": null,
     "options": [
       {
-        "emotion": 1,
+        "emotion": null,
         "nodes": [
           {
             "id": 0,

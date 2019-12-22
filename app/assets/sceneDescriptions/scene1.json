@@ -46,7 +46,7 @@
                                 "nodes": [
                                   {
                                     "id": 0,
-                                    "name": "Na na na!",
+                                    "name": "continue",
                                     "actor": "cop",
                                     "text": "Your headlight is broken. You seem unaware of the condition of your car. Police. Can you open up the trunk for me and show me your first-aid kit, please?",
                                     "transition": "scene2",
